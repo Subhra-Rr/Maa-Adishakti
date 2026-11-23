@@ -167,7 +167,7 @@ export const categories: CategoryInfo[] = [
     scripturalFoundations: ['Utkala Khanda (Skanda Purana)', 'Vimala Mahatmya', 'Kapila Samhita', 'Tantrachudamani'],
     deviCount: 14,
     iconName: 'Compass',
-    deviIds: ['vimala-puri', 'tara-tarini', 'samaleswari', 'biraja', 'mangala-kakatpur', 'sarala-jhankad', 'charchika', 'kichakeswari']
+    deviIds: ['vimala-puri', 'tara-tarini', 'biraja-jajpur', 'samaleswari', 'mangala-kakatpur', 'sarala-jhankad', 'charchika', 'kichakeswari']
   },
   {
     id: 'shakti-peethas',

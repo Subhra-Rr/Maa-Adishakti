@@ -324,22 +324,40 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
             </div>
 
             <div className="lg:col-span-4 grid grid-cols-2 gap-3">
-              {odishaShaktaHeritage.slice(0, 4).map((temple) => (
-                <div
-                  key={temple.id}
-                  className="p-3 rounded-lg bg-sacred-surface border border-sacred-borderGold/30 text-center space-y-1"
-                >
-                  <div className="font-odia text-xs text-sacred-goldLight font-semibold">
-                    {temple.odiaName}
-                  </div>
-                  <div className="font-cinzel text-xs font-bold text-sacred-ivory">
-                    {temple.deviName}
-                  </div>
-                  <div className="text-[10px] text-sacred-ivoryMuted">
-                    {temple.location}
-                  </div>
-                </div>
-              ))}
+              {odishaShaktaHeritage.slice(0, 4).map((temple) => {
+                const imgMap: Record<string, string> = {
+                  'vimala-puri': '/images/devis/vimala.jpg',
+                  'tara-tarini': '/images/devis/tara_tarini.jpg',
+                  'biraja-jajpur': '/images/devis/biraja.jpg',
+                  'samaleswari': '/images/devis/samaleswari.jpg',
+                };
+                return (
+                  <Link
+                    key={temple.id}
+                    to={`/devi/${temple.id}`}
+                    className="p-3 rounded-lg bg-sacred-surface border border-sacred-borderGold/30 text-center space-y-1.5 hover:border-sacred-gold transition-all block group"
+                  >
+                    {imgMap[temple.id] && (
+                      <div className="w-full h-24 rounded overflow-hidden border border-sacred-borderGold/30 mb-1 bg-sacred-dark">
+                        <img
+                          src={imgMap[temple.id]}
+                          alt={temple.deviName}
+                          className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform"
+                        />
+                      </div>
+                    )}
+                    <div className="font-odia text-xs text-sacred-goldLight font-semibold">
+                      {temple.odiaName}
+                    </div>
+                    <div className="font-cinzel text-xs font-bold text-sacred-ivory">
+                      {temple.deviName}
+                    </div>
+                    <div className="text-[10px] text-sacred-ivoryMuted">
+                      {temple.location}
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </section>

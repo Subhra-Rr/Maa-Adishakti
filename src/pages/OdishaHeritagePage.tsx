@@ -3,6 +3,16 @@ import { Link } from 'react-router-dom';
 import { odishaShaktaHeritage } from '../data/odishaShakta';
 import { Compass, MapPin, ExternalLink, ArrowRight, BookOpen, Crown, ChevronRight } from 'lucide-react';
 
+const shrineImages: Record<string, string> = {
+  'vimala-puri': '/images/devis/vimala.jpg',
+  'tara-tarini': '/images/devis/tara_tarini.jpg',
+  'biraja-jajpur': '/images/devis/biraja.jpg',
+  'samaleswari': '/images/devis/samaleswari.jpg',
+  'mangala-kakatpur': '/images/devis/mangala.jpg',
+  'sarala-jhankad': '/images/devis/sarala.jpg',
+  'charchika': '/images/devis/charchika.jpg',
+};
+
 export const OdishaHeritagePage: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
@@ -46,14 +56,13 @@ export const OdishaHeritagePage: React.FC = () => {
               className="p-6 rounded-xl bg-sacred-surface border border-sacred-borderGold/30 hover:border-sacred-gold transition-all duration-300 flex flex-col justify-between space-y-4 hover:shadow-sacred-glow"
             >
               <div className="space-y-3">
-                {temple.id === 'biraja-jajpur' && (
-                  <div className="w-full h-40 rounded-lg overflow-hidden border border-sacred-borderGold/30 mb-2">
-                    <img src="/images/temples/biraja_jajpur.jpg" alt="Maa Biraja Temple, Jajpur" className="w-full h-full object-cover" />
-                  </div>
-                )}
-                {temple.id === 'tara-tarini' && (
-                  <div className="w-full h-40 rounded-lg overflow-hidden border border-sacred-borderGold/30 mb-2">
-                    <img src="/images/temples/tara_tarini.jpg" alt="Maa Tara Tarini Temple, Ganjam" className="w-full h-full object-cover" />
+                {shrineImages[temple.id] && (
+                  <div className="w-full h-52 rounded-lg overflow-hidden border border-sacred-borderGold/40 mb-2 bg-sacred-dark group/img">
+                    <img
+                      src={shrineImages[temple.id]}
+                      alt={temple.deviName}
+                      className="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500"
+                    />
                   </div>
                 )}
                 <div className="flex items-center justify-between">

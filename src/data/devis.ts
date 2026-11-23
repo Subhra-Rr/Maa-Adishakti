@@ -1849,6 +1849,7 @@ siṁhāsanasthāṁ praṇamāmi devīm॥`,
   // ==========================================
   {
     id: 'vimala-puri',
+    imagePath: '/images/devis/vimala.jpg',
     primaryName: 'Maa Vimala (Puri)',
     sanskritName: 'श्री विमला देवी',
     odiaName: 'ମା ବିମଳା',
@@ -1926,7 +1927,7 @@ Trāhi māṁ sarvapāpebhyo vimale pāpanāśini॥`,
 
   {
     id: 'tara-tarini',
-    imagePath: '/images/temples/tara_tarini.jpg',
+    imagePath: '/images/devis/tara_tarini.jpg',
     primaryName: 'Maa Tara Tarini',
     sanskritName: 'श्री तारा-तारिणी',
     odiaName: 'ମା ତାରା-ତାରିଣୀ',
@@ -2004,7 +2005,7 @@ Prasannā bhava he mātarbhaktasaṁrakṣaṇotsuke॥`,
 
   {
     id: 'biraja-jajpur',
-    imagePath: '/images/temples/biraja_jajpur.jpg',
+    imagePath: '/images/devis/biraja.jpg',
     primaryName: 'Maa Biraja (Jajpur)',
     sanskritName: 'श्री विरजा देवी',
     odiaName: 'ମା ବିରଜା',
@@ -2082,6 +2083,7 @@ Virajāṁ varadāṁ vande brahmalokapradāyinīm॥`,
 
   {
     id: 'samaleswari',
+    imagePath: '/images/devis/samaleswari.jpg',
     primaryName: 'Maa Samaleswari',
     sanskritName: 'श्री समलेश्वरी',
     odiaName: 'ମା ସମଲେଶ୍ୱରୀ',
@@ -2157,6 +2159,7 @@ Namāmi bhaktābhayadāmabhīṣṭām॥`,
 
   {
     id: 'mangala-kakatpur',
+    imagePath: '/images/devis/mangala.jpg',
     primaryName: 'Maa Mangala (Kakatpur)',
     sanskritName: 'श्री मङ्गला देवी',
     odiaName: 'ମା ମଙ୍ଗଳା',
@@ -2232,6 +2235,7 @@ Maṅgalāṁ sarvadā vande bhaktacittapramodinīm॥`,
 
   {
     id: 'sarala-jhankad',
+    imagePath: '/images/devis/sarala.jpg',
     primaryName: 'Maa Sarala (Jhankad)',
     sanskritName: 'श्री शारदा / सारळा',
     odiaName: 'ମା ସାରଳା',
@@ -2303,6 +2307,7 @@ Sāraḷāṁ varadāṁ vande vāgdevīṁ mahiṣamardinīm॥`,
 
   {
     id: 'charchika',
+    imagePath: '/images/devis/charchika.jpg',
     primaryName: 'Maa Charchika',
     sanskritName: 'श्री चर्चिका देवी',
     odiaName: 'ମା ଚର୍ଚ୍ଚିକା',
@@ -2377,6 +2382,7 @@ Cāmuṇḍārūpiṇīṁ vande carcikāṁ pāpanāśinīm॥`,
   // ==========================================
   {
     id: 'guhyakali',
+    imagePath: '/images/devis/guhyakali.jpg',
     primaryName: 'Maa Guhyakali',
     sanskritName: 'श्री गुह्यकाली',
     odiaName: 'ମା ଗୁହ୍ୟକାଳୀ',
