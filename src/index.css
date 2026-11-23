@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark !important;
+  --bg-primary: #070605;
+  --bg-surface: #15120f;
+  --bg-surface-elevated: #1f1b16;
+  --text-primary: #f8f4eb;
+  --text-secondary: #dfd7c5;
+  --text-muted: #9e9484;
+  --color-gold: #d4af37;
+  --color-gold-light: #f0d376;
+  --color-gold-dark: #a18120;
+  --color-crimson: #8b1824;
+  --color-maroon: #350a0f;
+  --border-gold: rgba(212, 175, 55, 0.25);
+  --border-subtle: #2d241c;
+}
+
+/* Force permanent sacred dark theme regardless of OS prefers-color-scheme */
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: dark !important;
+  }
+  body {
+    background-color: #070605 !important;
+    color: #f8f4eb !important;
+  }
+}
+
+html, body {
+  background-color: #070605 !important;
+  color: #f8f4eb !important;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0d0b09;
+}
+::-webkit-scrollbar-thumb {
+  background: #3d2c18;
+  border-radius: 4px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6e4e20;
+}
+
+/* Sacred Typography Utilities */
+.font-cinzel {
+  font-family: 'Cinzel', serif;
+}
+.font-cormorant {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+.font-devanagari {
+  font-family: 'Noto Serif Devanagari', serif;
+}
+.font-odia {
+  font-family: 'Noto Serif Oriya', 'Noto Sans Oriya', serif;
+}
+
+/* Sacred Shimmer and Glows */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #f0d376 0%, #d4af37 40%, #ffdf88 60%, #b89628 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.crimson-gradient-text {
+  background: linear-gradient(135deg, #ff4d6d 0%, #c52837 50%, #8b1824 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sacred-card-border {
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  transition: all 0.3s ease;
+}
+.sacred-card-border:hover {
+  border-color: rgba(212, 175, 55, 0.5);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+}
+
+.sacred-glow {
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.18);
+}
+
+.crimson-glow {
+  box-shadow: 0 0 25px rgba(139, 24, 36, 0.25);
+}
+
+/* Sacred Corner Accents */
+.sacred-corner-box {
+  position: relative;
+}
+.sacred-corner-box::before,
+.sacred-corner-box::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: #d4af37;
+  pointer-events: none;
+}
+.sacred-corner-box::before {
+  top: 4px;
+  left: 4px;
+  border-top: 1.5px solid #d4af37;
+  border-left: 1.5px solid #d4af37;
+}
+.sacred-corner-box::after {
+  bottom: 4px;
+  right: 4px;
+  border-bottom: 1.5px solid #d4af37;
+  border-right: 1.5px solid #d4af37;
+}
+
+/* Subtle Diya / Flame pulse */
+@keyframes flamePulse {
+  0%, 100% {
+    opacity: 0.85;
+    filter: drop-shadow(0 0 8px rgba(230, 106, 31, 0.5));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 16px rgba(240, 211, 118, 0.75));
+  }
+}
+.diya-pulse {
+  animation: flamePulse 3.5s ease-in-out infinite;
+}
