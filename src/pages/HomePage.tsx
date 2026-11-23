@@ -189,7 +189,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
                 <Zap className="w-3.5 h-3.5 text-amber-400" />
                 <span>महाविमर्श विभाग — Dedicated Research Center</span>
               </div>
-              <h2 className="font-cinzel text-3xl sm:text-4xl md:text-5xl font-extrabold gold-gradient-text">
+              <h2 className="font-devanagari text-3xl sm:text-4xl md:text-5xl font-bold text-sacred-goldLight drop-shadow-[0_0_15px_rgba(212,175,55,0.4)] leading-normal pt-2 pb-1 tracking-wide">
                 श्री प्रत्यङ्गिरा देवी
               </h2>
               <div className="font-cinzel text-xl text-sacred-ivory font-semibold">

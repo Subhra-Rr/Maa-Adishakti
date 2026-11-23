@@ -27,7 +27,7 @@ export const PratyangiraResearchPage: React.FC = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-8 space-y-4">
-            <h1 className="font-cinzel text-3xl sm:text-5xl md:text-6xl font-extrabold gold-gradient-text">
+            <h1 className="font-devanagari text-3xl sm:text-5xl md:text-6xl font-bold text-sacred-goldLight drop-shadow-[0_0_15px_rgba(212,175,55,0.4)] leading-normal pt-2 pb-1 tracking-wide">
               श्री प्रत्यङ्गिरा देवी
             </h1>
             <div className="font-cinzel text-xl sm:text-2xl text-sacred-ivory font-semibold">

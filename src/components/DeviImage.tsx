@@ -42,9 +42,9 @@ export const DeviImage: React.FC<DeviImageProps> = ({
   }
 
   const heightClasses = {
-    sm: 'h-48',
+    sm: 'h-48 sm:h-52',
     md: 'h-64 sm:h-72',
-    lg: 'h-80 sm:h-96',
+    lg: 'h-80 sm:h-96 md:h-[430px]',
     hero: 'h-96 sm:h-[480px]'
   };
 

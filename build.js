@@ -8,6 +8,11 @@ try {
     root: 'D:/Maa Adishakti',
     configFile: false,
     plugins: [react()],
+    build: {
+      outDir: 'dist',
+      emptyOutDir: false,
+      copyPublicDir: false
+    }
   });
   console.log('Vite build succeeded cleanly!');
 } catch (err) {

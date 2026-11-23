@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import {
   categories, allDevis, sixtyFourYoginis, shodashaNityas,
@@ -28,14 +28,20 @@ export const CategoryDetailPage: React.FC = () => {
   }
 
   // Find standard Devi entries linked to this category
-  const linkedDevis = allDevis.filter(devi =>
-    devi.classification.some(c =>
-      c.toLowerCase().includes(category.name.toLowerCase()) ||
-      category.name.toLowerCase().includes(c.toLowerCase()) ||
-      c.toLowerCase().includes(category.slug.toLowerCase())
-    ) ||
-    (category.deviIds && category.deviIds.includes(devi.id))
-  );
+  const linkedDevis = useMemo(() => {
+    if (category.deviIds && category.deviIds.length > 0) {
+      return category.deviIds
+        .map(id => allDevis.find(d => d.id === id))
+        .filter((d): d is typeof allDevis[0] => d !== undefined);
+    }
+    return allDevis.filter(devi =>
+      devi.classification.some(c =>
+        c.toLowerCase().includes(category.name.toLowerCase()) ||
+        category.name.toLowerCase().includes(c.toLowerCase()) ||
+        c.toLowerCase().includes(category.slug.toLowerCase())
+      )
+    );
+  }, [category]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">

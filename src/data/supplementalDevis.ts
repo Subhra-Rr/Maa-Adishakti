@@ -651,6 +651,7 @@ Tāṁ durge durgatiharāṁ praṇamāmi muhurmuhuḥ॥`,
 
   {
     id: 'radha',
+    imagePath: '/images/devis/radha.jpg',
     primaryName: 'Radha (Hladini Shakti)',
     sanskritName: 'श्री राधा (ह्लादिनी शक्तिः)',
     odiaName: 'ମା ରାଧା',
@@ -722,7 +723,7 @@ Vṛṣabhānusute devi praṇamāmi haripriye॥`,
 
   {
     id: 'lakshmi-prakriti',
-    imagePath: '/images/devis/mahalakshmi.jpg',
+    imagePath: '/images/devis/lakshmi.jpg',
     primaryName: 'Lakshmi (Prakriti)',
     sanskritName: 'श्री लक्ष्मी (प्रकृतिः)',
     odiaName: 'ମା ଲକ୍ଷ୍ମୀ',
@@ -793,7 +794,7 @@ Padmapatrekṣaṇe devi padmākṣī te namo namaḥ॥`,
 
   {
     id: 'saraswati-prakriti',
-    imagePath: '/images/devis/mahasaraswati.jpg',
+    imagePath: '/images/devis/saraswati.jpg',
     primaryName: 'Saraswati (Prakriti)',
     sanskritName: 'श्री सरस्वती (प्रकृतिः)',
     odiaName: 'ମା ସରସ୍ୱତୀ',
@@ -864,6 +865,7 @@ Koṭicandraprabhāyuktāṁ vīṇāpustakadhāriṇīm॥`,
 
   {
     id: 'savitri-prakriti',
+    imagePath: '/images/devis/savitri.jpg',
     primaryName: 'Savitri / Gayatri (Prakriti)',
     sanskritName: 'श्री सावित्री / गायत्री',
     odiaName: 'ମା ସାବିତ୍ରୀ',
