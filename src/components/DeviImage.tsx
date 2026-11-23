@@ -97,6 +97,20 @@ export function resolveDeviImagePath(explicitPath?: string, deviName?: string, a
   return undefined;
 }
 
+// Global in-memory cache to ensure images that loaded once appear INSTANTLY across all page navigations
+const globalLoadedImages = new Set<string>();
+
+export function preloadDeviImages(paths: string[]) {
+  if (typeof window === 'undefined') return;
+  paths.forEach(src => {
+    if (!src || globalLoadedImages.has(src)) return;
+    const img = new Image();
+    img.decoding = 'async';
+    img.src = src;
+    img.onload = () => globalLoadedImages.add(src);
+  });
+}
+
 interface DeviImageProps {
   imagePath?: string;
   altText: string;
@@ -108,6 +122,7 @@ interface DeviImageProps {
   className?: string;
   attribution?: string;
   source?: string;
+  priority?: boolean;
 }
 
 export const DeviImage: React.FC<DeviImageProps> = ({
@@ -120,26 +135,51 @@ export const DeviImage: React.FC<DeviImageProps> = ({
   size = 'md',
   className = '',
   attribution,
-  source
+  source,
+  priority = false
 }) => {
   const resolvedPath = resolveDeviImagePath(explicitImagePath, deviName, altText, deviId);
+  const isInitiallyCached = Boolean(resolvedPath && globalLoadedImages.has(resolvedPath));
+  
   const [hasError, setHasError] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(isInitiallyCached);
   const [retryCount, setRetryCount] = useState(0);
+  const imgRef = React.useRef<HTMLImageElement>(null);
 
-  // Reset error and load state whenever the resolved image path changes
-  useEffect(() => {
+  const isHighPriority = priority || size === 'hero' || size === 'lg';
+
+  // Instant check for cached images in browser memory or disk
+  React.useEffect(() => {
+    if (resolvedPath && globalLoadedImages.has(resolvedPath)) {
+      setIsLoaded(true);
+      return;
+    }
+    if (imgRef.current && imgRef.current.complete && imgRef.current.naturalWidth > 0) {
+      if (resolvedPath) globalLoadedImages.add(resolvedPath);
+      setIsLoaded(true);
+    }
+  }, [resolvedPath]);
+
+  // Reset state if resolvedPath changes
+  React.useEffect(() => {
+    const cached = Boolean(resolvedPath && globalLoadedImages.has(resolvedPath));
     setHasError(false);
-    setIsLoaded(false);
+    setIsLoaded(cached);
     setRetryCount(0);
   }, [resolvedPath]);
 
+  const handleImageLoad = () => {
+    if (resolvedPath) {
+      globalLoadedImages.add(resolvedPath);
+    }
+    setIsLoaded(true);
+  };
+
   const handleImageError = () => {
     if (retryCount < 1) {
-      // Retry once after brief delay to handle dev-server / HMR lag
       setTimeout(() => {
         setRetryCount(prev => prev + 1);
-      }, 300);
+      }, 200);
     } else {
       setHasError(true);
     }
@@ -167,19 +207,22 @@ export const DeviImage: React.FC<DeviImageProps> = ({
 
   return (
     <div className={`relative w-full ${heightClasses[size]} overflow-hidden rounded-lg bg-sacred-surface border border-sacred-borderGold/40 group ${className}`}>
+      {/* Subtle non-blocking placeholder shimmer only while downloading */}
       {!isLoaded && (
-        <div className="absolute inset-0 flex items-center justify-center bg-sacred-dark/80">
-          <div className="w-8 h-8 rounded-full border-2 border-sacred-gold border-t-transparent animate-spin" />
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-sacred-dark/70 to-sacred-surface animate-pulse" />
       )}
       <img
+        ref={imgRef}
         key={`${resolvedPath}-${retryCount}`}
         src={resolvedPath}
         alt={altText}
-        loading="lazy"
-        onLoad={() => setIsLoaded(true)}
+        loading={isHighPriority ? 'eager' : 'lazy'}
+        // @ts-ignore - modern browser high-priority hint
+        fetchpriority={isHighPriority ? 'high' : 'auto'}
+        decoding="async"
+        onLoad={handleImageLoad}
         onError={handleImageError}
-        className={`w-full h-full object-cover object-top transition-all duration-700 group-hover:scale-105 ${
+        className={`w-full h-full object-cover object-top transition-opacity duration-200 group-hover:scale-105 ${
           isLoaded ? 'opacity-100' : 'opacity-0'
         }`}
       />

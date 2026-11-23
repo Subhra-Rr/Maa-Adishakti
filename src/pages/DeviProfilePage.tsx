@@ -172,6 +172,7 @@ export const DeviProfilePage: React.FC = () => {
               attribution={devi.imageAssets[0]?.attribution}
               source={devi.imageAssets[0]?.source}
               size="lg"
+              priority={true}
             />
           </div>
         </div>
