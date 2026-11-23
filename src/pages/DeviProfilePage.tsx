@@ -163,6 +163,7 @@ export const DeviProfilePage: React.FC = () => {
         <div className="md:col-span-5 flex justify-center">
           <div className="w-full max-w-sm rounded-xl overflow-hidden border border-sacred-borderGold/60 bg-sacred-dark shadow-sacred-glow">
             <DeviImage
+              imagePath={devi.imagePath || devi.imageAssets[0]?.imagePath}
               altText={devi.primaryName}
               deviName={devi.primaryName}
               sanskritName={devi.sanskritName}
@@ -445,19 +446,69 @@ export const DeviProfilePage: React.FC = () => {
       ======================================================== */}
       {devi.yantra && (
         <section className="space-y-4">
-          <h2 className="font-cinzel text-xl sm:text-2xl font-bold text-sacred-gold border-b border-sacred-borderGold/30 pb-2">
-            Sacred Yantra & Geometry
-          </h2>
-          <div className="p-6 rounded-xl bg-sacred-surface border border-sacred-borderGold/30 space-y-3">
-            <h3 className="font-cinzel text-lg font-bold text-sacred-goldLight">
-              {devi.yantra.name}
-            </h3>
-            <p className="text-xs sm:text-sm text-sacred-ivoryDim font-cormorant text-lg leading-relaxed">
-              {devi.yantra.geometricalDescription}
-            </p>
-            <div className="pt-2 flex flex-wrap items-center justify-between text-xs text-sacred-goldDark border-t border-sacred-border/60">
-              <span>Scriptural Source: {devi.yantra.scripturalReference}</span>
-              <span>Documented Spiritual Significance</span>
+          <div className="flex items-center justify-between border-b border-sacred-borderGold/30 pb-2">
+            <h2 className="font-cinzel text-xl sm:text-2xl font-bold text-sacred-gold">
+              Sacred Yantra & Exact Tantric Geometry
+            </h2>
+            <Link
+              to="/sri-chakra"
+              className="text-xs text-sacred-goldLight hover:underline font-cinzel"
+            >
+              View 10 Mahavidya Yantra Gallery &rarr;
+            </Link>
+          </div>
+
+          <div className="p-6 rounded-xl bg-sacred-surface border border-sacred-borderGold/30 shadow-sacred-glow">
+            <div className={`grid grid-cols-1 ${devi.yantra.imagePath ? 'md:grid-cols-12 gap-8 items-center' : 'gap-4'}`}>
+              {/* Yantra Image Display */}
+              {devi.yantra.imagePath && (
+                <div className="md:col-span-5 flex flex-col items-center justify-center">
+                  <div className="relative w-full max-w-xs aspect-square rounded-xl overflow-hidden border-2 border-sacred-borderGold/60 bg-sacred-dark p-3 flex items-center justify-center shadow-sacred-glow group">
+                    <img
+                      src={devi.yantra.imagePath}
+                      alt={devi.yantra.name}
+                      className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute bottom-2 inset-x-2 text-center pointer-events-none">
+                      <span className="inline-block px-2.5 py-0.5 rounded-full bg-sacred-dark/90 border border-sacred-gold/40 text-[10px] text-sacred-goldLight">
+                        Authentic Agamic Geometry
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Yantra Details */}
+              <div className={`${devi.yantra.imagePath ? 'md:col-span-7' : ''} space-y-3.5`}>
+                <div className="flex items-baseline space-x-3">
+                  <h3 className="font-cinzel text-lg sm:text-xl font-bold text-sacred-goldLight">
+                    {devi.yantra.name}
+                  </h3>
+                </div>
+
+                <div className="space-y-1">
+                  <span className="text-[11px] uppercase tracking-wider font-bold text-sacred-gold font-sans block">
+                    Geometrical Configuration:
+                  </span>
+                  <p className="text-xs sm:text-sm text-sacred-ivoryDim font-cormorant text-base sm:text-lg leading-relaxed">
+                    {devi.yantra.geometricalDescription}
+                  </p>
+                </div>
+
+                <div className="space-y-1">
+                  <span className="text-[11px] uppercase tracking-wider font-bold text-sacred-gold font-sans block">
+                    Documented Spiritual Significance:
+                  </span>
+                  <p className="text-xs sm:text-sm text-sacred-ivoryDim font-cormorant text-base sm:text-lg leading-relaxed">
+                    {devi.yantra.documentedSignificance}
+                  </p>
+                </div>
+
+                <div className="pt-3 flex flex-wrap items-center justify-between gap-2 text-xs text-sacred-goldDark border-t border-sacred-border/60">
+                  <span>Scriptural Source: <strong className="text-sacred-ivoryDim">{devi.yantra.scripturalReference}</strong></span>
+                  <span className="font-semibold text-sacred-goldLight font-devanagari">॥ यन्त्रं मन्त्रमयं प्रोक्तम् ॥</span>
+                </div>
+              </div>
             </div>
           </div>
         </section>

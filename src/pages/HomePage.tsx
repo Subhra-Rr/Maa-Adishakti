@@ -219,6 +219,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
             <div className="lg:col-span-5 flex justify-center">
               <div className="w-full max-w-sm rounded-xl overflow-hidden border border-amber-600/40 bg-sacred-dark p-2 shadow-sacred-glow">
                 <DeviImage
+                  imagePath="/images/devis/pratyangira.jpg"
                   altText="Sacred representation of Maa Pratyangira"
                   deviName="Maa Pratyangira"
                   sanskritName="श्री प्रत्यङ्गिरा देवी"
@@ -261,6 +262,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
               >
                 <div className="w-full mb-3 rounded-lg overflow-hidden border border-sacred-borderGold/20">
                   <DeviImage
+                    imagePath={devi.imagePath || devi.imageAssets[0]?.imagePath}
                     altText={devi.primaryName}
                     deviName={devi.primaryName}
                     sanskritName={devi.sanskritName}
@@ -376,6 +378,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
                 </div>
                 <div className="w-full mb-2.5 rounded-lg overflow-hidden border border-sacred-borderGold/20">
                   <DeviImage
+                    imagePath={devi.imagePath || devi.imageAssets[0]?.imagePath}
                     altText={devi.primaryName}
                     deviName={devi.primaryName}
                     sanskritName={devi.sanskritName}

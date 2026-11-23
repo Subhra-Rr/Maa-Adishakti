@@ -217,6 +217,7 @@ export const DeviDirectoryPage: React.FC = () => {
               <div className="p-3 pb-0">
                 <div className="rounded-lg overflow-hidden border border-sacred-borderGold/20">
                   <DeviImage
+                    imagePath={devi.imagePath || devi.imageAssets[0]?.imagePath}
                     altText={devi.primaryName}
                     deviName={devi.primaryName}
                     sanskritName={devi.sanskritName}

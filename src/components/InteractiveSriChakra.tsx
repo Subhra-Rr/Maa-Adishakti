@@ -5,10 +5,11 @@ import { Sparkles, Info, Shield, Compass, BookOpen } from 'lucide-react';
 export const InteractiveSriChakra: React.FC = () => {
   const [selectedAvarana, setSelectedAvarana] = useState<AvaranaInfo>(sriChakraAvaranas[8]); // Default to Central Bindu
   const [hoveredAvarana, setHoveredAvarana] = useState<number | null>(null);
+  const [viewMode, setViewMode] = useState<'authentic' | 'interactive'>('authentic');
 
   return (
     <div className="w-full bg-sacred-surface border border-sacred-borderGold/40 rounded-xl p-4 sm:p-6 lg:p-8 shadow-sacred-glow">
-      <div className="text-center max-w-2xl mx-auto mb-8">
+      <div className="text-center max-w-2xl mx-auto mb-6">
         <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-sacred-maroon/70 border border-sacred-gold/40 text-xs font-devanagari text-sacred-goldLight mb-3">
           <Sparkles className="w-3.5 h-3.5 text-sacred-gold" />
           <span>श्रीचक्रावरण रहस्यम् — The Nine Sacred Enclosures</span>
@@ -17,20 +18,58 @@ export const InteractiveSriChakra: React.FC = () => {
           Interactive Sri Chakra Explorer
         </h2>
         <p className="text-xs sm:text-sm text-sacred-ivoryDim font-cormorant text-base sm:text-lg mt-2">
-          Click or select any of the nine Avaranas below to explore its sacred geometry, presiding Yoginis, mudras, associated bijas, and esoteric non-dual meaning.
+          Explore the authentic traditional geometry and the nine concentric Avaranas of the Sri Chakra, mapping the journey from the outer world (Bhupura) to supreme non-dual unity (Bindu).
         </p>
+
+        {/* View Mode Toggle */}
+        <div className="inline-flex p-1 rounded-xl bg-sacred-dark border border-sacred-borderGold/50 text-xs mt-4">
+          <button
+            onClick={() => setViewMode('authentic')}
+            className={`px-4 py-1.5 rounded-lg font-cinzel transition-all ${
+              viewMode === 'authentic'
+                ? 'bg-sacred-maroon text-sacred-goldLight font-bold shadow-sacred-glow border border-sacred-gold/40'
+                : 'text-sacred-ivoryDim hover:text-sacred-gold'
+            }`}
+          >
+            Authentic Traditional Sri Yantra
+          </button>
+          <button
+            onClick={() => setViewMode('interactive')}
+            className={`px-4 py-1.5 rounded-lg font-cinzel transition-all ${
+              viewMode === 'interactive'
+                ? 'bg-sacred-maroon text-sacred-goldLight font-bold shadow-sacred-glow border border-sacred-gold/40'
+                : 'text-sacred-ivoryDim hover:text-sacred-gold'
+            }`}
+          >
+            9 Avarana Interactive Map
+          </button>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        {/* Left Side: Sri Chakra SVG Visualizer */}
+        {/* Left Side: Sri Chakra Visualizer */}
         <div className="lg:col-span-6 flex flex-col items-center justify-center">
-          <div className="relative w-72 h-72 sm:w-96 sm:h-96 md:w-[420px] md:h-[420px] rounded-xl bg-gradient-to-b from-[#140608] via-[#090807] to-[#040303] border border-sacred-borderGold/50 p-4 flex items-center justify-center shadow-sacred-glow select-none">
-            {/* SVG Representation of Sri Chakra with Interactive Regions */}
-            <svg
-              viewBox="0 0 500 500"
-              className="w-full h-full drop-shadow-[0_0_15px_rgba(212,175,55,0.3)]"
-            >
-              <defs>
+          <div className="relative w-72 h-72 sm:w-96 sm:h-96 md:w-[420px] md:h-[420px] rounded-xl bg-gradient-to-b from-[#140608] via-[#090807] to-[#040303] border border-sacred-borderGold/50 p-4 flex items-center justify-center shadow-sacred-glow select-none overflow-hidden">
+            {viewMode === 'authentic' ? (
+              <div className="relative w-full h-full flex flex-col items-center justify-center">
+                <img
+                  src="/images/yantras/sri_yantra.jpg"
+                  alt="Authentic Sri Chakra Yantra"
+                  className="max-h-full max-w-full object-contain rounded-lg drop-shadow-[0_0_20px_rgba(212,175,55,0.4)]"
+                />
+                <div className="absolute bottom-2 inset-x-2 text-center pointer-events-none">
+                  <span className="inline-block px-3 py-1 rounded-full bg-sacred-dark/90 border border-sacred-gold/60 text-[10px] text-sacred-goldLight font-cinzel">
+                    Traditional Sri Chakra (9 Interlocking Shiva-Shakti Triangles)
+                  </span>
+                </div>
+              </div>
+            ) : (
+              /* SVG Representation of Sri Chakra with Interactive Regions */
+              <svg
+                viewBox="0 0 500 500"
+                className="w-full h-full drop-shadow-[0_0_15px_rgba(212,175,55,0.3)]"
+              >
+                <defs>
                 <radialGradient id="binduGlow" cx="50%" cy="50%" r="50%">
                   <stop offset="0%" stopColor="#ffeb99" stopOpacity="1" />
                   <stop offset="50%" stopColor="#d4af37" stopOpacity="0.8" />
@@ -219,6 +258,7 @@ export const InteractiveSriChakra: React.FC = () => {
                 className="cursor-pointer animate-pulse"
               />
             </svg>
+            )}
 
             {/* Current Active Label Overlay */}
             <div className="absolute bottom-3 inset-x-0 text-center">

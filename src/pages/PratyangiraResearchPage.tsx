@@ -50,10 +50,13 @@ export const PratyangiraResearchPage: React.FC = () => {
 
           <div className="lg:col-span-4 flex justify-center">
             <div className="w-full max-w-xs rounded-xl overflow-hidden border border-amber-600/50 bg-sacred-dark p-2 shadow-sacred-glow">
-              <SacredOmFallback
+              <DeviImage
+                imagePath="/images/devis/pratyangira.jpg"
+                altText="Sacred authentic murti of Maa Pratyangira"
                 deviName="Maa Pratyangira"
                 sanskritName="श्री प्रत्यङ्गिरा देवी"
                 fallbackType="gupta_svarupa"
+                attribution="Traditional Chola Stone Iconography / Ayyavadi Archive"
                 size="md"
               />
             </div>

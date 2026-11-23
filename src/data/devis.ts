@@ -6,6 +6,7 @@ export const devis: Devi[] = [
   // ==========================================
   {
     id: 'kali',
+    imagePath: '/images/devis/kali.jpg',
     primaryName: 'Maa Kali',
     sanskritName: 'श्री महाकाली',
     odiaName: 'ମା କାଳୀ',
@@ -106,6 +107,7 @@ Kālī kālikulaśreṣṭhā sarvakāmapradāyinī॥`,
 
   {
     id: 'tara',
+    imagePath: '/images/devis/tara.jpg',
     primaryName: 'Maa Tara',
     sanskritName: 'श्री तारा देवी',
     odiaName: 'ମା ତାରା',
@@ -189,6 +191,7 @@ Caturbhujāṁ lolajihvāṁ mahābhīmāṁ varapradām॥`,
 
   {
     id: 'tripura-sundari',
+    imagePath: '/images/devis/tripura-sundari.jpg',
     primaryName: 'Maa Tripura Sundari',
     sanskritName: 'श्री ललिता महात्रिपुरसुन्दरी',
     odiaName: 'ମା ତ୍ରିପୁରସୁନ୍ଦରୀ',
@@ -278,6 +281,7 @@ saumyāṁ ratnaghaṭastharak परिस्थिति ध्यायेत
 
   {
     id: 'bhuvaneshvari',
+    imagePath: '/images/devis/bhuvaneshvari.jpg',
     primaryName: 'Maa Bhuvaneshvari',
     sanskritName: 'श्री भुवनेश्वरी',
     odiaName: 'ମା ଭୁବନେଶ୍ୱରୀ',
@@ -356,6 +360,7 @@ Smeramukhīṁ varadāṅkuśapāśābhītikarāṁprabhaje bhuvaneśīm॥`,
 
   {
     id: 'chhinnamasta',
+    imagePath: '/images/devis/chhinnamasta.jpg',
     primaryName: 'Maa Chhinnamasta',
     sanskritName: 'श्री छिन्नमस्ता',
     odiaName: 'ମା ଛିନ୍ନମସ୍ତା',
@@ -439,6 +444,7 @@ Dhyāyeccinnaśiraskāṁ tāṁ koṭisūryasamaprabhām॥`,
 
   {
     id: 'bhairavi',
+    imagePath: '/images/devis/bhairavi.jpg',
     primaryName: 'Maa Bhairavi',
     sanskritName: 'श्री त्रिपुरभैरवी',
     odiaName: 'ମା ଭୈରବୀ',
@@ -521,6 +527,7 @@ Devīṁ baddhahimāṁśumukuṭāṁ vande samandasmitām॥`,
 
   {
     id: 'dhumavati',
+    imagePath: '/images/devis/dhumavati.jpg',
     primaryName: 'Maa Dhumavati',
     sanskritName: 'श्री धूमावती',
     odiaName: 'ମା ଧୂମାବତୀ',
@@ -603,6 +610,7 @@ Sūrpahastātiriktākṣī dhūtahastā varapradā॥`,
 
   {
     id: 'bagalamukhi',
+    imagePath: '/images/devis/bagalamukhi.jpg',
     primaryName: 'Maa Bagalamukhi',
     sanskritName: 'श्री बगलामुखी',
     odiaName: 'ମା ବଗଳାମୁଖୀ',
@@ -686,6 +694,7 @@ Devīṁ bhajāmi dhṛtamudgaravairijivhām॥`,
 
   {
     id: 'matangi',
+    imagePath: '/images/devis/matangi.jpg',
     primaryName: 'Maa Matangi',
     sanskritName: 'श्री मातङ्गी',
     odiaName: 'ମା ମାତଙ୍ଗୀ',
@@ -769,6 +778,7 @@ Dhyāyenmātaṅginīṁ devīṁ sarvasiddhipradāyinīm॥`,
 
   {
     id: 'kamalatmika',
+    imagePath: '/images/devis/kamalatmika.jpg',
     primaryName: 'Maa Kamalatmika / Kamala',
     sanskritName: 'श्री कमलात्मिका',
     odiaName: 'ମା କମଳାତ୍ମିକା',
@@ -855,6 +865,7 @@ Dhyāyedratnakirīṭapaṅkajayugāṁ padmāsane saṁsthitām॥`,
   // ==========================================
   {
     id: 'shailaputri',
+    imagePath: '/images/devis/shailaputri.jpg',
     primaryName: 'Maa Shailaputri',
     sanskritName: 'श्री शैलपुत्री',
     odiaName: 'ମା ଶୈଳପୁତ୍ରୀ',
@@ -926,6 +937,7 @@ Vṛṣārūḍhāṁ śūladharāṁ śailaputrīṁ yaśasvinīm॥`,
 
   {
     id: 'brahmacharini',
+    imagePath: '/images/devis/brahmacharini.jpg',
     primaryName: 'Maa Brahmacharini',
     sanskritName: 'श्री ब्रह्मचारिणी',
     odiaName: 'ମା ବ୍ରହ୍ମଚାରିଣୀ',
@@ -997,6 +1009,7 @@ Devī prasīdatu mayi brahmacāriṇyanuttamā॥`,
 
   {
     id: 'chandraghanta',
+    imagePath: '/images/devis/chandraghanta.jpg',
     primaryName: 'Maa Chandraghanta',
     sanskritName: 'श्री चन्द्रघण्टा',
     odiaName: 'ମା ଚନ୍ଦ୍ରଘଣ୍ଟା',
@@ -1067,6 +1080,7 @@ Prasādaṁ tanute mahyaṁ candraghaṇṭeti viśrutā॥`,
 
   {
     id: 'kushmanda',
+    imagePath: '/images/devis/kushmanda.jpg',
     primaryName: 'Maa Kushmanda',
     sanskritName: 'श्री कूष्माण्डा',
     odiaName: 'ମା କୂଷ୍ମାଣ୍ଡା',
@@ -1137,6 +1151,7 @@ Dadhānā hastapadmābhyāṁ kūṣmāṇḍā śubhadāstu me॥`,
 
   {
     id: 'skandamata',
+    imagePath: '/images/devis/skandamata.jpg',
     primaryName: 'Maa Skandamata',
     sanskritName: 'श्री स्कन्दमाता',
     odiaName: 'ମା ସ୍କନ୍ଦମାତା',
@@ -1207,6 +1222,7 @@ Dadhānā hastapadmābhyāṁ kūṣmāṇḍā śubhadāstu me॥`,
 
   {
     id: 'katyayani',
+    imagePath: '/images/devis/katyayani.jpg',
     primaryName: 'Maa Katyayani',
     sanskritName: 'श्री कात्यायनी',
     odiaName: 'ମା କାତ୍ୟାୟନୀ',
@@ -1290,6 +1306,7 @@ Nandagopasutaṁ devi patiṁ me kuru te namaḥ॥`,
 
   {
     id: 'kalaratri',
+    imagePath: '/images/devis/kalaratri.jpg',
     primaryName: 'Maa Kalaratri',
     sanskritName: 'श्री कालरात्रिः',
     odiaName: 'ମା କାଳରାତ୍ରି',
@@ -1364,6 +1381,7 @@ Vardhanmūrdhadhvajā kṛṣṇā kālarātrirbhayāṅkarī॥`,
 
   {
     id: 'mahagauri',
+    imagePath: '/images/devis/mahagauri.jpg',
     primaryName: 'Maa Mahagauri',
     sanskritName: 'श्री महागौरी',
     odiaName: 'ମା ମହାଗୌରୀ',
@@ -1435,6 +1453,7 @@ Mahāgaurī śubhaṁ dadyānmahādevapramodadā॥`,
 
   {
     id: 'siddhidatri',
+    imagePath: '/images/devis/siddhidatri.jpg',
     primaryName: 'Maa Siddhidatri',
     sanskritName: 'श्री सिद्धिदात्री',
     odiaName: 'ମା ସିଦ୍ଧିଦାତ୍ରୀ',
@@ -1509,6 +1528,7 @@ Sevyamānā sadā bhūyāt siddhidā siddhidāyinī॥`,
   // ==========================================
   {
     id: 'mahasaraswati',
+    imagePath: '/images/devis/mahasaraswati.jpg',
     primaryName: 'Maa Mahasaraswati',
     sanskritName: 'श्री महासरस्वती',
     odiaName: 'ମା ମହାସରସ୍ୱତୀ',
@@ -1585,6 +1605,7 @@ Sā māṁ pātu sarasvatī bhagavatī niḥśeṣajāḍyāpahā॥`,
 
   {
     id: 'mahalakshmi',
+    imagePath: '/images/devis/mahalakshmi.jpg',
     primaryName: 'Maa Mahalakshmi',
     sanskritName: 'श्री महालक्ष्मी',
     odiaName: 'ମା ମହାଲକ୍ଷ୍ମୀ',
@@ -1661,6 +1682,7 @@ Seve sairibhamardinīmiha mahālakṣmīṁ sarojasthitām॥`,
 
   {
     id: 'mahakali',
+    imagePath: '/images/devis/mahakali.jpg',
     primaryName: 'Maa Mahakali',
     sanskritName: 'श्री महाकाली (चण्डी)',
     odiaName: 'ମା ମହାକାଳୀ',
@@ -1740,6 +1762,7 @@ Yāmastautsvapite harau kamalajo hantuṁ madhuṁ kaiṭabham॥`,
   // ==========================================
   {
     id: 'pratyangira',
+    imagePath: '/images/devis/pratyangira.jpg',
     primaryName: 'Maa Bhagwati Pratyangira',
     sanskritName: 'श्री प्रत्यङ्गिरा देवी',
     odiaName: 'ମା ପ୍ରତ୍ୟଙ୍ଗିରା',
@@ -1903,6 +1926,7 @@ Trāhi māṁ sarvapāpebhyo vimale pāpanāśini॥`,
 
   {
     id: 'tara-tarini',
+    imagePath: '/images/temples/tara_tarini.jpg',
     primaryName: 'Maa Tara Tarini',
     sanskritName: 'श्री तारा-तारिणी',
     odiaName: 'ମା ତାରା-ତାରିଣୀ',
@@ -1980,6 +2004,7 @@ Prasannā bhava he mātarbhaktasaṁrakṣaṇotsuke॥`,
 
   {
     id: 'biraja-jajpur',
+    imagePath: '/images/temples/biraja_jajpur.jpg',
     primaryName: 'Maa Biraja (Jajpur)',
     sanskritName: 'श्री विरजा देवी',
     odiaName: 'ମା ବିରଜା',

@@ -60,6 +60,7 @@ export interface YantraInfo {
   scripturalReference: string;
   documentedSignificance: string;
   svgRepresentation?: string;
+  imagePath?: string;
 }
 
 export interface Devi {
@@ -73,6 +74,7 @@ export interface Devi {
   traditions: string[];
   acharas: AcharaType[];
   shortIntro: string;
+  imagePath?: string;
   philosophicalSignificance: string;
   theologicalPosition: string;
   scripturalReferences: ScripturalReference[];

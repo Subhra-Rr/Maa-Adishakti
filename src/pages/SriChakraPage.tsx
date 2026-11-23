@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { InteractiveSriChakra } from '../components/InteractiveSriChakra';
+import { MahavidyaYantraGallery } from '../components/MahavidyaYantraGallery';
 import { Sparkles, Crown, Moon, Shield, BookOpen, ExternalLink, ArrowRight } from 'lucide-react';
 
 export const SriChakraPage: React.FC = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-14">
       {/* Breadcrumb */}
       <div className="flex items-center space-x-2 text-xs text-sacred-ivoryMuted border-b border-sacred-borderGold/30 pb-4">
         <Link to="/" className="hover:text-sacred-gold">Home</Link>
@@ -45,6 +46,9 @@ export const SriChakraPage: React.FC = () => {
 
       {/* Interactive Sri Chakra Explorer */}
       <InteractiveSriChakra />
+
+      {/* 10 Mahavidya Exact Yantra Gallery */}
+      <MahavidyaYantraGallery />
 
       {/* Key Components of Sri Vidya Tradition */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

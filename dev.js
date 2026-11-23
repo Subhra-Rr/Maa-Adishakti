@@ -1,8 +1,11 @@
 import { createServer } from 'vite';
 import react from '@vitejs/plugin-react';
 
+process.chdir('D:/Maa Adishakti');
+
 try {
   const server = await createServer({
+    root: 'D:/Maa Adishakti',
     configFile: false,
     plugins: [react()],
     server: {

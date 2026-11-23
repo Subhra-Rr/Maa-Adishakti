@@ -516,6 +516,7 @@ export const CategoryDetailPage: React.FC = () => {
               >
                 <div className="w-full mb-3 rounded-lg overflow-hidden border border-sacred-borderGold/20">
                   <DeviImage
+                    imagePath={devi.imagePath || devi.imageAssets[0]?.imagePath}
                     altText={devi.primaryName}
                     deviName={devi.primaryName}
                     sanskritName={devi.sanskritName}

@@ -6,6 +6,7 @@ export const supplementalDevis: Devi[] = [
   // ==========================================
   {
     id: 'brahmani',
+    imagePath: '/images/devis/brahmani.jpg',
     primaryName: 'Matrika Brahmani',
     sanskritName: 'श्री ब्राह्मणी मातृका',
     odiaName: 'ମା ବ୍ରାହ୍ମଣୀ',
@@ -76,6 +77,7 @@ Kauśāmbhaḥkṣarike devi nārāyaṇi namo’stu te॥`,
 
   {
     id: 'maheshwari',
+    imagePath: '/images/devis/maheshwari.jpg',
     primaryName: 'Matrika Maheshwari',
     sanskritName: 'श्री माहेश्वरी मातृका',
     odiaName: 'ମା ମାହେଶ୍ୱରୀ',
@@ -146,6 +148,7 @@ Māheśvarīsvarūpeṇa nārāyaṇi namo’stu te॥`,
 
   {
     id: 'kaumari',
+    imagePath: '/images/devis/kaumari.jpg',
     primaryName: 'Matrika Kaumari',
     sanskritName: 'श्री कौमारी मातृका',
     odiaName: 'ମା କୌମାରୀ',
@@ -216,6 +219,7 @@ Kaumārīrūpasaṁsthāne nārāyaṇi namo’stu te॥`,
 
   {
     id: 'vaishnavi',
+    imagePath: '/images/devis/vaishnavi.jpg',
     primaryName: 'Matrika Vaishnavi',
     sanskritName: 'श्री वैष्णवी मातृका',
     odiaName: 'ମା ବୈଷ୍ଣବୀ',
@@ -286,6 +290,7 @@ Prasīda vaiṣṇavīrūpe nārāyaṇi namo’stu te॥`,
 
   {
     id: 'varahi',
+    imagePath: '/images/devis/varahi.jpg',
     primaryName: 'Matrika Varahi',
     sanskritName: 'श्री वाराही मातृका',
     odiaName: 'ମା ବାରାହୀ',
@@ -357,6 +362,7 @@ Varāharūpiṇi śive nārāyaṇi namo’stu te॥`,
 
   {
     id: 'indrani',
+    imagePath: '/images/devis/indrani.jpg',
     primaryName: 'Matrika Indrani / Aindri',
     sanskritName: 'श्री इन्द्राणी / ऐन्द्री मातृका',
     odiaName: 'ମା ଇନ୍ଦ୍ରାଣୀ',
@@ -427,6 +433,7 @@ Vṛtraprāṇahare caindri nārāyaṇi namo’stu te॥`,
 
   {
     id: 'chamunda',
+    imagePath: '/images/devis/chamunda.jpg',
     primaryName: 'Matrika Chamunda',
     sanskritName: 'श्री चामुण्डा मातृका',
     odiaName: 'ମା ଚାମୁଣ୍ଡା',
@@ -499,6 +506,7 @@ Cāmuṇḍe muṇḍamathane nārāyaṇi namo’stu te॥`,
 
   {
     id: 'narasimhi',
+    imagePath: '/images/devis/narasimhi.jpg',
     primaryName: 'Matrika Narasimhi',
     sanskritName: 'श्री नारसिंही मातृका',
     odiaName: 'ମା ନାରସିଂହୀ',
@@ -572,6 +580,7 @@ Trailokyatrāṇasahite nārāyaṇi namo’stu te॥`,
   // ==========================================
   {
     id: 'durga-prakriti',
+    imagePath: '/images/devis/durga.jpg',
     primaryName: 'Durga (Mulaprakriti)',
     sanskritName: 'श्री दुर्गा (मूलप्रकृतिः)',
     odiaName: 'ମା ଦୁର୍ଗା',
@@ -713,6 +722,7 @@ Vṛṣabhānusute devi praṇamāmi haripriye॥`,
 
   {
     id: 'lakshmi-prakriti',
+    imagePath: '/images/devis/mahalakshmi.jpg',
     primaryName: 'Lakshmi (Prakriti)',
     sanskritName: 'श्री लक्ष्मी (प्रकृतिः)',
     odiaName: 'ମା ଲକ୍ଷ୍ମୀ',
@@ -783,6 +793,7 @@ Padmapatrekṣaṇe devi padmākṣī te namo namaḥ॥`,
 
   {
     id: 'saraswati-prakriti',
+    imagePath: '/images/devis/mahasaraswati.jpg',
     primaryName: 'Saraswati (Prakriti)',
     sanskritName: 'श्री सरस्वती (प्रकृतिः)',
     odiaName: 'ମା ସରସ୍ୱତୀ',

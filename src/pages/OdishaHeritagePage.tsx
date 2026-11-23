@@ -46,6 +46,16 @@ export const OdishaHeritagePage: React.FC = () => {
               className="p-6 rounded-xl bg-sacred-surface border border-sacred-borderGold/30 hover:border-sacred-gold transition-all duration-300 flex flex-col justify-between space-y-4 hover:shadow-sacred-glow"
             >
               <div className="space-y-3">
+                {temple.id === 'biraja-jajpur' && (
+                  <div className="w-full h-40 rounded-lg overflow-hidden border border-sacred-borderGold/30 mb-2">
+                    <img src="/images/temples/biraja_jajpur.jpg" alt="Maa Biraja Temple, Jajpur" className="w-full h-full object-cover" />
+                  </div>
+                )}
+                {temple.id === 'tara-tarini' && (
+                  <div className="w-full h-40 rounded-lg overflow-hidden border border-sacred-borderGold/30 mb-2">
+                    <img src="/images/temples/tara_tarini.jpg" alt="Maa Tara Tarini Temple, Ganjam" className="w-full h-full object-cover" />
+                  </div>
+                )}
                 <div className="flex items-center justify-between">
                   <span className="font-odia text-sm font-bold text-sacred-goldLight">
                     {temple.odiaName}
@@ -120,7 +130,14 @@ export const OdishaHeritagePage: React.FC = () => {
           The Circular Hypaethral Yogini Shrines of Odisha
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs sm:text-sm text-sacred-ivoryDim font-cormorant text-base sm:text-lg">
-          <div className="p-4 rounded-lg bg-sacred-dark/70 border border-sacred-border space-y-2">
+          <div className="p-4 rounded-lg bg-sacred-dark/70 border border-sacred-border space-y-3">
+            <div className="w-full h-44 rounded-lg overflow-hidden border border-sacred-borderGold/30">
+              <img
+                src="/images/temples/hirapur_yogini.jpg"
+                alt="Chausath Yogini Temple, Hirapur, Odisha"
+                className="w-full h-full object-cover"
+              />
+            </div>
             <h3 className="font-cinzel text-base font-bold text-sacred-goldLight">
               Hirapur 64 Yogini Temple (near Bhubaneswar)
             </h3>
