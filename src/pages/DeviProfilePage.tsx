@@ -368,7 +368,7 @@ export const DeviProfilePage: React.FC = () => {
       ======================================================== */}
       {devi.mantraStotra && devi.mantraStotra.length > 0 && (
         <section className="space-y-4">
-          <div className="flex items-center justify-between border-b border-sacred-borderGold/30 pb-2">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-sacred-borderGold/30 pb-2 gap-2">
             <h2 className="font-cinzel text-xl sm:text-2xl font-bold text-sacred-gold">
               Mantra & Devotional Stotra Library
             </h2>
@@ -383,8 +383,8 @@ export const DeviProfilePage: React.FC = () => {
                 key={item.id}
                 className="p-5 rounded-xl bg-sacred-surface border border-sacred-borderGold/40 space-y-3 relative group"
               >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div className="flex flex-wrap items-center gap-2">
                     <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-sacred-maroon border border-sacred-gold/40 text-sacred-goldLight">
                       {item.type}
                     </span>
@@ -447,7 +447,7 @@ export const DeviProfilePage: React.FC = () => {
       ======================================================== */}
       {devi.yantra && (
         <section className="space-y-4">
-          <div className="flex items-center justify-between border-b border-sacred-borderGold/30 pb-2">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-sacred-borderGold/30 pb-2 gap-2">
             <h2 className="font-cinzel text-xl sm:text-2xl font-bold text-sacred-gold">
               Sacred Yantra & Exact Tantric Geometry
             </h2>

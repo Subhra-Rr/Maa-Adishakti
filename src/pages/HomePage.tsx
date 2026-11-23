@@ -123,7 +123,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
+      <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 space-y-16 sm:space-y-24 overflow-x-hidden min-w-0">
         {/* ========================================================
             2. MAJOR CLASSIFICATIONS DIRECTORY OVERVIEW
         ======================================================== */}
@@ -146,7 +146,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 w-full min-w-0">
             {categories.slice(0, 8).map((cat) => (
               <Link
                 key={cat.id}
@@ -154,7 +154,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
                 className="group p-5 rounded-xl bg-sacred-surface border border-sacred-borderGold/30 hover:border-sacred-gold/80 transition-all duration-300 hover:shadow-sacred-glow flex flex-col justify-between"
               >
                 <div className="space-y-2">
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-wrap items-center justify-between gap-1.5">
                     <span className="font-devanagari text-xs text-sacred-gold font-semibold">
                       {cat.sanskritName}
                     </span>
@@ -253,7 +253,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 w-full min-w-0">
             {featuredMahavidyas.map((devi) => (
               <Link
                 key={devi.id}
@@ -385,7 +385,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3.5">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3.5 w-full min-w-0">
             {featuredNavaDurgas.map((devi, idx) => (
               <Link
                 key={devi.id}

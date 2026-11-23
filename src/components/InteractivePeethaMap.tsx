@@ -143,8 +143,8 @@ export const InteractivePeethaMap: React.FC<InteractivePeethaMapProps> = ({ init
             </div>
 
             {/* Map Legend */}
-            <div className="relative z-10 flex items-center justify-between text-[10px] text-sacred-ivoryMuted bg-sacred-dark/80 px-2.5 py-1.5 rounded border border-sacred-borderGold/30">
-              <div className="flex items-center space-x-3">
+            <div className="relative z-10 flex flex-wrap items-center justify-between gap-2 text-[10px] text-sacred-ivoryMuted bg-sacred-dark/80 px-2.5 py-1.5 rounded border border-sacred-borderGold/30">
+              <div className="flex flex-wrap items-center gap-3">
                 <span className="flex items-center space-x-1">
                   <span className="w-2.5 h-2.5 rounded-full bg-sacred-crimson border border-sacred-gold inline-block" />
                   <span>Adi Peetha (4)</span>
@@ -160,9 +160,9 @@ export const InteractivePeethaMap: React.FC<InteractivePeethaMapProps> = ({ init
         </div>
 
         {/* Selected Peetha Detailed Dossier */}
-        <div className="lg:col-span-5 bg-sacred-dark/90 border border-sacred-borderGold/50 rounded-xl p-5 sm:p-6 space-y-4">
-          <div className="border-b border-sacred-borderGold/30 pb-3">
-            <div className="flex items-center justify-between">
+        <div className="lg:col-span-5 bg-sacred-dark/90 border border-sacred-borderGold/50 rounded-xl p-4 sm:p-6 space-y-4 min-w-0">
+          <div className="border-b border-sacred-borderGold/30 pb-3 space-y-2">
+            <div className="flex flex-wrap items-center justify-between gap-2">
               <span className="text-xs px-2.5 py-0.5 rounded border border-sacred-borderGold/60 text-sacred-goldLight bg-sacred-maroon/50 font-medium">
                 {selectedPeetha.classification}
               </span>

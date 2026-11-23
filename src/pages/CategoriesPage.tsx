@@ -5,7 +5,7 @@ import { Crown, Sparkles, ChevronRight, Layers, ArrowRight } from 'lucide-react'
 
 export const CategoriesPage: React.FC = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
+    <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-8 sm:py-10 space-y-8 sm:space-y-10 overflow-x-hidden min-w-0">
       {/* Page Header */}
       <div className="text-center max-w-3xl mx-auto space-y-3">
         <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-sacred-maroon/70 border border-sacred-gold/40 text-xs font-devanagari text-sacred-goldLight">
@@ -20,7 +20,7 @@ export const CategoriesPage: React.FC = () => {
       </div>
 
       {/* Categories Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full min-w-0">
         {categories.map((cat) => (
           <Link
             key={cat.id}
@@ -28,7 +28,7 @@ export const CategoriesPage: React.FC = () => {
             className="group p-6 rounded-xl bg-sacred-surface border border-sacred-borderGold/30 hover:border-sacred-gold transition-all duration-300 hover:shadow-sacred-glow flex flex-col justify-between"
           >
             <div className="space-y-3">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-wrap items-center justify-between gap-2">
                 <span className="font-devanagari text-sm text-sacred-gold font-bold">
                   {cat.sanskritName}
                 </span>

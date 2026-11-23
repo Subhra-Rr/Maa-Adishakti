@@ -287,24 +287,24 @@ export const InteractiveSriChakra: React.FC = () => {
         </div>
 
         {/* Right Side: Avarana Detailed Data Card */}
-        <div className="lg:col-span-6 bg-sacred-dark/80 border border-sacred-borderGold/40 rounded-xl p-5 sm:p-6 space-y-4">
-          <div className="flex items-start justify-between border-b border-sacred-borderGold/30 pb-3">
-            <div>
-              <span className="text-xs font-mono font-bold text-sacred-gold">
+        <div className="lg:col-span-6 bg-sacred-dark/80 border border-sacred-borderGold/40 rounded-xl p-4 sm:p-6 space-y-4 min-w-0">
+          <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 border-b border-sacred-borderGold/30 pb-3 min-w-0">
+            <div className="min-w-0 flex-1">
+              <span className="text-xs font-mono font-bold text-sacred-gold block">
                 AVARANA #{selectedAvarana.number} OF 9
               </span>
-              <h3 className="font-cinzel text-xl sm:text-2xl font-bold text-sacred-ivory mt-0.5">
+              <h3 className="font-cinzel text-lg sm:text-2xl font-bold text-sacred-ivory mt-0.5 break-words">
                 {selectedAvarana.name}
               </h3>
-              <div className="font-devanagari text-sacred-goldLight text-base">
+              <div className="font-devanagari text-sacred-goldLight text-sm sm:text-base break-words mt-0.5">
                 {selectedAvarana.sanskritName}
               </div>
             </div>
-            <div className="text-right">
+            <div className="sm:text-right shrink-0 bg-sacred-surface/80 sm:bg-transparent p-2.5 sm:p-0 rounded-lg border border-sacred-borderGold/30 sm:border-0 inline-block self-start sm:self-auto">
               <span className="text-[10px] uppercase tracking-wider text-sacred-ivoryMuted block">
                 Seed Bija
               </span>
-              <span className="font-devanagari text-lg font-bold text-sacred-goldLight">
+              <span className="font-devanagari text-base sm:text-lg font-bold text-sacred-goldLight break-words block mt-0.5">
                 {selectedAvarana.associatedBija}
               </span>
             </div>

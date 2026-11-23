@@ -76,7 +76,7 @@ export const DeviDirectoryPage: React.FC = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+    <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-8 sm:py-10 space-y-8 overflow-x-hidden min-w-0">
       {/* Page Header */}
       <div className="text-center max-w-3xl mx-auto space-y-3">
         <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-sacred-maroon/70 border border-sacred-gold/40 text-xs font-devanagari text-sacred-goldLight">
@@ -177,7 +177,7 @@ export const DeviDirectoryPage: React.FC = () => {
         </div>
 
         {/* Active Results Summary */}
-        <div className="pt-2 flex items-center justify-between text-xs text-sacred-ivoryMuted border-t border-sacred-border/60">
+        <div className="pt-2 flex flex-wrap items-center justify-between gap-2 text-xs text-sacred-ivoryMuted border-t border-sacred-border/60">
           <span>
             Displaying <strong className="text-sacred-goldLight">{filteredDevis.length}</strong> of{' '}
             <strong className="text-sacred-goldLight">{allDevis.length}</strong> Devis
@@ -206,7 +206,7 @@ export const DeviDirectoryPage: React.FC = () => {
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full min-w-0">
           {filteredDevis.map((devi) => (
             <Link
               key={devi.id}
