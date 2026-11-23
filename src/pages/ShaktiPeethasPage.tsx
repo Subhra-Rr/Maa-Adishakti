@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { shaktiPeethas } from '../data/shaktiPeethas';
 import { InteractivePeethaMap } from '../components/InteractivePeethaMap';
-import { MapPin, Compass, Search, ExternalLink } from 'lucide-react';
+import { TopicDossierModal, TopicBriefEntity } from '../components/TopicDossierModal';
+import { MapPin, Compass, Search, ExternalLink, ChevronRight } from 'lucide-react';
 
 export const ShaktiPeethasPage: React.FC = () => {
   const [searchParams] = useSearchParams();
   const selectId = searchParams.get('select') || undefined;
   const [filterText, setFilterText] = useState('');
+  const [activeModalEntity, setActiveModalEntity] = useState<TopicBriefEntity | null>(null);
 
   const filteredPeethas = shaktiPeethas.filter(p =>
     !filterText ||
@@ -37,7 +39,7 @@ export const ShaktiPeethasPage: React.FC = () => {
           Shakti Peethas of the Subcontinent
         </h1>
         <p className="text-sm sm:text-base text-sacred-ivoryDim font-cormorant text-lg sm:text-xl leading-relaxed max-w-4xl">
-          According to the Puranas, when Lord Shiva carried the sacred body of Devi Sati across the skies in grief, Sudarshana Chakra fragmented her divine limbs and ornaments, sanctifying 51 sacred geographical centers across India, Nepal, Pakistan, Bangladesh, and Sri Lanka, each consecrated with a paired Bhairava.
+          According to the Puranas, when Lord Shiva carried the sacred body of Devi Sati across the skies in grief, Sudarshana Chakra fragmented her divine limbs and ornaments, sanctifying 51 sacred geographical centers across India, Nepal, Pakistan, Bangladesh, and Sri Lanka, each consecrated with a paired Bhairava. Click any Peetha card to read its full briefing dossier.
         </p>
       </div>
 
@@ -52,7 +54,7 @@ export const ShaktiPeethasPage: React.FC = () => {
               Complete Consecrated Peetha Catalog ({filteredPeethas.length})
             </h2>
             <p className="text-xs text-sacred-ivoryMuted">
-              Details of Devi, Bhairava, sacred body part/ornament, and geographic coordinates.
+              Details of Devi, Bhairava, sacred body part/ornament, and geographic coordinates. Click any card to expand.
             </p>
           </div>
 
@@ -68,11 +70,55 @@ export const ShaktiPeethasPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full min-w-0">
           {filteredPeethas.map((peetha) => (
             <div
               key={peetha.id}
-              className="p-5 rounded-xl bg-sacred-surface border border-sacred-borderGold/30 hover:border-sacred-gold transition-all duration-300 space-y-3 flex flex-col justify-between"
+              onClick={() => setActiveModalEntity({
+                id: peetha.id,
+                name: peetha.name,
+                sanskritName: peetha.devi,
+                categoryBadge: `${peetha.classification} • ${peetha.state}`,
+                subtitle: `Presiding Devi: ${peetha.devi} • Bhairava: ${peetha.bhairava}`,
+                attributes: [
+                  { label: 'Classification', value: peetha.classification },
+                  { label: 'Presiding Devi', value: peetha.devi },
+                  { label: 'Associated Bhairava', value: peetha.bhairava },
+                  { label: 'Body Part / Sacred Ornament', value: peetha.bodyPartOrOrnament },
+                  { label: 'Sacred Location', value: peetha.location },
+                  { label: 'State / Region', value: peetha.state },
+                ],
+                description: peetha.historicalBackground,
+                esotericSignificance: `According to Shakta Tantric scriptures, this holy shrine marks the exact location where Devi Sati's ${peetha.bodyPartOrOrnament.toLowerCase()} fell upon the earth. The spot is consecrated by the divine pair of ${peetha.devi} and ${peetha.bhairava} Bhairava, forming a permanent node of cosmic spiritual energy (Shakti-Sthana).`,
+                scripturalSource: 'Devi Bhagavata Purana (7.30), Shiva Purana, Kalika Purana (Ch. 18), & Tantrachudamani',
+                deviId: peetha.deviId,
+              })}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  setActiveModalEntity({
+                    id: peetha.id,
+                    name: peetha.name,
+                    sanskritName: peetha.devi,
+                    categoryBadge: `${peetha.classification} • ${peetha.state}`,
+                    subtitle: `Presiding Devi: ${peetha.devi} • Bhairava: ${peetha.bhairava}`,
+                    attributes: [
+                      { label: 'Classification', value: peetha.classification },
+                      { label: 'Presiding Devi', value: peetha.devi },
+                      { label: 'Associated Bhairava', value: peetha.bhairava },
+                      { label: 'Body Part / Sacred Ornament', value: peetha.bodyPartOrOrnament },
+                      { label: 'Sacred Location', value: peetha.location },
+                      { label: 'State / Region', value: peetha.state },
+                    ],
+                    description: peetha.historicalBackground,
+                    esotericSignificance: `According to Shakta Tantric scriptures, this holy shrine marks the exact location where Devi Sati's ${peetha.bodyPartOrOrnament.toLowerCase()} fell upon the earth. The spot is consecrated by the divine pair of ${peetha.devi} and ${peetha.bhairava} Bhairava, forming a permanent node of cosmic spiritual energy (Shakti-Sthana).`,
+                    scripturalSource: 'Devi Bhagavata Purana (7.30), Shiva Purana, Kalika Purana (Ch. 18), & Tantrachudamani',
+                    deviId: peetha.deviId,
+                  });
+                }
+              }}
+              className="p-5 rounded-xl bg-sacred-surface border border-sacred-borderGold/30 hover:border-sacred-gold hover:shadow-sacred-glow hover:scale-[1.01] transition-all duration-300 space-y-3 flex flex-col justify-between cursor-pointer group"
             >
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
@@ -82,7 +128,7 @@ export const ShaktiPeethasPage: React.FC = () => {
                   <span className="text-xs text-sacred-ivoryMuted">{peetha.state}</span>
                 </div>
 
-                <h3 className="font-cinzel text-lg font-bold text-sacred-ivory">
+                <h3 className="font-cinzel text-lg font-bold text-sacred-ivory group-hover:text-sacred-goldLight transition-colors">
                   {peetha.name}
                 </h3>
 
@@ -93,26 +139,25 @@ export const ShaktiPeethasPage: React.FC = () => {
                   <div><strong className="text-sacred-goldDark">Location:</strong> {peetha.location}</div>
                 </div>
 
-                <p className="text-xs text-sacred-ivoryDim font-cormorant text-base leading-relaxed">
+                <p className="text-xs text-sacred-ivoryDim font-cormorant text-base leading-relaxed line-clamp-2">
                   {peetha.historicalBackground}
                 </p>
               </div>
 
-              {peetha.deviId && (
-                <div className="pt-2 border-t border-sacred-border/60">
-                  <Link
-                    to={`/devi/${peetha.deviId}`}
-                    className="inline-flex items-center space-x-1 text-xs text-sacred-goldLight hover:text-sacred-gold font-medium"
-                  >
-                    <span>Read Devi Profile ({peetha.devi})</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
-              )}
+              <div className="pt-2 border-t border-sacred-border/60 flex items-center justify-between text-xs text-sacred-gold group-hover:text-sacred-goldLight font-medium">
+                <span>Open Peetha Dossier</span>
+                <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              </div>
             </div>
           ))}
         </div>
       </div>
+
+      {/* Interactive Peetha Dossier Modal */}
+      <TopicDossierModal
+        entity={activeModalEntity}
+        onClose={() => setActiveModalEntity(null)}
+      />
     </div>
   );
 };

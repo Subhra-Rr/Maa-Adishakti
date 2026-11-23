@@ -7,11 +7,13 @@ import {
 } from '../data';
 import { DeviImage } from '../components/DeviImage';
 import { SacredOmFallback } from '../components/SacredOmFallback';
-import { ArrowLeft, Crown, Sparkles, ChevronRight, Search, BookOpen, Layers } from 'lucide-react';
+import { TopicDossierModal, TopicBriefEntity } from '../components/TopicDossierModal';
+import { ArrowLeft, Crown, Sparkles, ChevronRight, Search, BookOpen, Layers, ExternalLink } from 'lucide-react';
 
 export const CategoryDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const [searchFilter, setSearchFilter] = useState('');
+  const [activeModalEntity, setActiveModalEntity] = useState<TopicBriefEntity | null>(null);
 
   const category = categories.find(c => c.slug === slug);
 
@@ -44,19 +46,19 @@ export const CategoryDetailPage: React.FC = () => {
   }, [category]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+    <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-8 sm:py-10 space-y-8 sm:space-y-12 overflow-x-hidden min-w-0">
       {/* Breadcrumb & Navigation */}
-      <div className="flex items-center space-x-2 text-xs text-sacred-ivoryMuted border-b border-sacred-borderGold/30 pb-4">
-        <Link to="/" className="hover:text-sacred-gold">Home</Link>
+      <div className="flex items-center space-x-2 text-xs text-sacred-ivoryMuted border-b border-sacred-borderGold/30 pb-4 min-w-0 truncate">
+        <Link to="/" className="hover:text-sacred-gold shrink-0">Home</Link>
         <span>/</span>
-        <Link to="/categories" className="hover:text-sacred-gold">Categories</Link>
+        <Link to="/categories" className="hover:text-sacred-gold shrink-0">Categories</Link>
         <span>/</span>
-        <span className="text-sacred-goldLight font-semibold">{category.name}</span>
+        <span className="text-sacred-goldLight font-semibold truncate">{category.name}</span>
       </div>
 
       {/* Category Dossier Banner */}
-      <div className="p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-sacred-maroon via-sacred-dark to-sacred-surface border-2 border-sacred-borderGold/60 shadow-sacred-glow space-y-4">
-        <div className="flex flex-wrap items-center justify-between gap-2">
+      <div className="p-4 sm:p-8 rounded-2xl bg-gradient-to-r from-sacred-maroon via-sacred-dark to-sacred-surface border-2 border-sacred-borderGold/60 shadow-sacred-glow space-y-4 min-w-0 break-words">
+        <div className="flex flex-wrap items-center justify-between gap-2 min-w-0">
           <span className="px-3 py-1 rounded-full bg-sacred-dark/80 border border-sacred-gold/40 text-xs font-devanagari text-sacred-goldLight">
             {category.sanskritName}
           </span>
@@ -65,21 +67,21 @@ export const CategoryDetailPage: React.FC = () => {
           </span>
         </div>
 
-        <div>
-          <h1 className="font-cinzel text-3xl sm:text-4xl md:text-5xl font-extrabold gold-gradient-text">
+        <div className="min-w-0">
+          <h1 className="font-cinzel text-2xl sm:text-4xl md:text-5xl font-extrabold gold-gradient-text break-words">
             {category.name}
           </h1>
-          <p className="text-sm sm:text-base text-sacred-ivoryDim font-cormorant text-lg sm:text-xl leading-relaxed mt-2 max-w-4xl">
+          <p className="text-sm sm:text-base text-sacred-ivoryDim font-cormorant text-base sm:text-xl leading-relaxed mt-2 max-w-4xl break-words">
             {category.description}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-sacred-borderGold/30 text-xs">
-          <div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-sacred-borderGold/30 text-xs min-w-0">
+          <div className="min-w-0">
             <span className="text-sacred-goldDark uppercase font-bold block mb-1">Traditional Context</span>
-            <p className="text-sacred-ivoryDim">{category.traditionalContext}</p>
+            <p className="text-sacred-ivoryDim break-words">{category.traditionalContext}</p>
           </div>
-          <div>
+          <div className="min-w-0">
             <span className="text-sacred-goldDark uppercase font-bold block mb-1">Scriptural Foundations</span>
             <div className="flex flex-wrap gap-1.5">
               {category.scripturalFoundations.map((src, i) => (
@@ -103,7 +105,7 @@ export const CategoryDetailPage: React.FC = () => {
                 The 64 Yogini Directory (Hirapur Tradition, Odisha)
               </h2>
               <p className="text-xs text-sacred-ivoryMuted">
-                All 64 individual Yoginis documented from the 9th-century Hirapur Chausath Yogini Temple epigraphy.
+                All 64 individual Yoginis documented from the 9th-century Hirapur Chausath Yogini Temple epigraphy. Click any card to open the in-depth brief.
               </p>
             </div>
             {/* Filter Input */}
@@ -119,7 +121,7 @@ export const CategoryDetailPage: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full min-w-0">
             {sixtyFourYoginis
               .filter(y =>
                 !searchFilter ||
@@ -130,7 +132,49 @@ export const CategoryDetailPage: React.FC = () => {
               .map((yogini) => (
                 <div
                   key={yogini.id}
-                  className="p-4 rounded-xl bg-sacred-surface border border-sacred-borderGold/30 hover:border-sacred-gold transition-all space-y-3 flex flex-col justify-between"
+                  onClick={() => setActiveModalEntity({
+                    id: yogini.id,
+                    number: yogini.number,
+                    name: yogini.name,
+                    sanskritName: yogini.sanskritName,
+                    categoryBadge: `Chausath Yogini #${yogini.number}`,
+                    subtitle: `Hirapur Shaktipitha • Mount: ${yogini.vahana}`,
+                    attributes: [
+                      { label: 'Yogini Number', value: `#${yogini.number} of 64` },
+                      { label: 'Mount (Vahana)', value: yogini.vahana },
+                      { label: 'Weapons & Ayudhas', value: yogini.weapons.join(', ') },
+                      { label: 'Temple Epigraphy', value: yogini.templeSite },
+                      { label: 'Iconographic Form', value: yogini.iconographyDescription },
+                    ],
+                    description: yogini.iconographyDescription,
+                    esotericSignificance: yogini.significance,
+                    scripturalSource: 'Kaulajnana Nirnaya (Matsyendranath), Agni Purana & Hirapur Circular Temple Inscriptions',
+                  })}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      setActiveModalEntity({
+                        id: yogini.id,
+                        number: yogini.number,
+                        name: yogini.name,
+                        sanskritName: yogini.sanskritName,
+                        categoryBadge: `Chausath Yogini #${yogini.number}`,
+                        subtitle: `Hirapur Shaktipitha • Mount: ${yogini.vahana}`,
+                        attributes: [
+                          { label: 'Yogini Number', value: `#${yogini.number} of 64` },
+                          { label: 'Mount (Vahana)', value: yogini.vahana },
+                          { label: 'Weapons & Ayudhas', value: yogini.weapons.join(', ') },
+                          { label: 'Temple Epigraphy', value: yogini.templeSite },
+                          { label: 'Iconographic Form', value: yogini.iconographyDescription },
+                        ],
+                        description: yogini.iconographyDescription,
+                        esotericSignificance: yogini.significance,
+                        scripturalSource: 'Kaulajnana Nirnaya (Matsyendranath), Agni Purana & Hirapur Circular Temple Inscriptions',
+                      });
+                    }
+                  }}
+                  className="p-4 rounded-xl bg-sacred-surface border border-sacred-borderGold/30 hover:border-sacred-gold hover:shadow-sacred-glow hover:scale-[1.01] transition-all duration-200 cursor-pointer space-y-3 flex flex-col justify-between group"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-2">
@@ -151,7 +195,7 @@ export const CategoryDetailPage: React.FC = () => {
                       />
                     </div>
 
-                    <h3 className="font-cinzel text-base font-bold text-sacred-ivory">
+                    <h3 className="font-cinzel text-base font-bold text-sacred-ivory group-hover:text-sacred-goldLight transition-colors">
                       {yogini.name}
                     </h3>
                     <div className="font-devanagari text-xs text-sacred-goldLight">
@@ -168,9 +212,15 @@ export const CategoryDetailPage: React.FC = () => {
                     </div>
                   </div>
 
-                  <p className="text-[11px] text-sacred-ivoryMuted font-cormorant text-sm leading-relaxed border-t border-sacred-border/60 pt-2">
-                    {yogini.significance}
-                  </p>
+                  <div>
+                    <p className="text-[11px] text-sacred-ivoryMuted font-cormorant text-sm leading-relaxed border-t border-sacred-border/60 pt-2 line-clamp-2">
+                      {yogini.significance}
+                    </p>
+                    <div className="mt-2 pt-2 border-t border-sacred-border/40 flex items-center justify-between text-[11px] text-sacred-gold group-hover:text-sacred-goldLight font-medium">
+                      <span>Open Sacred Dossier</span>
+                      <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
                 </div>
               ))}
           </div>
@@ -187,48 +237,100 @@ export const CategoryDetailPage: React.FC = () => {
               The 16 Nitya Devis of Sri Vidya
             </h2>
             <p className="text-xs text-sacred-ivoryMuted">
-              Presiding over the sixteen lunar days (Tithis) and the enclosures of the Sri Chakra.
+              Presiding over the sixteen lunar days (Tithis) and the enclosures of the Sri Chakra. Click any card to expand full briefing.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full min-w-0">
             {shodashaNityas.map((nitya) => (
               <div
                 key={nitya.id}
-                className="p-4 rounded-xl bg-sacred-surface border border-sacred-borderGold/30 hover:border-sacred-gold transition-all space-y-3"
+                onClick={() => setActiveModalEntity({
+                  id: nitya.id,
+                  number: nitya.number,
+                  name: nitya.name,
+                  sanskritName: nitya.sanskritName,
+                  categoryBadge: `Sri Vidya Nitya #${nitya.number}`,
+                  subtitle: `${nitya.tithi} (${nitya.lunarPhase})`,
+                  deviId: allDevis.some(d => d.id === nitya.id) ? nitya.id : undefined,
+                  attributes: [
+                    { label: 'Tithi (Lunar Day)', value: nitya.tithi },
+                    { label: 'Lunar Phase', value: nitya.lunarPhase },
+                    { label: 'Sri Chakra Placement', value: nitya.sriChakraPlacement },
+                    { label: 'Sacred Weapons & Mudras', value: nitya.mudraOrAttribute },
+                    { label: 'Associated Vidya', value: nitya.associatedMantraType },
+                  ],
+                  description: nitya.philosophicalMeaning,
+                  esotericSignificance: `As the ${nitya.number}th Nitya Devi of Sri Lalita Tripurasundari, she presides over the unbroken continuum of lunar rays (Kalas) and the energetic unfolding of human consciousness across the fortnightly lunar phases.`,
+                  scripturalSource: nitya.scripturalSource,
+                })}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    setActiveModalEntity({
+                      id: nitya.id,
+                      number: nitya.number,
+                      name: nitya.name,
+                      sanskritName: nitya.sanskritName,
+                      categoryBadge: `Sri Vidya Nitya #${nitya.number}`,
+                      subtitle: `${nitya.tithi} (${nitya.lunarPhase})`,
+                      deviId: allDevis.some(d => d.id === nitya.id) ? nitya.id : undefined,
+                      attributes: [
+                        { label: 'Tithi (Lunar Day)', value: nitya.tithi },
+                        { label: 'Lunar Phase', value: nitya.lunarPhase },
+                        { label: 'Sri Chakra Placement', value: nitya.sriChakraPlacement },
+                        { label: 'Sacred Weapons & Mudras', value: nitya.mudraOrAttribute },
+                        { label: 'Associated Vidya', value: nitya.associatedMantraType },
+                      ],
+                      description: nitya.philosophicalMeaning,
+                      esotericSignificance: `As the ${nitya.number}th Nitya Devi of Sri Lalita Tripurasundari, she presides over the unbroken continuum of lunar rays (Kalas) and the energetic unfolding of human consciousness across the fortnightly lunar phases.`,
+                      scripturalSource: nitya.scripturalSource,
+                    });
+                  }
+                }}
+                className="p-4 rounded-xl bg-sacred-surface border border-sacred-borderGold/30 hover:border-sacred-gold hover:shadow-sacred-glow hover:scale-[1.01] transition-all duration-200 cursor-pointer space-y-3 flex flex-col justify-between group"
               >
-                <div className="flex items-center justify-between">
-                  <span className="w-6 h-6 rounded-full bg-sacred-maroon border border-sacred-gold/40 text-[11px] font-mono font-bold text-sacred-goldLight flex items-center justify-center">
-                    {nitya.number}
-                  </span>
-                  <span className="text-[10px] px-2 py-0.5 rounded bg-sacred-dark border border-sacred-border text-sacred-goldLight">
-                    {nitya.tithi.split(' ')[0]}
-                  </span>
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="w-6 h-6 rounded-full bg-sacred-maroon border border-sacred-gold/40 text-[11px] font-mono font-bold text-sacred-goldLight flex items-center justify-center">
+                      {nitya.number}
+                    </span>
+                    <span className="text-[10px] px-2 py-0.5 rounded bg-sacred-dark border border-sacred-border text-sacred-goldLight">
+                      {nitya.tithi.split(' ')[0]}
+                    </span>
+                  </div>
+
+                  <div>
+                    <h3 className="font-cinzel text-base font-bold text-sacred-ivory group-hover:text-sacred-goldLight transition-colors">
+                      {nitya.name}
+                    </h3>
+                    <div className="font-devanagari text-xs text-sacred-goldDark">
+                      {nitya.sanskritName}
+                    </div>
+                  </div>
+
+                  <div className="text-xs space-y-1 text-sacred-ivoryDim mt-2">
+                    <div>
+                      <strong className="text-sacred-goldDark text-[10px] block uppercase">Sri Chakra Placement:</strong>
+                      <span className="text-[11px] line-clamp-1">{nitya.sriChakraPlacement}</span>
+                    </div>
+                    <div>
+                      <strong className="text-sacred-goldDark text-[10px] block uppercase">Attributes:</strong>
+                      <span className="text-[11px] line-clamp-2">{nitya.mudraOrAttribute}</span>
+                    </div>
+                  </div>
                 </div>
 
                 <div>
-                  <h3 className="font-cinzel text-base font-bold text-sacred-ivory">
-                    {nitya.name}
-                  </h3>
-                  <div className="font-devanagari text-xs text-sacred-goldDark">
-                    {nitya.sanskritName}
+                  <p className="text-xs text-sacred-ivoryMuted font-cormorant text-sm leading-relaxed border-t border-sacred-border/60 pt-2 line-clamp-2">
+                    {nitya.philosophicalMeaning}
+                  </p>
+                  <div className="mt-2 pt-2 border-t border-sacred-border/40 flex items-center justify-between text-[11px] text-sacred-gold group-hover:text-sacred-goldLight font-medium">
+                    <span>Open Sacred Dossier</span>
+                    <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
-
-                <div className="text-xs space-y-1 text-sacred-ivoryDim">
-                  <div>
-                    <strong className="text-sacred-goldDark text-[10px] block uppercase">Sri Chakra Placement:</strong>
-                    <span className="text-[11px]">{nitya.sriChakraPlacement}</span>
-                  </div>
-                  <div>
-                    <strong className="text-sacred-goldDark text-[10px] block uppercase">Attributes:</strong>
-                    <span className="text-[11px] line-clamp-2">{nitya.mudraOrAttribute}</span>
-                  </div>
-                </div>
-
-                <p className="text-xs text-sacred-ivoryMuted font-cormorant text-sm leading-relaxed border-t border-sacred-border/60 pt-2">
-                  {nitya.philosophicalMeaning}
-                </p>
               </div>
             ))}
           </div>
@@ -245,45 +347,90 @@ export const CategoryDetailPage: React.FC = () => {
               The Twelve Kalis of Kashmiri Krama Philosophy
             </h2>
             <p className="text-xs text-sacred-ivoryMuted">
-              Documenting the continuous cycles of projection, sustenance, withdrawal, and the ineffable ground of consciousness.
+              Documenting the continuous cycles of projection, sustenance, withdrawal, and the ineffable ground of consciousness. Click any card to expand full dossier.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full min-w-0">
             {dwadashaKalis.map((kali) => (
               <div
                 key={kali.id}
-                className="p-5 rounded-xl bg-sacred-surface border border-sacred-borderGold/30 hover:border-sacred-gold transition-all space-y-3"
+                onClick={() => setActiveModalEntity({
+                  id: kali.id,
+                  number: kali.number,
+                  name: kali.name,
+                  sanskritName: kali.sanskritName,
+                  categoryBadge: `Kashmiri Krama Kali #${kali.number}`,
+                  subtitle: kali.kramaFunction,
+                  deviId: allDevis.some(d => d.id === kali.id) ? kali.id : undefined,
+                  attributes: [
+                    { label: 'Krama Stage Number', value: `#${kali.number} of 12` },
+                    { label: 'Cosmic Function', value: kali.kramaFunction },
+                    { label: 'Epistemological Phase', value: kali.phaseOfConsciousness },
+                  ],
+                  description: kali.philosophicalSignificance,
+                  esotericSignificance: `In Kashmir Shaivism's Krama system expounded by Mahamaheshvara Abhinavagupta, the 12 Kalis represent the unbroken kinetic wheel of consciousness (Chiti-Chakra) operating across Srishti (creation), Sthiti (sustenance), Samhara (withdrawal), and Anakhya (the ineffable transcendent fourth state).`,
+                  scripturalSource: kali.scripturalSource,
+                })}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    setActiveModalEntity({
+                      id: kali.id,
+                      number: kali.number,
+                      name: kali.name,
+                      sanskritName: kali.sanskritName,
+                      categoryBadge: `Kashmiri Krama Kali #${kali.number}`,
+                      subtitle: kali.kramaFunction,
+                      deviId: allDevis.some(d => d.id === kali.id) ? kali.id : undefined,
+                      attributes: [
+                        { label: 'Krama Stage Number', value: `#${kali.number} of 12` },
+                        { label: 'Cosmic Function', value: kali.kramaFunction },
+                        { label: 'Epistemological Phase', value: kali.phaseOfConsciousness },
+                      ],
+                      description: kali.philosophicalSignificance,
+                      esotericSignificance: `In Kashmir Shaivism's Krama system expounded by Mahamaheshvara Abhinavagupta, the 12 Kalis represent the unbroken kinetic wheel of consciousness (Chiti-Chakra) operating across Srishti (creation), Sthiti (sustenance), Samhara (withdrawal), and Anakhya (the ineffable transcendent fourth state).`,
+                      scripturalSource: kali.scripturalSource,
+                    });
+                  }
+                }}
+                className="p-5 rounded-xl bg-sacred-surface border border-sacred-borderGold/30 hover:border-sacred-gold hover:shadow-sacred-glow hover:scale-[1.01] transition-all duration-200 cursor-pointer space-y-3 flex flex-col justify-between group"
               >
-                <div className="flex items-center justify-between">
-                  <span className="w-6 h-6 rounded-full bg-sacred-maroon border border-sacred-gold/40 text-[11px] font-mono font-bold text-sacred-goldLight flex items-center justify-center">
-                    {kali.number}
-                  </span>
-                  <span className="text-[10px] px-2 py-0.5 rounded bg-sacred-dark border border-sacred-border text-sacred-goldLight">
-                    {kali.kramaFunction}
-                  </span>
-                </div>
-
                 <div>
-                  <h3 className="font-cinzel text-base sm:text-lg font-bold text-sacred-ivory">
-                    {kali.name}
-                  </h3>
-                  <div className="font-devanagari text-xs text-sacred-goldDark">
-                    {kali.sanskritName}
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="w-6 h-6 rounded-full bg-sacred-maroon border border-sacred-gold/40 text-[11px] font-mono font-bold text-sacred-goldLight flex items-center justify-center">
+                      {kali.number}
+                    </span>
+                    <span className="text-[10px] px-2 py-0.5 rounded bg-sacred-dark border border-sacred-border text-sacred-goldLight">
+                      {kali.kramaFunction}
+                    </span>
+                  </div>
+
+                  <div>
+                    <h3 className="font-cinzel text-base sm:text-lg font-bold text-sacred-ivory group-hover:text-sacred-goldLight transition-colors">
+                      {kali.name}
+                    </h3>
+                    <div className="font-devanagari text-xs text-sacred-goldDark">
+                      {kali.sanskritName}
+                    </div>
+                  </div>
+
+                  <div className="text-xs text-sacred-goldLight bg-sacred-dark/80 p-2 rounded border border-sacred-border mt-2">
+                    <strong className="block text-[10px] uppercase text-sacred-goldDark">Epistemological Phase:</strong>
+                    {kali.phaseOfConsciousness}
                   </div>
                 </div>
 
-                <div className="text-xs text-sacred-goldLight bg-sacred-dark/80 p-2 rounded border border-sacred-border">
-                  <strong className="block text-[10px] uppercase text-sacred-goldDark">Epistemological Phase:</strong>
-                  {kali.phaseOfConsciousness}
-                </div>
+                <div>
+                  <p className="text-xs text-sacred-ivoryDim font-cormorant text-base leading-relaxed line-clamp-3">
+                    {kali.philosophicalSignificance}
+                  </p>
 
-                <p className="text-xs text-sacred-ivoryDim font-cormorant text-base leading-relaxed">
-                  {kali.philosophicalSignificance}
-                </p>
-
-                <div className="text-[10px] text-sacred-ivoryMuted border-t border-sacred-border/60 pt-2">
-                  Sources: {kali.scripturalSource}
+                  <div className="mt-2 pt-2 border-t border-sacred-border/40 flex items-center justify-between text-[11px] text-sacred-gold group-hover:text-sacred-goldLight font-medium">
+                    <span>Open Sacred Dossier</span>
+                    <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </div>
               </div>
             ))}
@@ -301,37 +448,84 @@ export const CategoryDetailPage: React.FC = () => {
             <h2 className="font-cinzel text-xl sm:text-2xl font-bold text-sacred-gold border-b border-sacred-borderGold/30 pb-2">
               The Seven Chakra Yoginis (Kundalini Subtle Anatomy)
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full min-w-0">
               {chakraYoginis.map((cy) => (
                 <div
                   key={cy.id}
-                  className="p-5 rounded-xl bg-sacred-surface border border-sacred-borderGold/30 space-y-3"
+                  onClick={() => setActiveModalEntity({
+                    id: cy.id,
+                    name: `${cy.yoginiName} (${cy.chakra.split(' ')[0]} Yogini)`,
+                    sanskritName: cy.sanskritName,
+                    categoryBadge: `Kundalini Subtle Anatomy • ${cy.sanskritChakra}`,
+                    subtitle: cy.chakra,
+                    deviId: allDevis.some(d => d.id === cy.id || d.id === cy.id.replace('chakra-', '')) ? cy.id.replace('chakra-', '') : undefined,
+                    attributes: [
+                      { label: 'Subtle Center (Chakra)', value: cy.chakra },
+                      { label: 'Sanskrit Name', value: cy.sanskritChakra },
+                      { label: 'Governed Bodily Dhatu', value: cy.dhatuGoverned },
+                      { label: 'Complexion & Radiance', value: cy.colorAndComplexion },
+                      { label: 'Weapons & Mudras', value: cy.weapons.join(', ') },
+                    ],
+                    description: cy.iconography,
+                    esotericSignificance: cy.esotericSignificance,
+                    scripturalSource: cy.sourceText,
+                  })}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      setActiveModalEntity({
+                        id: cy.id,
+                        name: `${cy.yoginiName} (${cy.chakra.split(' ')[0]} Yogini)`,
+                        sanskritName: cy.sanskritName,
+                        categoryBadge: `Kundalini Subtle Anatomy • ${cy.sanskritChakra}`,
+                        subtitle: cy.chakra,
+                        deviId: allDevis.some(d => d.id === cy.id || d.id === cy.id.replace('chakra-', '')) ? cy.id.replace('chakra-', '') : undefined,
+                        attributes: [
+                          { label: 'Subtle Center (Chakra)', value: cy.chakra },
+                          { label: 'Sanskrit Name', value: cy.sanskritChakra },
+                          { label: 'Governed Bodily Dhatu', value: cy.dhatuGoverned },
+                          { label: 'Complexion & Radiance', value: cy.colorAndComplexion },
+                          { label: 'Weapons & Mudras', value: cy.weapons.join(', ') },
+                        ],
+                        description: cy.iconography,
+                        esotericSignificance: cy.esotericSignificance,
+                        scripturalSource: cy.sourceText,
+                      });
+                    }
+                  }}
+                  className="p-5 rounded-xl bg-sacred-surface border border-sacred-borderGold/30 hover:border-sacred-gold hover:shadow-sacred-glow hover:scale-[1.01] transition-all duration-200 cursor-pointer space-y-3 flex flex-col justify-between group"
                 >
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-mono font-bold text-sacred-gold">{cy.sanskritChakra}</span>
-                    <span className="text-[10px] px-2 py-0.5 rounded bg-sacred-maroon border border-sacred-gold/30 text-sacred-goldLight">
-                      {cy.dhatuGoverned}
-                    </span>
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs font-mono font-bold text-sacred-gold">{cy.sanskritChakra}</span>
+                      <span className="text-[10px] px-2 py-0.5 rounded bg-sacred-maroon border border-sacred-gold/30 text-sacred-goldLight">
+                        {cy.dhatuGoverned}
+                      </span>
+                    </div>
+
+                    <div>
+                      <h3 className="font-cinzel text-lg font-bold text-sacred-ivory group-hover:text-sacred-goldLight transition-colors">
+                        {cy.yoginiName} ({cy.sanskritName})
+                      </h3>
+                      <div className="text-xs text-sacred-ivoryMuted">{cy.chakra}</div>
+                    </div>
+
+                    <div className="text-xs space-y-1.5 text-sacred-ivoryDim bg-sacred-dark/60 p-2.5 rounded border border-sacred-border mt-2">
+                      <div><strong className="text-sacred-goldDark">Complexion:</strong> {cy.colorAndComplexion}</div>
+                      <div><strong className="text-sacred-goldDark">Weapons:</strong> {cy.weapons.join(', ')}</div>
+                    </div>
                   </div>
 
                   <div>
-                    <h3 className="font-cinzel text-lg font-bold text-sacred-ivory">
-                      {cy.yoginiName} ({cy.sanskritName})
-                    </h3>
-                    <div className="text-xs text-sacred-ivoryMuted">{cy.chakra}</div>
-                  </div>
+                    <p className="text-xs text-sacred-ivoryDim font-cormorant text-base leading-relaxed line-clamp-2">
+                      {cy.esotericSignificance}
+                    </p>
 
-                  <div className="text-xs space-y-1.5 text-sacred-ivoryDim bg-sacred-dark/60 p-2.5 rounded border border-sacred-border">
-                    <div><strong className="text-sacred-goldDark">Complexion:</strong> {cy.colorAndComplexion}</div>
-                    <div><strong className="text-sacred-goldDark">Weapons:</strong> {cy.weapons.join(', ')}</div>
-                  </div>
-
-                  <p className="text-xs text-sacred-ivoryDim font-cormorant text-base leading-relaxed">
-                    {cy.esotericSignificance}
-                  </p>
-
-                  <div className="text-[10px] text-sacred-ivoryMuted border-t border-sacred-border/60 pt-2">
-                    Source: {cy.sourceText}
+                    <div className="mt-2 pt-2 border-t border-sacred-border/40 flex items-center justify-between text-[11px] text-sacred-gold group-hover:text-sacred-goldLight font-medium">
+                      <span>Open Sacred Dossier</span>
+                      <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    </div>
                   </div>
                 </div>
               ))}
@@ -343,16 +537,70 @@ export const CategoryDetailPage: React.FC = () => {
             <h2 className="font-cinzel text-xl sm:text-2xl font-bold text-sacred-gold border-b border-sacred-borderGold/30 pb-2">
               Ashta Vashinis — The Eight Speech Shaktis
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full min-w-0">
               {ashtaVashinis.map((v) => (
-                <div key={v.id} className="p-4 rounded-xl bg-sacred-surface border border-sacred-borderGold/30 space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs text-sacred-gold">#{v.number}</span>
-                    <span className="text-[10px] text-sacred-ivoryMuted">Vak-Devata</span>
+                <div
+                  key={v.id}
+                  onClick={() => setActiveModalEntity({
+                    id: v.id,
+                    number: v.number,
+                    name: v.name,
+                    sanskritName: v.sanskritName,
+                    categoryBadge: `Speech Shakti (Vak-Devata) #${v.number}`,
+                    subtitle: v.speechAspect,
+                    attributes: [
+                      { label: 'Order', value: `#${v.number} of 8 Ashta Vashinis` },
+                      { label: 'Speech Aspect', value: v.speechAspect },
+                      { label: 'Sri Chakra Enclosure', value: v.sriChakraAvarana },
+                    ],
+                    description: v.significance,
+                    esotericSignificance: 'The eight Vashini deities reside in the Sarvarogahara Chakra (the inner eight triangles) of the Sri Yantra. They are the composers of the divine Lalita Sahasranama and govern the transformation of cosmic vibration (Nada) into articulated Sanskrit phonemes (Matrikas).',
+                    scripturalSource: 'Vamakeshvara Tantra, Lalita Sahasranama Phalasruti, & Nityashodashikarnava',
+                  })}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      setActiveModalEntity({
+                        id: v.id,
+                        number: v.number,
+                        name: v.name,
+                        sanskritName: v.sanskritName,
+                        categoryBadge: `Speech Shakti (Vak-Devata) #${v.number}`,
+                        subtitle: v.speechAspect,
+                        attributes: [
+                          { label: 'Order', value: `#${v.number} of 8 Ashta Vashinis` },
+                          { label: 'Speech Aspect', value: v.speechAspect },
+                          { label: 'Sri Chakra Enclosure', value: v.sriChakraAvarana },
+                        ],
+                        description: v.significance,
+                        esotericSignificance: 'The eight Vashini deities reside in the Sarvarogahara Chakra (the inner eight triangles) of the Sri Yantra. They are the composers of the divine Lalita Sahasranama and govern the transformation of cosmic vibration (Nada) into articulated Sanskrit phonemes (Matrikas).',
+                        scripturalSource: 'Vamakeshvara Tantra, Lalita Sahasranama Phalasruti, & Nityashodashikarnava',
+                      });
+                    }
+                  }}
+                  className="p-4 rounded-xl bg-sacred-surface border border-sacred-borderGold/30 hover:border-sacred-gold hover:shadow-sacred-glow hover:scale-[1.01] transition-all duration-200 cursor-pointer space-y-2 flex flex-col justify-between group"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="font-mono text-xs text-sacred-gold">#{v.number}</span>
+                      <span className="text-[10px] text-sacred-ivoryMuted">Vak-Devata</span>
+                    </div>
+                    <h3 className="font-cinzel text-base font-bold text-sacred-ivory group-hover:text-sacred-goldLight transition-colors">
+                      {v.name}
+                    </h3>
+                    <div className="font-devanagari text-xs text-sacred-goldDark">{v.sanskritName}</div>
                   </div>
-                  <h3 className="font-cinzel text-base font-bold text-sacred-ivory">{v.name}</h3>
-                  <div className="font-devanagari text-xs text-sacred-goldDark">{v.sanskritName}</div>
-                  <p className="text-xs text-sacred-ivoryDim font-cormorant text-sm leading-relaxed">{v.significance}</p>
+
+                  <div>
+                    <p className="text-xs text-sacred-ivoryDim font-cormorant text-sm leading-relaxed line-clamp-2">
+                      {v.significance}
+                    </p>
+                    <div className="mt-2 pt-2 border-t border-sacred-border/40 flex items-center justify-between text-[11px] text-sacred-gold group-hover:text-sacred-goldLight font-medium">
+                      <span>Open Brief</span>
+                      <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
@@ -363,12 +611,53 @@ export const CategoryDetailPage: React.FC = () => {
             <h2 className="font-cinzel text-xl sm:text-2xl font-bold text-sacred-gold border-b border-sacred-borderGold/30 pb-2">
               Sixteen Nitya Kalas & Sanskrit Vowels
             </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5 text-center">
+            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5 text-center w-full min-w-0">
               {sixteenNityaKalas.map((k) => (
-                <div key={k.number} className="p-2.5 rounded-lg bg-sacred-dark border border-sacred-borderGold/20 space-y-1">
-                  <div className="font-devanagari text-base font-bold text-sacred-goldLight">{k.vowel}</div>
-                  <div className="font-cinzel text-xs font-semibold text-sacred-ivory">{k.name}</div>
-                  <div className="text-[10px] text-sacred-ivoryMuted">{k.meaning}</div>
+                <div
+                  key={k.number}
+                  onClick={() => setActiveModalEntity({
+                    id: `kala-${k.number}`,
+                    number: k.number,
+                    name: `${k.name} Nitya Kala`,
+                    sanskritName: k.vowel,
+                    categoryBadge: `Lunar Kala #${k.number} • Matrika Vowel`,
+                    subtitle: `The ${k.number}th Divine Ray of Parashakti`,
+                    attributes: [
+                      { label: 'Vowel (Svara)', value: k.vowel },
+                      { label: 'Order', value: `#${k.number} of 16 Chandra Kalas` },
+                      { label: 'Spiritual Resonance', value: k.meaning },
+                    ],
+                    description: 'The Sixteen Nitya Kalas are the primordial digits of the spiritual moon (Chandra-mandala) residing within the Sahasrara Chakra. Each Kala vibrates with one of the sixteen Sanskrit vowels (Svaras), transmitting the supreme nectar of immortality (Amrita) through the subtle body nadis.',
+                    esotericSignificance: k.meaning,
+                    scripturalSource: 'Tantraraja Tantra, Goraksha Samhita, & Sharadatilaka',
+                  })}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      setActiveModalEntity({
+                        id: `kala-${k.number}`,
+                        number: k.number,
+                        name: `${k.name} Nitya Kala`,
+                        sanskritName: k.vowel,
+                        categoryBadge: `Lunar Kala #${k.number} • Matrika Vowel`,
+                        subtitle: `The ${k.number}th Divine Ray of Parashakti`,
+                        attributes: [
+                          { label: 'Vowel (Svara)', value: k.vowel },
+                          { label: 'Order', value: `#${k.number} of 16 Chandra Kalas` },
+                          { label: 'Spiritual Resonance', value: k.meaning },
+                        ],
+                        description: 'The Sixteen Nitya Kalas are the primordial digits of the spiritual moon (Chandra-mandala) residing within the Sahasrara Chakra. Each Kala vibrates with one of the sixteen Sanskrit vowels (Svaras), transmitting the supreme nectar of immortality (Amrita) through the subtle body nadis.',
+                        esotericSignificance: k.meaning,
+                        scripturalSource: 'Tantraraja Tantra, Goraksha Samhita, & Sharadatilaka',
+                      });
+                    }
+                  }}
+                  className="p-2.5 rounded-lg bg-sacred-dark border border-sacred-borderGold/20 hover:border-sacred-gold hover:shadow-sacred-glow hover:scale-105 transition-all duration-200 cursor-pointer space-y-1 group"
+                >
+                  <div className="font-devanagari text-base font-bold text-sacred-goldLight group-hover:scale-110 transition-transform">{k.vowel}</div>
+                  <div className="font-cinzel text-xs font-semibold text-sacred-ivory group-hover:text-sacred-goldLight transition-colors">{k.name}</div>
+                  <div className="text-[10px] text-sacred-ivoryMuted line-clamp-1">{k.meaning}</div>
                 </div>
               ))}
             </div>
@@ -386,33 +675,86 @@ export const CategoryDetailPage: React.FC = () => {
               Ashta Lakshmi — The Eight Sovereign Auspicious Forms
             </h2>
             <p className="text-xs text-sacred-ivoryMuted">
-              Presiding over spiritual liberation, material wealth, grain, valor, lineage, and victory.
+              Presiding over spiritual liberation, material wealth, grain, valor, lineage, and victory. Click any card to expand full dossier.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full min-w-0">
             {ashtaLakshmiList.map((lakshmi) => (
               <div
                 key={lakshmi.id}
-                className="p-5 rounded-xl bg-sacred-surface border border-sacred-borderGold/30 hover:border-sacred-gold transition-all space-y-3"
+                onClick={() => setActiveModalEntity({
+                  id: lakshmi.id,
+                  name: lakshmi.name,
+                  sanskritName: lakshmi.sanskritName,
+                  categoryBadge: `Ashta Lakshmi • ${lakshmi.formType}`,
+                  subtitle: lakshmi.formType,
+                  deviId: allDevis.some(d => d.id === lakshmi.id) ? lakshmi.id : undefined,
+                  attributes: [
+                    { label: 'Form Classification', value: lakshmi.formType },
+                    { label: 'Mudras & Sacred Emblems', value: lakshmi.mudraAndAttributes },
+                    { label: 'Boon & Blessing Bestowed', value: lakshmi.blessingBestowed },
+                  ],
+                  description: lakshmi.significance,
+                  esotericSignificance: 'Ashta Lakshmi represents the eightfold multidimensional prosperity (Ashta Aishwarya) of cosmic existence. Far beyond mere financial wealth, she embodies spiritual illumination (Adi), righteous sustenance (Dhanya), royal dignity (Gaja), and courageous fortitude (Veera).',
+                  mantraOrSloka: {
+                    title: 'Ashta Lakshmi Stotram Verse',
+                    sanskrit: lakshmi.sloka,
+                    meaning: `Traditional stotram verse meditating upon ${lakshmi.name} for the bestowal of ${lakshmi.blessingBestowed.toLowerCase()} and freedom from suffering.`
+                  },
+                  scripturalSource: 'Vishnu Purana, Sri Sukta Bhashya, & Sri Ashta Lakshmi Stotram',
+                })}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    setActiveModalEntity({
+                      id: lakshmi.id,
+                      name: lakshmi.name,
+                      sanskritName: lakshmi.sanskritName,
+                      categoryBadge: `Ashta Lakshmi • ${lakshmi.formType}`,
+                      subtitle: lakshmi.formType,
+                      deviId: allDevis.some(d => d.id === lakshmi.id) ? lakshmi.id : undefined,
+                      attributes: [
+                        { label: 'Form Classification', value: lakshmi.formType },
+                        { label: 'Mudras & Sacred Emblems', value: lakshmi.mudraAndAttributes },
+                        { label: 'Boon & Blessing Bestowed', value: lakshmi.blessingBestowed },
+                      ],
+                      description: lakshmi.significance,
+                      esotericSignificance: 'Ashta Lakshmi represents the eightfold multidimensional prosperity (Ashta Aishwarya) of cosmic existence. Far beyond mere financial wealth, she embodies spiritual illumination (Adi), righteous sustenance (Dhanya), royal dignity (Gaja), and courageous fortitude (Veera).',
+                      mantraOrSloka: {
+                        title: 'Ashta Lakshmi Stotram Verse',
+                        sanskrit: lakshmi.sloka,
+                        meaning: `Traditional stotram verse meditating upon ${lakshmi.name} for the bestowal of ${lakshmi.blessingBestowed.toLowerCase()} and freedom from suffering.`
+                      },
+                      scripturalSource: 'Vishnu Purana, Sri Sukta Bhashya, & Sri Ashta Lakshmi Stotram',
+                    });
+                  }
+                }}
+                className="p-5 rounded-xl bg-sacred-surface border border-sacred-borderGold/30 hover:border-sacred-gold hover:shadow-sacred-glow hover:scale-[1.01] transition-all duration-200 cursor-pointer space-y-3 flex flex-col justify-between group"
               >
                 <div>
                   <span className="text-[10px] uppercase font-mono text-sacred-gold block">{lakshmi.formType}</span>
-                  <h3 className="font-cinzel text-lg font-bold text-sacred-ivory">{lakshmi.name}</h3>
+                  <h3 className="font-cinzel text-lg font-bold text-sacred-ivory group-hover:text-sacred-goldLight transition-colors">
+                    {lakshmi.name}
+                  </h3>
                   <div className="font-devanagari text-xs text-sacred-goldDark">{lakshmi.sanskritName}</div>
+
+                  <div className="text-xs space-y-1 text-sacred-ivoryDim mt-2">
+                    <div><strong className="text-sacred-goldDark">Attributes:</strong> {lakshmi.mudraAndAttributes}</div>
+                    <div><strong className="text-sacred-goldDark">Blessing:</strong> {lakshmi.blessingBestowed}</div>
+                  </div>
                 </div>
 
-                <div className="text-xs space-y-1 text-sacred-ivoryDim">
-                  <div><strong className="text-sacred-goldDark">Attributes:</strong> {lakshmi.mudraAndAttributes}</div>
-                  <div><strong className="text-sacred-goldDark">Blessing:</strong> {lakshmi.blessingBestowed}</div>
-                </div>
+                <div>
+                  <p className="text-xs text-sacred-ivoryMuted font-cormorant text-base leading-relaxed border-t border-sacred-border/60 pt-2 line-clamp-2">
+                    {lakshmi.significance}
+                  </p>
 
-                <p className="text-xs text-sacred-ivoryMuted font-cormorant text-base leading-relaxed border-t border-sacred-border/60 pt-2">
-                  {lakshmi.significance}
-                </p>
-
-                <div className="p-2 rounded bg-sacred-dark text-[10px] font-devanagari text-sacred-goldLight/80 text-center">
-                  {lakshmi.sloka}
+                  <div className="mt-2 pt-2 border-t border-sacred-border/40 flex items-center justify-between text-[11px] text-sacred-gold group-hover:text-sacred-goldLight font-medium">
+                    <span>Open Sacred Dossier</span>
+                    <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </div>
               </div>
             ))}
@@ -430,41 +772,90 @@ export const CategoryDetailPage: React.FC = () => {
               Navapatrika Devis — Bengal & Odisha Durga Puja Tradition
             </h2>
             <p className="text-xs text-sacred-ivoryMuted">
-              The nine sacred plants personifying nine distinct forms of Durga tied into Kola Bou on Saptami dawn.
+              The nine sacred plants personifying nine distinct forms of Durga tied into Kola Bou on Saptami dawn. Click any card to expand full dossier.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 w-full min-w-0">
             {navapatrikaList.map((np) => (
               <div
                 key={np.id}
-                className="p-5 rounded-xl bg-sacred-surface border border-sacred-borderGold/30 hover:border-sacred-gold transition-all space-y-3"
+                onClick={() => setActiveModalEntity({
+                  id: np.id,
+                  number: np.number,
+                  name: `${np.deviName} (Navapatrika Plant)`,
+                  sanskritName: np.sanskritName,
+                  categoryBadge: `Navapatrika Plant #${np.number}`,
+                  subtitle: `${np.plantAssociation} (${np.botanicalName})`,
+                  attributes: [
+                    { label: 'Order', value: `#${np.number} of 9 Sacred Plants` },
+                    { label: 'Sacred Botanical Plant', value: np.plantAssociation },
+                    { label: 'Botanical Classification', value: np.botanicalName },
+                    { label: 'Associated Durga Manifestation', value: np.deviName },
+                    { label: 'Cosmic Symbolism', value: np.symbolism },
+                  ],
+                  description: np.ritualSignificance,
+                  esotericSignificance: 'In Eastern Indian Durga Puja (Bengal, Odisha, Assam), the worship of Navapatrika on Maha Saptami dawn preserves the ancient Vedic and indigenous communion with cosmic nature. The nine tied botanical stalks personify Durga as the living biosphere, sanctifying the earth, rivers, and crops.',
+                  scripturalSource: 'Brihannandikeshvara Purana, Kalika Purana, & Durga Bhakti Tarangini',
+                })}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    setActiveModalEntity({
+                      id: np.id,
+                      number: np.number,
+                      name: `${np.deviName} (Navapatrika Plant)`,
+                      sanskritName: np.sanskritName,
+                      categoryBadge: `Navapatrika Plant #${np.number}`,
+                      subtitle: `${np.plantAssociation} (${np.botanicalName})`,
+                      attributes: [
+                        { label: 'Order', value: `#${np.number} of 9 Sacred Plants` },
+                        { label: 'Sacred Botanical Plant', value: np.plantAssociation },
+                        { label: 'Botanical Classification', value: np.botanicalName },
+                        { label: 'Associated Durga Manifestation', value: np.deviName },
+                        { label: 'Cosmic Symbolism', value: np.symbolism },
+                      ],
+                      description: np.ritualSignificance,
+                      esotericSignificance: 'In Eastern Indian Durga Puja (Bengal, Odisha, Assam), the worship of Navapatrika on Maha Saptami dawn preserves the ancient Vedic and indigenous communion with cosmic nature. The nine tied botanical stalks personify Durga as the living biosphere, sanctifying the earth, rivers, and crops.',
+                      scripturalSource: 'Brihannandikeshvara Purana, Kalika Purana, & Durga Bhakti Tarangini',
+                    });
+                  }
+                }}
+                className="p-5 rounded-xl bg-sacred-surface border border-sacred-borderGold/30 hover:border-sacred-gold hover:shadow-sacred-glow hover:scale-[1.01] transition-all duration-200 cursor-pointer space-y-3 flex flex-col justify-between group"
               >
-                <div className="flex items-center justify-between">
-                  <span className="w-6 h-6 rounded-full bg-sacred-maroon border border-sacred-gold/40 text-[11px] font-mono font-bold text-sacred-goldLight flex items-center justify-center">
-                    {np.number}
-                  </span>
-                  <span className="text-[10px] px-2 py-0.5 rounded bg-sacred-dark border border-sacred-border text-sacred-goldDark font-mono italic">
-                    {np.botanicalName}
-                  </span>
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="w-6 h-6 rounded-full bg-sacred-maroon border border-sacred-gold/40 text-[11px] font-mono font-bold text-sacred-goldLight flex items-center justify-center">
+                      {np.number}
+                    </span>
+                    <span className="text-[10px] px-2 py-0.5 rounded bg-sacred-dark border border-sacred-border text-sacred-goldDark font-mono italic">
+                      {np.botanicalName}
+                    </span>
+                  </div>
+
+                  <div>
+                    <h3 className="font-cinzel text-base sm:text-lg font-bold text-sacred-ivory group-hover:text-sacred-goldLight transition-colors">
+                      {np.deviName}
+                    </h3>
+                    <div className="font-devanagari text-xs text-sacred-goldLight">{np.sanskritName}</div>
+                  </div>
+
+                  <div className="text-xs text-sacred-goldLight bg-sacred-dark/80 p-2.5 rounded border border-sacred-border mt-2">
+                    <strong className="block text-[10px] uppercase text-sacred-goldDark">Sacred Plant Association:</strong>
+                    {np.plantAssociation}
+                  </div>
                 </div>
 
                 <div>
-                  <h3 className="font-cinzel text-base sm:text-lg font-bold text-sacred-ivory">{np.deviName}</h3>
-                  <div className="font-devanagari text-xs text-sacred-goldLight">{np.sanskritName}</div>
-                </div>
+                  <p className="text-xs text-sacred-ivoryDim font-cormorant text-base leading-relaxed line-clamp-2">
+                    {np.ritualSignificance}
+                  </p>
 
-                <div className="text-xs text-sacred-goldLight bg-sacred-dark/80 p-2.5 rounded border border-sacred-border">
-                  <strong className="block text-[10px] uppercase text-sacred-goldDark">Sacred Plant Association:</strong>
-                  {np.plantAssociation}
-                </div>
-
-                <p className="text-xs text-sacred-ivoryDim font-cormorant text-base leading-relaxed">
-                  {np.ritualSignificance}
-                </p>
-
-                <div className="text-[11px] text-sacred-ivoryMuted border-t border-sacred-border/60 pt-2">
-                  <strong className="text-sacred-goldDark">Cosmic Symbolism:</strong> {np.symbolism}
+                  <div className="mt-2 pt-2 border-t border-sacred-border/40 flex items-center justify-between text-[11px] text-sacred-gold group-hover:text-sacred-goldLight font-medium">
+                    <span>Open Sacred Dossier</span>
+                    <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </div>
               </div>
             ))}
@@ -482,20 +873,62 @@ export const CategoryDetailPage: React.FC = () => {
               Shodasha Matrikas — The Sixteen Ritual Samskara Mothers
             </h2>
             <p className="text-xs text-sacred-ivoryMuted">
-              Invoked in Vedic Samskaras, Yajnas, and Shanti Karmas; completely distinct from Sapta/Ashta Matrikas.
+              Invoked in Vedic Samskaras, Yajnas, and Shanti Karmas; completely distinct from Sapta/Ashta Matrikas. Click any card to expand full dossier.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5 w-full min-w-0">
             {shodashaMatrikasList.map((sm) => (
               <div
                 key={sm.number}
-                className="p-3 rounded-xl bg-sacred-surface border border-sacred-borderGold/30 text-center space-y-1.5"
+                onClick={() => setActiveModalEntity({
+                  id: `shodasha-${sm.number}`,
+                  number: sm.number,
+                  name: `${sm.name} Matrika`,
+                  sanskritName: sm.sanskrit,
+                  categoryBadge: `Vedic Samskara Matrika #${sm.number}`,
+                  subtitle: sm.role,
+                  attributes: [
+                    { label: 'Order', value: `#${sm.number} of 16 Ritual Mothers` },
+                    { label: 'Sanskrit Name', value: sm.sanskrit },
+                    { label: 'Ritual Role', value: sm.role },
+                    { label: 'Tradition', value: 'Vedic Shanti Karma & Samskara Pujan' },
+                  ],
+                  description: `${sm.name} (${sm.sanskrit}) is one of the sixteen protective mothers invoked at the commencement of every Vedic rite, wedding, sacred thread ceremony (Upanayana), and Yajna. Unlike the martial Sapta/Ashta Matrikas of Devi Mahatmya who destroy asuras on the battlefield, the Shodasha Matrikas bestow auspicious domestic blessings, mental peace, and lineage purity.`,
+                  esotericSignificance: sm.role,
+                  scripturalSource: 'Bhavishya Purana, Prayoga Ratna, & Grihya Sutras',
+                })}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    setActiveModalEntity({
+                      id: `shodasha-${sm.number}`,
+                      number: sm.number,
+                      name: `${sm.name} Matrika`,
+                      sanskritName: sm.sanskrit,
+                      categoryBadge: `Vedic Samskara Matrika #${sm.number}`,
+                      subtitle: sm.role,
+                      attributes: [
+                        { label: 'Order', value: `#${sm.number} of 16 Ritual Mothers` },
+                        { label: 'Sanskrit Name', value: sm.sanskrit },
+                        { label: 'Ritual Role', value: sm.role },
+                        { label: 'Tradition', value: 'Vedic Shanti Karma & Samskara Pujan' },
+                      ],
+                      description: `${sm.name} (${sm.sanskrit}) is one of the sixteen protective mothers invoked at the commencement of every Vedic rite, wedding, sacred thread ceremony (Upanayana), and Yajna. Unlike the martial Sapta/Ashta Matrikas of Devi Mahatmya who destroy asuras on the battlefield, the Shodasha Matrikas bestow auspicious domestic blessings, mental peace, and lineage purity.`,
+                      esotericSignificance: sm.role,
+                      scripturalSource: 'Bhavishya Purana, Prayoga Ratna, & Grihya Sutras',
+                    });
+                  }
+                }}
+                className="p-3 rounded-xl bg-sacred-surface border border-sacred-borderGold/30 hover:border-sacred-gold hover:shadow-sacred-glow hover:scale-105 transition-all duration-200 cursor-pointer text-center space-y-1.5 flex flex-col justify-between group"
               >
-                <div className="text-[10px] font-mono text-sacred-gold">#{sm.number}</div>
-                <div className="font-devanagari text-base font-bold text-sacred-goldLight">{sm.sanskrit}</div>
-                <div className="font-cinzel text-xs font-bold text-sacred-ivory">{sm.name}</div>
-                <p className="text-[10px] text-sacred-ivoryMuted leading-tight pt-1 border-t border-sacred-border/40">
+                <div>
+                  <div className="text-[10px] font-mono text-sacred-gold">#{sm.number}</div>
+                  <div className="font-devanagari text-base font-bold text-sacred-goldLight group-hover:scale-105 transition-transform">{sm.sanskrit}</div>
+                  <div className="font-cinzel text-xs font-bold text-sacred-ivory group-hover:text-sacred-goldLight transition-colors">{sm.name}</div>
+                </div>
+                <p className="text-[10px] text-sacred-ivoryMuted leading-tight pt-1 border-t border-sacred-border/40 line-clamp-2">
                   {sm.role}
                 </p>
               </div>
@@ -513,7 +946,7 @@ export const CategoryDetailPage: React.FC = () => {
             Dedicated Devi Profiles in this Category ({linkedDevis.length})
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full min-w-0">
             {linkedDevis.map((devi) => (
               <Link
                 key={devi.id}
@@ -525,6 +958,7 @@ export const CategoryDetailPage: React.FC = () => {
                     imagePath={devi.imagePath || devi.imageAssets[0]?.imagePath}
                     altText={devi.primaryName}
                     deviName={devi.primaryName}
+                    deviId={devi.id}
                     sanskritName={devi.sanskritName}
                     fallbackType={devi.imageAssets[0]?.fallbackType || 'verified'}
                     size="sm"
@@ -552,6 +986,12 @@ export const CategoryDetailPage: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* Global Interactive Topic Dossier Modal */}
+      <TopicDossierModal
+        entity={activeModalEntity}
+        onClose={() => setActiveModalEntity(null)}
+      />
     </div>
   );
 };

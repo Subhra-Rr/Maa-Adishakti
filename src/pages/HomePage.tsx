@@ -184,12 +184,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
         ======================================================== */}
         <section className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1d0508] via-[#100709] to-[#080506] border-2 border-amber-600/60 p-6 sm:p-10 shadow-maroon-glow">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-7 space-y-4">
-              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-amber-950/80 border border-amber-500/50 text-xs font-devanagari text-amber-300">
+            <div className="lg:col-span-7 space-y-5 overflow-visible">
+              <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-amber-950/80 border border-amber-500/50 text-xs font-devanagari text-amber-300 shadow-sm">
                 <Zap className="w-3.5 h-3.5 text-amber-400" />
-                <span>महाविमर्श विभाग — Dedicated Research Center</span>
+                <span className="leading-relaxed">महाविमर्श विभाग — Dedicated Research Center</span>
               </div>
-              <h2 className="font-devanagari text-3xl sm:text-4xl md:text-5xl font-bold text-sacred-goldLight drop-shadow-[0_0_15px_rgba(212,175,55,0.4)] leading-normal pt-2 pb-1 tracking-wide">
+              <h2 className="font-devanagari text-3xl sm:text-4xl md:text-5xl font-bold text-sacred-goldLight drop-shadow-[0_0_15px_rgba(212,175,55,0.4)] leading-[1.3] pt-3 pb-2 tracking-wide overflow-visible">
                 श्री प्रत्यङ्गिरा देवी
               </h2>
               <div className="font-cinzel text-xl text-sacred-ivory font-semibold">
@@ -265,6 +265,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
                     imagePath={devi.imagePath || devi.imageAssets[0]?.imagePath}
                     altText={devi.primaryName}
                     deviName={devi.primaryName}
+                    deviId={devi.id}
                     sanskritName={devi.sanskritName}
                     fallbackType={devi.imageAssets[0]?.fallbackType || 'verified'}
                     size="sm"

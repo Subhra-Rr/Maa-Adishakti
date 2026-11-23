@@ -166,6 +166,7 @@ export const DeviProfilePage: React.FC = () => {
               imagePath={devi.imagePath || devi.imageAssets[0]?.imagePath}
               altText={devi.primaryName}
               deviName={devi.primaryName}
+              deviId={devi.id}
               sanskritName={devi.sanskritName}
               fallbackType={devi.imageAssets[0]?.fallbackType || 'verified'}
               attribution={devi.imageAssets[0]?.attribution}

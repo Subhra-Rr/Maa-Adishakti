@@ -37,9 +37,24 @@ html, body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  width: 100%;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Universal Responsive Grid & Media Protection */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.grid > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+img, svg, video, canvas, audio, iframe, embed, object {
+  max-width: 100%;
 }
 
 /* Custom Scrollbars */

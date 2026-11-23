@@ -30,26 +30,26 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
   return (
     <header className="sticky top-0 z-40 w-full bg-[#070605]/95 backdrop-blur-md border-b border-sacred-borderGold/30">
       {/* Top sacred mini-banner */}
-      <div className="bg-gradient-to-r from-sacred-maroonDark via-sacred-maroon to-sacred-maroonDark text-center py-1 text-[11px] font-devanagari text-sacred-goldLight/90 tracking-widest border-b border-sacred-borderGold/20">
+      <div className="bg-gradient-to-r from-sacred-maroonDark via-sacred-maroon to-sacred-maroonDark text-center py-1 px-2 text-[10px] sm:text-[11px] font-devanagari text-sacred-goldLight/90 tracking-wider sm:tracking-widest border-b border-sacred-borderGold/20 truncate">
         ॥ ॐ ऐं ह्रीं क्लीं चामुण्डायै विच्चे ॥ श्री आदिपराशक्ति तत्त्वज्ञानकोशः ॥
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 sm:h-20 gap-2">
           {/* Logo & Identity */}
-          <Link to="/" className="flex items-center space-x-3 group text-left">
-            <div className="w-12 h-12 rounded-full border border-sacred-gold/60 bg-gradient-to-br from-[#2a080c] to-[#070605] flex items-center justify-center shadow-sacred-glow group-hover:border-sacred-gold transition-all duration-300">
-              <span className="font-devanagari text-2xl font-bold gold-gradient-text drop-shadow-[0_0_10px_rgba(212,175,55,0.4)]">
+          <Link to="/" className="flex items-center space-x-2 sm:space-x-3 group text-left min-w-0">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-full border border-sacred-gold/60 bg-gradient-to-br from-[#2a080c] to-[#070605] flex items-center justify-center shadow-sacred-glow group-hover:border-sacred-gold transition-all duration-300">
+              <span className="font-devanagari text-xl sm:text-2xl font-bold gold-gradient-text drop-shadow-[0_0_10px_rgba(212,175,55,0.4)]">
                 ॐ
               </span>
             </div>
-            <div>
+            <div className="min-w-0">
               <div className="flex items-center space-x-2">
-                <span className="font-cinzel text-xl sm:text-2xl font-extrabold tracking-wider gold-gradient-text">
+                <span className="font-cinzel text-base sm:text-2xl font-extrabold tracking-wider gold-gradient-text truncate">
                   SHAKTA TATTVA
                 </span>
               </div>
-              <p className="text-[10px] sm:text-xs font-devanagari text-sacred-goldDark tracking-wider">
+              <p className="text-[9px] sm:text-xs font-devanagari text-sacred-goldDark tracking-wider truncate">
                 श्री आदिपराशक्ति तत्त्वज्ञानकोशः
               </p>
             </div>
