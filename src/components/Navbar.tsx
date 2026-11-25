@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Search, Menu, X, Flame, Shield, Compass, BookOpen, Crown } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+import {
+  Search, Menu, X, Flame, Shield, Compass, BookOpen, Crown,
+  User, LogOut, Sparkles, Lock, Check
+} from 'lucide-react';
 
 interface NavbarProps {
   onOpenSearch: () => void;
@@ -8,13 +12,16 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [userDropdownOpen, setUserDropdownOpen] = useState(false);
   const location = useLocation();
+  const { user, isAuthenticated, logout, openAuthModal } = useAuth();
 
   const navLinks = [
     { label: 'Directory', path: '/directory' },
     { label: 'Categories', path: '/categories' },
+    { label: 'Daily Sadhana', path: '/sadhana', highlight: true },
     { label: 'Maa Pratyangira', path: '/pratyangira', highlight: true },
-    { label: 'Odisha Shakta', path: '/odisha-heritage', highlight: true },
+    { label: 'Odisha Shakta', path: '/odisha-heritage' },
     { label: 'Sri Chakra', path: '/sri-chakra' },
     { label: 'Shakti Peethas', path: '/shakti-peethas' },
     { label: 'Scriptures', path: '/scriptures' },
@@ -56,14 +63,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2">
+          <nav className="hidden xl:flex items-center space-x-1">
             {navLinks.map((link) => {
               const active = isActive(link.path);
               return (
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`px-3 py-1.5 rounded-md text-xs xl:text-sm font-medium tracking-wide transition-all ${
+                  className={`px-2.5 py-1.5 rounded-md text-xs font-medium tracking-wide transition-all ${
                     active
                       ? 'text-sacred-goldLight bg-sacred-maroon/70 border border-sacred-gold/40 shadow-sacred-glow'
                       : link.highlight
@@ -77,24 +84,78 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
             })}
           </nav>
 
-          {/* Actions: Search Button & Mobile Toggle */}
-          <div className="flex items-center space-x-3">
+          {/* Actions: Search Button + Authentication Profile */}
+          <div className="flex items-center space-x-2 sm:space-x-3">
             <button
               onClick={onOpenSearch}
-              className="flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-sacred-surface border border-sacred-borderGold/40 text-sacred-ivoryDim hover:text-sacred-gold hover:border-sacred-gold/80 transition-all text-xs sm:text-sm"
+              className="flex items-center space-x-2 px-2.5 sm:px-3 py-1.5 rounded-lg bg-sacred-surface border border-sacred-borderGold/40 text-sacred-ivoryDim hover:text-sacred-gold hover:border-sacred-gold/80 transition-all text-xs sm:text-sm"
               title="Search encyclopedia (Ctrl+K)"
             >
               <Search className="w-4 h-4 text-sacred-gold" />
-              <span className="hidden sm:inline">Search...</span>
-              <kbd className="hidden md:inline-block px-1.5 py-0.5 text-[10px] bg-sacred-dark border border-sacred-border rounded text-sacred-ivoryMuted">
+              <span className="hidden md:inline">Search...</span>
+              <kbd className="hidden lg:inline-block px-1.5 py-0.5 text-[10px] bg-sacred-dark border border-sacred-border rounded text-sacred-ivoryMuted">
                 ⌘K
               </kbd>
             </button>
 
+            {/* Authentication Button / User Profile */}
+            {isAuthenticated && user ? (
+              <div className="relative">
+                <button
+                  onClick={() => setUserDropdownOpen(!userDropdownOpen)}
+                  className="flex items-center space-x-2 px-2.5 sm:px-3 py-1.5 rounded-lg bg-sacred-maroon/80 border border-sacred-borderGold text-sacred-goldLight text-xs font-semibold hover:bg-sacred-maroon transition-all shadow-sacred-glow"
+                >
+                  <div className="w-5 h-5 rounded-full bg-sacred-gold text-sacred-dark font-bold text-[10px] flex items-center justify-center">
+                    {user.name.charAt(0).toUpperCase()}
+                  </div>
+                  <span className="hidden sm:inline max-w-[100px] truncate">{user.name.split(' ')[0]}</span>
+                </button>
+
+                {/* Dropdown Menu */}
+                {userDropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-56 rounded-xl bg-sacred-dark border border-sacred-borderGold/50 shadow-2xl p-2 space-y-1 z-50 text-xs">
+                    <div className="p-2 border-b border-sacred-border/60">
+                      <div className="font-cinzel font-bold text-sacred-ivory truncate">{user.name}</div>
+                      <div className="text-[10px] text-sacred-goldDark truncate">{user.email}</div>
+                    </div>
+
+                    <Link
+                      to="/sadhana"
+                      onClick={() => setUserDropdownOpen(false)}
+                      className="flex items-center space-x-2 px-2.5 py-2 rounded-lg text-sacred-ivoryDim hover:text-sacred-gold hover:bg-sacred-surface transition-all"
+                    >
+                      <Sparkles className="w-4 h-4 text-sacred-gold" />
+                      <span>My Sadhana Dashboard</span>
+                    </Link>
+
+                    <button
+                      onClick={() => {
+                        setUserDropdownOpen(false);
+                        logout();
+                      }}
+                      className="w-full flex items-center space-x-2 px-2.5 py-2 rounded-lg text-red-300 hover:text-red-200 hover:bg-red-950/40 transition-all text-left"
+                    >
+                      <LogOut className="w-4 h-4" />
+                      <span>Sign Out</span>
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <button
+                onClick={() => openAuthModal('login')}
+                className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-sacred-maroon/70 border border-sacred-borderGold/60 hover:border-sacred-gold text-sacred-goldLight text-xs sm:text-sm font-semibold transition-all shadow-sacred-glow"
+                title="Sign in for personalized study and stotra bookmarks"
+              >
+                <User className="w-3.5 h-3.5 text-sacred-gold" />
+                <span>Sign In</span>
+              </button>
+            )}
+
             {/* Mobile menu button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-lg bg-sacred-surface text-sacred-ivoryDim hover:text-sacred-gold border border-sacred-borderGold/30"
+              className="xl:hidden p-2 rounded-lg bg-sacred-surface text-sacred-ivoryDim hover:text-sacred-gold border border-sacred-borderGold/30"
               aria-label="Toggle Navigation Menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -105,9 +166,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-sacred-dark border-b border-sacred-borderGold/40 px-4 pt-3 pb-6 space-y-2 max-h-[85vh] overflow-y-auto">
-          <div className="pb-2 border-b border-sacred-border/60 text-xs font-devanagari text-sacred-goldLight/70">
-            विभागावली (Encyclopedia Sections)
+        <div className="xl:hidden bg-sacred-dark border-b border-sacred-borderGold/40 px-4 pt-3 pb-6 space-y-2 max-h-[85vh] overflow-y-auto">
+          <div className="pb-2 border-b border-sacred-border/60 text-xs font-devanagari text-sacred-goldLight/70 flex items-center justify-between">
+            <span>विभागावली (Encyclopedia Sections)</span>
+            {user && <span className="font-mono text-[10px] text-sacred-gold">Logged in as {user.name}</span>}
           </div>
           {navLinks.map((link) => {
             const active = isActive(link.path);
@@ -128,15 +190,40 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
               </Link>
             );
           })}
-          <div className="pt-3 border-t border-sacred-border/60 flex justify-center">
+
+          <div className="pt-3 border-t border-sacred-border/60 space-y-2">
+            {!isAuthenticated ? (
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  openAuthModal('login');
+                }}
+                className="w-full py-2.5 flex items-center justify-center space-x-2 bg-sacred-maroon border border-sacred-gold text-sacred-goldLight rounded-lg text-sm font-bold shadow-sacred-glow"
+              >
+                <User className="w-4 h-4" />
+                <span>Sign In / Register</span>
+              </button>
+            ) : (
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  logout();
+                }}
+                className="w-full py-2.5 flex items-center justify-center space-x-2 bg-sacred-dark border border-red-500/40 text-red-300 rounded-lg text-sm font-medium"
+              >
+                <LogOut className="w-4 h-4" />
+                <span>Sign Out ({user?.name})</span>
+              </button>
+            )}
+
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
                 onOpenSearch();
               }}
-              className="w-full py-2.5 flex items-center justify-center space-x-2 bg-sacred-maroon border border-sacred-borderGold text-sacred-goldLight rounded-lg text-sm"
+              className="w-full py-2.5 flex items-center justify-center space-x-2 bg-sacred-surface border border-sacred-borderGold text-sacred-ivory rounded-lg text-sm"
             >
-              <Search className="w-4 h-4" />
+              <Search className="w-4 h-4 text-sacred-gold" />
               <span>Search All Devis & Scriptures</span>
             </button>
           </div>

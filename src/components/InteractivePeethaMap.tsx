@@ -11,9 +11,15 @@ interface InteractivePeethaMapProps {
 export const InteractivePeethaMap: React.FC<InteractivePeethaMapProps> = ({ initialSelectedId }) => {
   const [filterClass, setFilterClass] = useState<string>('All');
   const [filterRegion, setFilterRegion] = useState<string>('All');
-  const [selectedPeetha, setSelectedPeetha] = useState<ShaktiPeetha>(
-    shaktiPeethas.find(p => p.id === initialSelectedId) || shaktiPeethas[0] // Default to Vimala Peetha, Puri
-  );
+  const [selectedPeetha, setSelectedPeetha] = useState<ShaktiPeetha>(() => {
+    if (initialSelectedId) {
+      const found = shaktiPeethas.find(p => p.id === initialSelectedId);
+      if (found) return found;
+    }
+    // Dynamically randomize initial peetha on each session visit
+    const randomIndex = Math.floor(Math.random() * shaktiPeethas.length);
+    return shaktiPeethas[randomIndex] || shaktiPeethas[0];
+  });
 
   const filteredPeethas = shaktiPeethas.filter(p => {
     const classMatch =

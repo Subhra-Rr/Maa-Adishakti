@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { GlobalSearchModal } from './components/GlobalSearchModal';
+import { AuthModal } from './components/AuthModal';
+import { ProtectedRoute } from './components/ProtectedRoute';
 
 // Pages
 import { HomePage } from './pages/HomePage';
@@ -17,6 +20,7 @@ import { SriChakraPage } from './pages/SriChakraPage';
 import { ScripturesPage } from './pages/ScripturesPage';
 import { AcharasPage } from './pages/AcharasPage';
 import { KashmirShaivismPage } from './pages/KashmirShaivismPage';
+import { DailySadhanaPage } from './pages/DailySadhanaPage';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -28,7 +32,7 @@ function ScrollToTop() {
   return null;
 }
 
-export function App() {
+export function AppContent() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   return (
@@ -46,6 +50,7 @@ export function App() {
           <Route path="/devi/:id" element={<DeviProfilePage />} />
           <Route path="/categories" element={<CategoriesPage />} />
           <Route path="/categories/:slug" element={<CategoryDetailPage />} />
+          <Route path="/sadhana" element={<ProtectedRoute><DailySadhanaPage /></ProtectedRoute>} />
           <Route path="/pratyangira" element={<PratyangiraResearchPage />} />
           <Route path="/odisha-heritage" element={<OdishaHeritagePage />} />
           <Route path="/shakti-peethas" element={<ShaktiPeethasPage />} />
@@ -63,7 +68,19 @@ export function App() {
 
       {/* Global Search Modal */}
       <GlobalSearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+
+      {/* Global Glassmorphism Auth Modal */}
+      <AuthModal />
     </div>
   );
 }
+
+export function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
+  );
+}
+
 export default App;

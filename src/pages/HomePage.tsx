@@ -9,6 +9,7 @@ import { InteractiveSriChakra } from '../components/InteractiveSriChakra';
 import { InteractivePeethaMap } from '../components/InteractivePeethaMap';
 import { CategoryRelationshipExplorer } from '../components/CategoryRelationshipExplorer';
 import { DeviImage } from '../components/DeviImage';
+import { DynamicDeviRecommendation } from '../components/DynamicDeviRecommendation';
 
 interface HomePageProps {
   onOpenSearch: () => void;
@@ -229,6 +230,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
               </div>
             </div>
           </div>
+        </section>
+
+        {/* ========================================================
+            3.5 DYNAMIC RANDOM DEVI DISCOVERY
+        ======================================================== */}
+        <section className="space-y-4">
+          <DynamicDeviRecommendation />
         </section>
 
         {/* ========================================================

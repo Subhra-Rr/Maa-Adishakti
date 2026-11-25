@@ -19,11 +19,12 @@ import {
   panchaBhutaShaktisList,
   regionalMothersList
 } from './specialGroupings';
+import { groupDerivedDevis } from './groupDerivedDevis';
 import { Devi, CategoryInfo } from '../types';
 
-// Combine primary and supplemental Devis without duplicates
+// Combine primary, supplemental, and group-derived Devis without duplicates
 const deviMap = new Map<string, Devi>();
-[...devis, ...supplementalDevis].forEach(devi => {
+[...devis, ...supplementalDevis, ...groupDerivedDevis].forEach(devi => {
   deviMap.set(devi.id, devi);
 });
 
