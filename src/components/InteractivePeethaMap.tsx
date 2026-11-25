@@ -57,18 +57,19 @@ export const InteractivePeethaMap: React.FC<InteractivePeethaMapProps> = ({ init
         {/* Filters */}
         <div className="flex flex-wrap items-center gap-2">
           {/* Classification Filter */}
-          <div className="flex items-center space-x-1 bg-sacred-dark p-1 rounded-lg border border-sacred-borderGold/30 text-xs">
+          <div className="flex flex-wrap items-center gap-1 bg-sacred-dark p-1 rounded-lg border border-sacred-borderGold/30 text-xs">
             {['All', 'Adi', 'Maha', '51'].map((c) => (
               <button
                 key={c}
                 onClick={() => setFilterClass(c)}
-                className={`px-2.5 py-1 rounded font-medium transition-all ${
+                className={`px-2 sm:px-2.5 py-1 rounded font-medium transition-all ${
                   filterClass === c
                     ? 'bg-sacred-gold text-sacred-dark font-bold'
                     : 'text-sacred-ivoryDim hover:text-sacred-goldLight'
                 }`}
               >
-                {c === 'All' ? 'All Peethas' : c === 'Adi' ? '4 Adi Peethas' : c === 'Maha' ? '18 Maha Peethas' : '51 Peethas'}
+                <span className="sm:hidden">{c === 'All' ? 'All' : c === 'Adi' ? '4 Adi' : c === 'Maha' ? '18 Maha' : '51'}</span>
+                <span className="hidden sm:inline">{c === 'All' ? 'All Peethas' : c === 'Adi' ? '4 Adi Peethas' : c === 'Maha' ? '18 Maha Peethas' : '51 Peethas'}</span>
               </button>
             ))}
           </div>

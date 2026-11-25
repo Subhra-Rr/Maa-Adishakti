@@ -121,7 +121,7 @@ export const AuthModal: React.FC = () => {
       />
 
       {/* Glassmorphism Panel */}
-      <div className="relative w-full max-w-lg rounded-2xl bg-[#110c0e]/90 backdrop-blur-xl border border-sacred-borderGold/60 shadow-[0_0_50px_rgba(212,175,55,0.18)] p-6 sm:p-8 space-y-6 text-sacred-ivory overflow-hidden z-10">
+      <div className="relative w-full max-w-lg rounded-2xl bg-[#110c0e]/95 backdrop-blur-xl border border-sacred-borderGold/60 shadow-[0_0_50px_rgba(212,175,55,0.18)] p-5 sm:p-8 space-y-6 text-sacred-ivory max-h-[90vh] max-h-[90dvh] overflow-y-auto z-10 my-auto">
         {/* Subtle Decorative Golden Corner Accents */}
         <div className="absolute top-0 left-0 w-24 h-24 bg-sacred-gold/5 rounded-br-full blur-xl pointer-events-none" />
         <div className="absolute bottom-0 right-0 w-32 h-32 bg-sacred-crimson/15 rounded-tl-full blur-2xl pointer-events-none" />

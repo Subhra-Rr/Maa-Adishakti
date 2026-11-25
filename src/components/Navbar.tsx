@@ -16,6 +16,23 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
   const location = useLocation();
   const { user, isAuthenticated, logout, openAuthModal } = useAuth();
 
+  // Lock body scroll when mobile navigation drawer is active
+  React.useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
+  // Close mobile menu on route change
+  React.useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
+
   const navLinks = [
     { label: 'Directory', path: '/directory' },
     { label: 'Categories', path: '/categories' },
@@ -166,7 +183,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="xl:hidden bg-sacred-dark border-b border-sacred-borderGold/40 px-4 pt-3 pb-6 space-y-2 max-h-[85vh] overflow-y-auto">
+        <div className="xl:hidden bg-sacred-dark/95 backdrop-blur-xl border-b border-sacred-borderGold/40 px-4 pt-3 pb-8 pb-safe space-y-2 max-h-[calc(100dvh-5rem)] overflow-y-auto shadow-2xl animate-in slide-in-from-top-2 duration-200">
           <div className="pb-2 border-b border-sacred-border/60 text-xs font-devanagari text-sacred-goldLight/70 flex items-center justify-between">
             <span>विभागावली (Encyclopedia Sections)</span>
             {user && <span className="font-mono text-[10px] text-sacred-gold">Logged in as {user.name}</span>}
@@ -178,12 +195,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
                 key={link.path}
                 to={link.path}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`block px-3 py-2.5 rounded-md text-sm font-medium tracking-wide transition-all ${
+                className={`flex items-center min-h-[44px] px-3.5 py-2.5 rounded-lg text-sm font-medium tracking-wide transition-all ${
                   active
-                    ? 'text-sacred-goldLight bg-sacred-maroon border border-sacred-gold/40'
+                    ? 'text-sacred-goldLight bg-sacred-maroon border border-sacred-gold/40 shadow-sacred-glow'
                     : link.highlight
                     ? 'text-amber-300 bg-amber-950/40 border border-amber-600/30'
-                    : 'text-sacred-ivoryDim hover:text-sacred-gold hover:bg-sacred-surface'
+                    : 'text-sacred-ivoryDim hover:text-sacred-gold hover:bg-sacred-surface active:bg-sacred-surface'
                 }`}
               >
                 {link.label}
