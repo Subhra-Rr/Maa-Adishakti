@@ -1,12 +1,28 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useSearchParams, useLocation } from 'react-router-dom';
 import { scriptures } from '../data/scriptures';
-import { BookOpen, Search, Copy, Check, ChevronRight, Layers } from 'lucide-react';
+import { allDevis } from '../data';
+import { BookOpen, Search, Copy, Check, ChevronRight, Layers, Sparkles, ExternalLink } from 'lucide-react';
 
 export const ScripturesPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [searchParams] = useSearchParams();
+  const location = useLocation();
+
+  const targetId = searchParams.get('id') || (location.hash ? location.hash.replace('#', '') : null);
+
+  useEffect(() => {
+    if (targetId) {
+      const el = document.getElementById(targetId);
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 150);
+      }
+    }
+  }, [targetId]);
 
   const categoriesList = ['All', 'Puranic', 'Tantric & Agamic', 'Devotional & Stotras', 'Kashmir Shaivism & Philosophical'];
 
@@ -80,27 +96,66 @@ export const ScripturesPage: React.FC = () => {
             </button>
           ))}
         </div>
+
+        {/* Quick Scripture Jump Bar */}
+        <div className="flex flex-wrap items-center gap-1.5 pt-3 border-t border-sacred-borderGold/20 text-xs">
+          <span className="text-[11px] uppercase tracking-wider text-sacred-goldDark font-semibold mr-1">
+            Jump to Text:
+          </span>
+          {scriptures.map((s) => (
+            <a
+              key={s.id}
+              href={`#${s.id}`}
+              onClick={(e) => {
+                e.preventDefault();
+                const el = document.getElementById(s.id);
+                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }}
+              className={`px-2.5 py-1 rounded-md text-[11px] transition-all ${
+                targetId === s.id
+                  ? 'bg-sacred-maroon border border-sacred-gold text-sacred-goldLight font-bold shadow-sacred-glow'
+                  : 'bg-sacred-dark/80 border border-sacred-border/60 text-sacred-ivoryDim hover:text-sacred-gold hover:border-sacred-gold/50'
+              }`}
+            >
+              {s.title.split(' ')[0]} {s.title.split(' ')[1] || ''}
+            </a>
+          ))}
+        </div>
       </div>
 
       {/* Scriptures List */}
       <div className="space-y-8">
-        {filteredScriptures.map((item) => (
-          <div
-            key={item.id}
-            className="p-6 sm:p-8 rounded-2xl bg-sacred-surface border border-sacred-borderGold/40 space-y-5 shadow-sacred-glow"
-          >
-            <div className="flex flex-col md:flex-row md:items-start justify-between border-b border-sacred-borderGold/30 pb-4 gap-3">
-              <div>
-                <span className="text-[10px] font-mono px-2.5 py-0.5 rounded bg-sacred-maroon border border-sacred-gold/40 text-sacred-goldLight font-bold uppercase">
-                  {item.category}
-                </span>
-                <h2 className="font-cinzel text-2xl sm:text-3xl font-bold text-sacred-ivory mt-2">
-                  {item.title}
-                </h2>
-                <div className="font-devanagari text-lg text-sacred-goldLight font-semibold">
-                  {item.sanskritTitle}
+        {filteredScriptures.map((item) => {
+          const isTarget = targetId === item.id;
+          return (
+            <div
+              key={item.id}
+              id={item.id}
+              className={`p-6 sm:p-8 rounded-2xl bg-sacred-surface space-y-5 transition-all scroll-mt-24 sacred-isolated-card ${
+                isTarget
+                  ? 'border-2 border-sacred-gold shadow-[0_0_35px_rgba(212,175,55,0.35)] ring-1 ring-sacred-goldLight/50'
+                  : 'border border-sacred-borderGold/40 shadow-sacred-glow'
+              }`}
+            >
+              {isTarget && (
+                <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-sacred-maroon/90 border border-sacred-gold text-sacred-goldLight text-xs font-bold shadow-sacred-glow animate-pulse">
+                  <Sparkles className="w-3.5 h-3.5 text-sacred-gold" />
+                  <span>Featured Scripture Focus</span>
                 </div>
-              </div>
+              )}
+
+              <div className="flex flex-col md:flex-row md:items-start justify-between border-b border-sacred-borderGold/30 pb-4 gap-3">
+                <div>
+                  <span className="text-[10px] font-mono px-2.5 py-0.5 rounded bg-sacred-maroon border border-sacred-gold/40 text-sacred-goldLight font-bold uppercase">
+                    {item.category}
+                  </span>
+                  <h2 className="font-cinzel text-2xl sm:text-3xl font-bold text-sacred-ivory mt-2">
+                    {item.title}
+                  </h2>
+                  <div className="font-devanagari text-lg text-sacred-goldLight font-semibold">
+                    {item.sanskritTitle}
+                  </div>
+                </div>
 
               <div className="text-xs text-sacred-ivoryMuted space-y-1 md:text-right">
                 <div><strong className="text-sacred-goldDark">Attribution:</strong> {item.authorOrAttribution}</div>
@@ -175,13 +230,35 @@ export const ScripturesPage: React.FC = () => {
               </div>
             )}
 
+            {/* Associated Devis */}
+            {item.relevantDevis && item.relevantDevis.length > 0 && (
+              <div className="pt-2 flex flex-wrap items-center gap-1.5 text-xs">
+                <span className="text-[11px] font-semibold text-sacred-goldDark">Associated Sacred Devis:</span>
+                {item.relevantDevis.map((dId) => {
+                  const devi = allDevis.find((d) => d.id === dId);
+                  if (!devi) return null;
+                  return (
+                    <Link
+                      key={dId}
+                      to={`/devi/${dId}`}
+                      className="inline-flex items-center space-x-1 px-2.5 py-1 rounded bg-sacred-maroon/60 border border-sacred-borderGold/40 text-[11px] text-sacred-goldLight hover:border-sacred-gold hover:bg-sacred-maroon transition-all"
+                    >
+                      <span>{devi.primaryName}</span>
+                      <ExternalLink className="w-2.5 h-2.5 ml-1 opacity-70" />
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
+
             {/* Recognized Editions */}
             <div className="pt-2 border-t border-sacred-border/60 flex flex-wrap items-center justify-between text-[11px] text-sacred-ivoryMuted gap-2">
               <span className="font-medium text-sacred-goldDark">Standard Academic & Traditional Editions:</span>
               <span>{item.sourcesAndEditions.join(' • ')}</span>
             </div>
           </div>
-        ))}
+        );
+      })}
       </div>
     </div>
   );

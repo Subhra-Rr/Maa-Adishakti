@@ -118,6 +118,58 @@ Atastvāmārādhyāṁ hariharaviriñcādibhirapi
 Praṇantuṁ stotuṁ vā kathamakṛtapuṇyaḥ prabhavati॥`,
         translation: 'Only when united with Shakti is Shiva able to create the universe! If not thus conjoined, the Lord is incapable of even the slightest vibration (Spandana). How then can one who has not accumulated merit even bow down to you or praise you, who are worshipped by Vishnu, Shiva, and Brahma?',
         context: 'Verse 1: Foundational philosophical thesis of the Shakta-Shaiva synthesis.'
+      },
+      {
+        title: 'सुधासिन्धोर्मध्ये सुरविटपिवाटीपरिवृते (Manidvipa & Chintamani Griha)',
+        sanskrit: `सुधासिन्धोर्मध्ये सुरविटपिवाटीपरिवृते
+मणिद्वीपे नीपोपवनवति चिन्तामणिगृहे।
+शिवाकारे मञ्चे परमशिवपर्यङ्कनिलयां
+भजन्ति त्वां धन्याः कतिचन चिदानन्दलहरीम्॥`,
+        transliteration: `Sudhāsindhormadhye suraviṭapivāṭīparivṛte
+maṇidvīpe nīpopavanavati cintāmaṇigṛhe।
+Śivākāre mañce paramaśivaparyaṅkanilayāṁ
+bhajanti tvāṁ dhanyāḥ katicana cidānandalaharīm॥`,
+        translation: 'Blessed indeed are the rare spiritual adepts who worship You, the wave of Consciousness and Bliss (Chidananda-Lahari), reclining upon the supreme couch of Paramashiva atop the Shiva altar, within the wish-fulfilling palace (Chintamani Griha) amidst Kadamba groves on the celestial Jewel Island (Manidvipa), encircled by wish-granting trees in the Ocean of Nectar!',
+        context: 'Verse 8: Classical meditation on Devi seated in Manidvipa on the Pancha-Pretasan.'
+      },
+      {
+        title: 'महीं मूलाधारे कमपि मणिपूरे हुतवहं (Kundalini Chakra Ascent)',
+        sanskrit: `महीं मूलाधारे कमपि मणिपूरे हुतवहं
+स्थितं स्वाधिष्ठाने हृदि मरुतमाकाशमुपरि।
+मनोऽपि भ्रूमध्ये सकलमपि भित्त्वा कुलपथं
+सहस्रारे पद्मे सह रहसि पत्या विहरसे॥`,
+        transliteration: `Mahīṁ mūlādhāre kamapi maṇipūre hutavahaṁ
+sthitaṁ svādhiṣṭhāne hṛdi marutamākāśamupari।
+Mano’pi bhrūmadhye sakalamapi bhittvā kulapathaṁ
+sahasrāre padme saha rahasi patyā viharase॥`,
+        translation: 'Piercing through the earth element in the Muladhara, water in the Svadhisthana, fire in the Manipura, air in the heart (Anahata), ether in the Vishuddhi, and mind in the Ajna, You transcend the Sushumna path (Kula-patha) and revel in solitary bliss with Your Lord in the thousand-petaled lotus (Sahasrara)!',
+        context: 'Verse 9: The definitive esoteric blueprint of Kundalini Yoga in Sri Vidya.'
+      },
+      {
+        title: 'चतुर्भिः श्रीकण्ठैः शिवयुवतिभिः पञ्चभिरपि (Sri Chakra Geometry)',
+        sanskrit: `चतुर्भिः श्रीकण्ठैः शिवयुवतिभिः पञ्चभिरपि
+प्रभिन्नाभिः शम्भोर्नवभिरपि मूलप्रकृतिभिः।
+त्रयश्चत्वारिंशद्वसुदलकलाश्रत्रिवलय-
+त्रिरेखाभिः सार्धं तव शरणकोणाः परिणताः॥`,
+        transliteration: `Caturbhiḥ śrīkaṇṭhaiḥ śivayuvatibhiḥ pañcabhirapi
+prabhinnābhiḥ śambhornavabhirapi mūlaprakṛtibhiḥ।
+Trayaścatvāriṁśadvasudalakalāśratrivalaya-
+trirekhābhiḥ sārdhaṁ tava śaraṇakoṇāḥ pariṇatāḥ॥`,
+        translation: 'By four upward-pointing triangles of Shiva and five downward-pointing triangles of Shakti (Shiva-Yuvati), the nine root triangles interlock to form the forty-three triangles of the Sri Chakra, surrounded by eight petals, sixteen petals, three concentric circles, and the three outer gates of the Bhupura!',
+        context: 'Verse 11: The sacred geometry and mathematical derivation of the Sri Yantra.'
+      },
+      {
+        title: 'तवाधारे मूले सह समयया लास्यपरया (Ananda Lahari Culmination)',
+        sanskrit: `तवाधारे मूले सह समयया लास्यपरया
+नवात्मानं मन्ये नवरसमहाताण्डवनटम्।
+उभाभ्यामेताभ्यामुभयविधिमुद्दिश्य दयया
+सनाथाभ्यां जज्ञे जनकजननीमज्जगदिदम्॥`,
+        transliteration: `Tavādhāre mūle saha samayayā lāsyaparayā
+navātmānaṁ manye navarasamahātāṇḍavanaṭam।
+Ubhābhyāmetābhyāmubhayavidhimuddiśya dayayā
+sanāthābhyāṁ jajñe janakajananīmajjagadidam॥`,
+        translation: 'In Your root center (Muladhara), I meditate upon Lord Shiva performing the grand cosmic Tandava alongside You as Devi Samaya dancing the graceful Lasya. From the compassionate union of these two eternal Parents, this entire universe was brought forth!',
+        context: 'Verse 41: The climactic culmination of the forty-one verses of Ananda Lahari.'
       }
     ],
     sourcesAndEditions: [

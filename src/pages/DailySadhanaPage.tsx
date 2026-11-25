@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { allDevis } from '../data';
 import { scriptures } from '../data/scriptures';
@@ -369,13 +370,13 @@ export const DailySadhanaPage: React.FC = () => {
                 <span className="px-2.5 py-0.5 rounded text-[11px] bg-sacred-dark border border-sacred-border text-sacred-goldLight font-medium">
                   {deviOfTheDay.classification[0]}
                 </span>
-                <a
-                  href={`/devi/${deviOfTheDay.id}`}
-                  className="inline-flex items-center space-x-1.5 text-xs text-sacred-goldLight hover:text-sacred-gold font-semibold uppercase tracking-wider"
+                <Link
+                  to={`/devi/${deviOfTheDay.id}`}
+                  className="inline-flex items-center space-x-1.5 text-xs text-sacred-goldLight hover:text-sacred-gold font-semibold uppercase tracking-wider transition-colors"
                 >
                   <span>Explore Sacred Profile</span>
                   <ArrowRight className="w-3.5 h-3.5" />
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -405,13 +406,13 @@ export const DailySadhanaPage: React.FC = () => {
                 <span className="px-2.5 py-0.5 rounded text-[11px] bg-sacred-dark border border-sacred-border text-sacred-goldLight font-medium">
                   {scriptureOfTheDay.sectionInfo}
                 </span>
-                <a
-                  href="/scriptures"
-                  className="inline-flex items-center space-x-1.5 text-xs text-sacred-goldLight hover:text-sacred-gold font-semibold uppercase tracking-wider"
+                <Link
+                  to={`/scriptures?id=${scriptureOfTheDay.id}#${scriptureOfTheDay.id}`}
+                  className="inline-flex items-center space-x-1.5 text-xs text-sacred-goldLight hover:text-sacred-gold font-semibold uppercase tracking-wider transition-colors"
                 >
                   <span>Open Scripture Archive</span>
                   <ArrowRight className="w-3.5 h-3.5" />
-                </a>
+                </Link>
               </div>
             </div>
           </div>
