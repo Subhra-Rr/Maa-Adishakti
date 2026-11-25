@@ -30,6 +30,50 @@
   }
 }
 
+/* Permanent Dark Theme for Form Controls, Native Select & Options */
+select, option, input, textarea, button {
+  color-scheme: dark !important;
+  accent-color: #d4af37 !important;
+}
+
+select {
+  background-color: #15120f !important;
+  color: #f8f4eb !important;
+}
+
+select option {
+  background-color: #15120f !important;
+  color: #f8f4eb !important;
+  padding: 8px 12px;
+}
+
+select option:checked, select option:hover {
+  background: #350a0f !important;
+  color: #f0d376 !important;
+}
+
+/* Autofill Dark Protection */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #15120f inset !important;
+  -webkit-text-fill-color: #f8f4eb !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Dynamic Safe-Area & Viewport Height Utilities */
+.min-h-screen-safe {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
 html, body {
   background-color: #070605 !important;
   color: #f8f4eb !important;

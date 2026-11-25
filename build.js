@@ -7,8 +7,8 @@ try {
     plugins: [react()],
     build: {
       outDir: 'dist',
-      emptyOutDir: false,
-      copyPublicDir: false
+      emptyOutDir: true,
+      copyPublicDir: true
     }
   });
   console.log('Vite build succeeded cleanly!');

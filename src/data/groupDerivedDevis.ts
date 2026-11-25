@@ -23,8 +23,8 @@ navapatrikaList.forEach((p) => {
     alternateNames: [`Nabapatrika ${p.deviName}`, `Kola Bou ${p.deviName}`, p.plantAssociation],
     nameMeaning: `Aspect of Durga embodied in sacred arboreal form: ${p.plantAssociation} (${p.botanicalName}).`,
     classification: ['Navapatrika Devis', 'Nava Durga', 'Vedic Shakta Traditions'],
-    traditions: ['Puranic Shakta', 'Folk-Tantric Synthesis', 'Agama Tantra', 'Odisha Shakta'],
-    acharas: ['Dakshinachara', 'Kaulachara during Durga Puja'],
+    traditions: ['Puranic Shakta', 'Atharvana Tantra', 'Folk-Tantric Synthesis', 'Agama Tantra', 'Odisha Shakta'],
+    acharas: ['Dakshinachara', 'Kaulachara', 'Kaulachara during Durga Puja'],
     shortIntro: `One of the sacred nine botanical manifestations tied into the Nabapatrika (Kola Bou) bundle during autumn Durga Puja, personified in the ${p.plantAssociation}. ${p.ritualSignificance}`,
     imagePath: registeredImage,
     philosophicalSignificance: `${p.symbolism} Navapatrika worship preserves ancient Vedic arboreal reverence integrated into supreme Shakta theology.`,
@@ -233,6 +233,7 @@ shodashaNityas.forEach((n) => {
 
 // 4. DWADASHA KALIS (12)
 dwadashaKalis.forEach((k) => {
+  const registeredImage = resolveDeviImagePath(undefined, k.name, undefined, k.id);
   groupDerivedDevis.push({
     id: k.id,
     primaryName: `Maa ${k.name}`,
@@ -243,6 +244,7 @@ dwadashaKalis.forEach((k) => {
     traditions: ['Kashmir Krama', 'Kashmir Shaivism', 'Kalikula', 'Kaula'],
     acharas: ['Kaulachara', 'Samayachara'],
     shortIntro: `One of the twelve supreme Kalis of the Kashmiri Krama school. ${k.philosophicalSignificance} Function: ${k.kramaFunction}.`,
+    imagePath: registeredImage,
     philosophicalSignificance: `${k.philosophicalSignificance} In Krama non-dual philosophy, the twelve Kalis represent the unceasing pulsation (Spanda) of consciousness across creation, maintenance, withdrawal, and the ineffable fourth state.`,
     theologicalPosition: 'Codified by Mahamaheshvara Abhinavagupta in Tantraloka (Ahnika 4) and the Kramasadbhava.',
     evidenceStatus: 'Primary textual evidence',
@@ -289,13 +291,14 @@ dwadashaKalis.forEach((k) => {
     imageAssets: [
       {
         id: `${k.id}-img`,
-        title: `Esoteric Krama Svarupa: ${k.name}`,
-        imageType: 'sacred_om_fallback',
+        title: registeredImage ? `Iconography of Maa ${k.name}` : `Esoteric Krama Svarupa: ${k.name}`,
+        imagePath: registeredImage,
+        imageType: registeredImage ? 'traditional_painting' : 'sacred_om_fallback',
         attribution: 'Kashmir Shaiva & Krama Archive',
         source: 'Tantraloka Research Center',
         license: 'Educational Repository',
-        verificationStatus: 'gupta_svarupa',
-        fallbackType: 'gupta_svarupa'
+        verificationStatus: 'verified',
+        fallbackType: registeredImage ? undefined : 'gupta_svarupa'
       }
     ]
   });
