@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import {
   Search, Menu, X, Flame, Shield, Compass, BookOpen, Crown,
-  User, LogOut, Sparkles, Lock, Check
+  User, LogOut, Sparkles, Lock, Check, ChevronDown
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -13,11 +13,13 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
+  const [traditionsDropdownOpen, setTraditionsDropdownOpen] = useState(false);
+  const traditionsRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
   const { user, isAuthenticated, logout, openAuthModal } = useAuth();
 
   // Lock body scroll when mobile navigation drawer is active
-  React.useEffect(() => {
+  useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
@@ -28,28 +30,53 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
     };
   }, [mobileMenuOpen]);
 
-  // Close mobile menu on route change
-  React.useEffect(() => {
+  // Close menus on route change or outside click
+  useEffect(() => {
     setMobileMenuOpen(false);
+    setUserDropdownOpen(false);
+    setTraditionsDropdownOpen(false);
   }, [location.pathname]);
 
-  const navLinks = [
+  useEffect(() => {
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (traditionsRef.current && !traditionsRef.current.contains(e.target as Node)) {
+        setTraditionsDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleOutsideClick);
+    return () => document.removeEventListener('mousedown', handleOutsideClick);
+  }, []);
+
+  // Primary top-level direct links (compact, elegant, non-colliding)
+  const primaryLinks = [
     { label: 'Directory', path: '/directory' },
     { label: 'Categories', path: '/categories' },
     { label: 'Daily Sadhana', path: '/sadhana', highlight: true },
-    { label: 'Maa Pratyangira', path: '/pratyangira', highlight: true },
-    { label: 'Odisha Shakta', path: '/odisha-heritage' },
-    { label: 'Sri Chakra', path: '/sri-chakra' },
-    { label: 'Shakti Peethas', path: '/shakti-peethas' },
-    { label: 'Scriptures', path: '/scriptures' },
-    { label: 'Achara & Kula', path: '/acharas' },
-    { label: 'Kashmir Trika', path: '/kashmir-shaivism' }
+    { label: 'Sri Chakra', path: '/sri-chakra' }
+  ];
+
+  // Secondary rich lineage portals housed in the "Traditions & Shrines" dropdown
+  const specializedPortals = [
+    { label: 'Maa Pratyangira', path: '/pratyangira', desc: 'Sovereign protective Vidya & temple research', icon: Shield, highlight: true },
+    { label: 'Odisha Shakta Parampara', path: '/odisha-heritage', desc: 'Vimala, Tara Tarini, Biraja & 64 Yoginis', icon: Compass },
+    { label: 'Shakti Peethas Atlas', path: '/shakti-peethas', desc: '51 consecrated shrines & divine limbs', icon: Flame },
+    { label: 'Scriptures & Agamas', path: '/scriptures', desc: 'Tantras, Puranas, Stotras & commentaries', icon: BookOpen },
+    { label: 'Achara & Kula Traditions', path: '/acharas', desc: 'Dakshinachara, Vamachara & Kaulachara', icon: Sparkles },
+    { label: 'Kashmir Trika & Krama', path: '/kashmir-shaivism', desc: 'Non-dual Tantric Spanda & 12 Kalis', icon: Crown }
+  ];
+
+  // All links combined for full mobile drawer
+  const allNavLinks = [
+    ...primaryLinks,
+    ...specializedPortals
   ];
 
   const isActive = (path: string) => {
     if (path === '/') return location.pathname === '/';
     return location.pathname.startsWith(path);
   };
+
+  const isTraditionActive = specializedPortals.some(p => isActive(p.path));
 
   return (
     <header className="sticky top-0 z-40 w-full bg-[#070605]/95 backdrop-blur-md border-b border-sacred-borderGold/30">
@@ -59,9 +86,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
       </div>
 
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20 gap-2">
+        <div className="flex items-center justify-between h-16 sm:h-20 gap-3">
           {/* Logo & Identity */}
-          <Link to="/" className="flex items-center space-x-2 sm:space-x-3 group text-left shrink-0">
+          <Link to="/" className="flex items-center space-x-2.5 sm:space-x-3 group text-left shrink-0">
             <div className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-full border border-sacred-gold/60 bg-gradient-to-br from-[#2a080c] to-[#070605] flex items-center justify-center shadow-sacred-glow group-hover:border-sacred-gold transition-all duration-300">
               <span className="font-devanagari text-xl sm:text-2xl font-bold gold-gradient-text drop-shadow-[0_0_10px_rgba(212,175,55,0.4)]">
                 ॐ
@@ -69,7 +96,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
             </div>
             <div className="shrink-0">
               <div className="flex items-center space-x-2">
-                <span className="font-cinzel text-base sm:text-xl xl:text-2xl font-extrabold tracking-wider gold-gradient-text whitespace-nowrap">
+                <span className="font-cinzel text-base sm:text-xl lg:text-2xl font-extrabold tracking-wider gold-gradient-text whitespace-nowrap">
                   SHAKTA TATTVA
                 </span>
               </div>
@@ -79,15 +106,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
             </div>
           </Link>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden xl:flex items-center space-x-0.5 2xl:space-x-1 shrink-0">
-            {navLinks.map((link) => {
+          {/* Desktop Navigation: 4 Core Links + Traditions Dropdown (Perfect width, ZERO overflow) */}
+          <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2 shrink-0">
+            {primaryLinks.map((link) => {
               const active = isActive(link.path);
               return (
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`px-2 2xl:px-2.5 py-1.5 rounded-md text-xs font-medium tracking-wide whitespace-nowrap transition-all ${
+                  className={`px-3 py-1.5 rounded-md text-xs font-medium tracking-wide whitespace-nowrap transition-all ${
                     active
                       ? 'text-sacred-goldLight bg-sacred-maroon/70 border border-sacred-gold/40 shadow-sacred-glow'
                       : link.highlight
@@ -99,36 +126,90 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
                 </Link>
               );
             })}
+
+            {/* Sacred Traditions & Portals Dropdown */}
+            <div
+              ref={traditionsRef}
+              className="relative"
+              onMouseEnter={() => setTraditionsDropdownOpen(true)}
+              onMouseLeave={() => setTraditionsDropdownOpen(false)}
+            >
+              <button
+                type="button"
+                onClick={() => setTraditionsDropdownOpen(!traditionsDropdownOpen)}
+                className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-md text-xs font-medium tracking-wide whitespace-nowrap transition-all ${
+                  isTraditionActive || traditionsDropdownOpen
+                    ? 'text-sacred-goldLight bg-sacred-maroon/70 border border-sacred-gold/40 shadow-sacred-glow'
+                    : 'text-sacred-ivoryDim hover:text-sacred-goldLight hover:bg-sacred-surfaceLight/50 border border-transparent'
+                }`}
+              >
+                <span>Traditions & Portals</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${traditionsDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {/* Floating Dropdown Menu */}
+              {traditionsDropdownOpen && (
+                <div className="absolute left-0 mt-1 w-72 rounded-xl bg-sacred-dark/98 backdrop-blur-xl border border-sacred-borderGold/60 shadow-[0_10px_35px_rgba(0,0,0,0.8)] p-2 z-50 space-y-1 animate-in fade-in zoom-in-95 duration-150">
+                  <div className="px-2.5 py-1 text-[10px] font-devanagari font-semibold text-sacred-goldDark border-b border-sacred-border/50 uppercase tracking-wider">
+                    ॥ परम्परा तीर्थानि च ॥ (Lineages & Shrines)
+                  </div>
+                  {specializedPortals.map((portal) => {
+                    const active = isActive(portal.path);
+                    const IconComponent = portal.icon;
+                    return (
+                      <Link
+                        key={portal.path}
+                        to={portal.path}
+                        onClick={() => setTraditionsDropdownOpen(false)}
+                        className={`flex items-start space-x-2.5 p-2 rounded-lg transition-all ${
+                          active
+                            ? 'bg-sacred-maroon/80 border border-sacred-gold/40 text-sacred-goldLight'
+                            : 'hover:bg-sacred-surface text-sacred-ivoryDim hover:text-sacred-goldLight'
+                        }`}
+                      >
+                        <div className="w-6 h-6 rounded-md bg-sacred-surface/80 border border-sacred-borderGold/30 flex items-center justify-center shrink-0 mt-0.5">
+                          <IconComponent className="w-3.5 h-3.5 text-sacred-gold" />
+                        </div>
+                        <div className="min-w-0">
+                          <div className="text-xs font-semibold leading-tight">{portal.label}</div>
+                          <div className="text-[10px] text-sacred-ivoryMuted truncate leading-tight mt-0.5">{portal.desc}</div>
+                        </div>
+                      </Link>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
           </nav>
 
-          {/* Actions: Search Button + Authentication Profile */}
+          {/* Actions: Search Button + Authentication Profile (Always visible & fully anchored) */}
           <div className="flex items-center space-x-2 sm:space-x-3 shrink-0">
             <button
               onClick={onOpenSearch}
-              className="min-h-[44px] flex items-center space-x-2 px-2.5 sm:px-3 py-1.5 rounded-lg bg-sacred-surface border border-sacred-borderGold/40 text-sacred-ivoryDim hover:text-sacred-gold hover:border-sacred-gold/80 transition-all text-xs sm:text-sm"
+              className="min-h-[44px] flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-sacred-surface border border-sacred-borderGold/40 text-sacred-ivoryDim hover:text-sacred-gold hover:border-sacred-gold/80 transition-all text-xs sm:text-sm shrink-0 shadow-sm"
               title="Search encyclopedia (Ctrl+K)"
             >
               <Search className="w-4 h-4 text-sacred-gold shrink-0" />
-              <span className="hidden md:inline whitespace-nowrap">Search...</span>
-              <kbd className="hidden lg:inline-block px-1.5 py-0.5 text-[10px] bg-sacred-dark border border-sacred-border rounded text-sacred-ivoryMuted">
+              <span className="hidden sm:inline whitespace-nowrap font-medium">Search</span>
+              <kbd className="hidden md:inline-block px-1.5 py-0.5 text-[10px] bg-sacred-dark border border-sacred-border rounded text-sacred-ivoryMuted font-mono">
                 ⌘K
               </kbd>
             </button>
 
             {/* Authentication Button / User Profile */}
             {isAuthenticated && user ? (
-              <div className="relative">
+              <div className="relative shrink-0">
                 <button
                   onClick={() => setUserDropdownOpen(!userDropdownOpen)}
-                  className="min-h-[44px] flex items-center space-x-2 px-2.5 sm:px-3 py-1.5 rounded-lg bg-sacred-maroon/80 border border-sacred-borderGold text-sacred-goldLight text-xs font-semibold hover:bg-sacred-maroon transition-all shadow-sacred-glow"
+                  className="min-h-[44px] flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-sacred-maroon/80 border border-sacred-borderGold text-sacred-goldLight text-xs font-semibold hover:bg-sacred-maroon transition-all shadow-sacred-glow shrink-0"
                 >
-                  <div className="w-5 h-5 rounded-full bg-sacred-gold text-sacred-dark font-bold text-[10px] flex items-center justify-center">
+                  <div className="w-6 h-6 rounded-full bg-sacred-gold text-sacred-dark font-bold text-[11px] flex items-center justify-center shrink-0">
                     {user.name.charAt(0).toUpperCase()}
                   </div>
                   <span className="hidden sm:inline max-w-[100px] truncate">{user.name.split(' ')[0]}</span>
                 </button>
 
-                {/* Dropdown Menu */}
+                {/* User Dropdown Menu */}
                 {userDropdownOpen && (
                   <div className="absolute right-0 mt-2 w-56 rounded-xl bg-sacred-dark border border-sacred-borderGold/50 shadow-2xl p-2 space-y-1 z-50 text-xs">
                     <div className="p-2 border-b border-sacred-border/60">
@@ -161,18 +242,18 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
             ) : (
               <button
                 onClick={() => openAuthModal('login')}
-                className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-sacred-maroon/70 border border-sacred-borderGold/60 hover:border-sacred-gold text-sacred-goldLight text-xs sm:text-sm font-semibold transition-all shadow-sacred-glow"
+                className="min-h-[44px] flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg bg-sacred-maroon/80 border border-sacred-borderGold/60 hover:border-sacred-gold text-sacred-goldLight text-xs sm:text-sm font-semibold transition-all shadow-sacred-glow shrink-0"
                 title="Sign in for personalized study and stotra bookmarks"
               >
-                <User className="w-3.5 h-3.5 text-sacred-gold" />
-                <span>Sign In</span>
+                <User className="w-4 h-4 text-sacred-gold" />
+                <span className="whitespace-nowrap">Sign In</span>
               </button>
             )}
 
-            {/* Mobile menu button */}
+            {/* Mobile / Tablet Menu Button (Visible below lg) */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden min-h-[44px] min-w-[44px] flex items-center justify-center p-2 rounded-lg bg-sacred-surface text-sacred-ivoryDim hover:text-sacred-gold border border-sacred-borderGold/30"
+              className="lg:hidden min-h-[44px] min-w-[44px] flex items-center justify-center p-2 rounded-lg bg-sacred-surface text-sacred-ivoryDim hover:text-sacred-gold border border-sacred-borderGold/30 shrink-0"
               aria-label="Toggle Navigation Menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -181,32 +262,35 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile & Tablet Navigation Drawer */}
       {mobileMenuOpen && (
-        <div className="xl:hidden bg-sacred-dark/95 backdrop-blur-xl border-b border-sacred-borderGold/40 px-4 pt-3 pb-8 pb-safe space-y-2 max-h-[calc(100dvh-5rem)] overflow-y-auto shadow-2xl animate-in slide-in-from-top-2 duration-200">
+        <div className="lg:hidden bg-sacred-dark/98 backdrop-blur-2xl border-b border-sacred-borderGold/40 px-4 pt-3 pb-8 pb-safe space-y-2 max-h-[calc(100dvh-5rem)] overflow-y-auto shadow-2xl animate-in slide-in-from-top-2 duration-200">
           <div className="pb-2 border-b border-sacred-border/60 text-xs font-devanagari text-sacred-goldLight/70 flex items-center justify-between">
             <span>विभागावली (Encyclopedia Sections)</span>
             {user && <span className="font-mono text-[10px] text-sacred-gold">Logged in as {user.name}</span>}
           </div>
-          {navLinks.map((link) => {
-            const active = isActive(link.path);
-            return (
-              <Link
-                key={link.path}
-                to={link.path}
-                onClick={() => setMobileMenuOpen(false)}
-                className={`flex items-center min-h-[44px] px-3.5 py-2.5 rounded-lg text-sm font-medium tracking-wide transition-all ${
-                  active
-                    ? 'text-sacred-goldLight bg-sacred-maroon border border-sacred-gold/40 shadow-sacred-glow'
-                    : link.highlight
-                    ? 'text-amber-300 bg-amber-950/40 border border-amber-600/30'
-                    : 'text-sacred-ivoryDim hover:text-sacred-gold hover:bg-sacred-surface active:bg-sacred-surface'
-                }`}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+            {allNavLinks.map((link) => {
+              const active = isActive(link.path);
+              return (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`flex items-center min-h-[44px] px-3.5 py-2.5 rounded-lg text-sm font-medium tracking-wide transition-all ${
+                    active
+                      ? 'text-sacred-goldLight bg-sacred-maroon border border-sacred-gold/40 shadow-sacred-glow font-bold'
+                      : link.highlight
+                      ? 'text-amber-300 bg-amber-950/40 border border-amber-600/30'
+                      : 'text-sacred-ivoryDim hover:text-sacred-gold hover:bg-sacred-surface active:bg-sacred-surface'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+          </div>
 
           <div className="pt-3 border-t border-sacred-border/60 space-y-2">
             {!isAuthenticated ? (
