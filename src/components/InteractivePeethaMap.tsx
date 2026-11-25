@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { shaktiPeethas } from '../data/shaktiPeethas';
+import { allDevis } from '../data';
 import { ShaktiPeetha } from '../types';
 import { MapPin, Compass, Navigation, Shield, ExternalLink, Filter } from 'lucide-react';
 
@@ -224,18 +225,22 @@ export const InteractivePeethaMap: React.FC<InteractivePeethaMapProps> = ({ init
             </div>
           </div>
 
-          {/* Link to Devi profile if available */}
-          {selectedPeetha.deviId && (
-            <div className="pt-2">
-              <Link
-                to={`/devi/${selectedPeetha.deviId}`}
-                className="w-full py-2 flex items-center justify-center space-x-1.5 bg-sacred-maroon hover:bg-sacred-crimson border border-sacred-borderGold text-sacred-goldLight rounded-lg text-xs font-medium transition-all"
-              >
-                <span>Read Full Profile of {selectedPeetha.devi}</span>
-                <ExternalLink className="w-3.5 h-3.5 ml-1" />
-              </Link>
-            </div>
-          )}
+          {/* Link to Devi profile strictly if a valid canonical profile exists in allDevis */}
+          {(() => {
+            const matchingDevi = selectedPeetha.deviId ? allDevis.find(d => d.id === selectedPeetha.deviId) : null;
+            if (!matchingDevi) return null;
+            return (
+              <div className="pt-2">
+                <Link
+                  to={`/devi/${matchingDevi.id}`}
+                  className="w-full py-2 flex items-center justify-center space-x-1.5 bg-sacred-maroon hover:bg-sacred-crimson border border-sacred-borderGold text-sacred-goldLight rounded-lg text-xs font-medium transition-all"
+                >
+                  <span>Read Full Profile of {matchingDevi.primaryName}</span>
+                  <ExternalLink className="w-3.5 h-3.5 ml-1" />
+                </Link>
+              </div>
+            );
+          })()}
         </div>
       </div>
     </div>

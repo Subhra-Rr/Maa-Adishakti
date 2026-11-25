@@ -1153,5 +1153,227 @@ Aparāṁ sarvabhūteṣu sthitāṁ vande śivapriyām॥`,
     relatedDeviIds: ['para', 'parapara'],
     evidenceStatus: 'Primary textual evidence',
     region: ['Kashmir']
+  },
+
+  // ==========================================
+  // MAHA SHAKTI PEETHA MAJESTIES
+  // ==========================================
+  {
+    id: 'vishalakshi',
+    imagePath: '/images/devis/vishalakshi.jpg',
+    primaryName: 'Maa Vishalakshi',
+    sanskritName: 'श्री विशालाक्षी देवी',
+    odiaName: 'ମା ବିଶାଳାକ୍ଷୀ',
+    alternateNames: ['Vishalakshi Gauri', 'Kashi Vishalakshi', 'Varanasi Peetheshwari', 'Kundala Peetha Devi'],
+    nameMeaning: 'She of the wide, expansive, compassionate eyes (Vishala-Akshi); the sovereign mother of Kashi whose merciful gaze liberates all living beings from the cycle of rebirth.',
+    classification: ['Shakti Peethas & Sacred Geography', 'Maha Shakti Peetha', 'Puranic Shakta'],
+    traditions: ['Puranic Shakta', 'Vedic Shakta', 'Kashi Shakta Parampara', 'Agama Tantra'],
+    acharas: ['Dakshinachara', 'Samayachara'],
+    shortIntro: 'The supreme presiding goddess of the Ashtadasha Maha Shakti Peetha at Mir Ghat in Varanasi (Kashi). Consecrated where Devi Sati’s earrings (Kundala) and expansive eyes fell upon the banks of the sacred Ganges. She is the motherly consort of Lord Vishwanatha and Kala Bhairava, granting liberation (Moksha) and divine vision to seekers.',
+    philosophicalSignificance: 'Maa Vishalakshi personifies the unbounded all-encompassing vision of divine compassion. In sacred Kashi theology, while Lord Vishwanatha imparts the Taraka mantra at the moment of passing, Maa Vishalakshi nurtures the seeker’s consciousness with wisdom and devotion, cleansing the spiritual eye (Divya Chakshu) to perceive the non-dual Divine Mother in all existence.',
+    theologicalPosition: 'Celebrated in the Kashi Khanda of the Skanda Purana, Devi Bhagavata Purana (7.30), and Tantrachudamani as one of the pivotal sovereign Peethas of northern India.',
+    evidenceStatus: 'Primary textual evidence',
+    relatedDeviIds: ['durga', 'annapurna', 'tripura-sundari'],
+    scripturalReferences: [
+      { textName: 'Kashi Khanda (Skanda Purana)', originalLanguage: 'Sanskrit', sectionOrChapter: 'Vishalakshi Mahatmya', sourceType: 'Purana' },
+      { textName: 'Devi Bhagavata Purana', originalLanguage: 'Sanskrit', sectionOrChapter: 'Skandha 7, Chapter 30', sourceType: 'Purana' },
+      { textName: 'Tantrachudamani', originalLanguage: 'Sanskrit', sectionOrChapter: 'Peetha Nirupana', sourceType: 'Tantra' }
+    ],
+    iconography: {
+      arms: 4,
+      weaponsAndAttributes: ['Pasha (Noose)', 'Ankusha (Goad)', 'Varada Mudra', 'Abhaya Mudra'],
+      vahana: 'Simha (Lion)',
+      mudras: ['Abhaya', 'Varada'],
+      crownAndOrnaments: 'Kirita-Makuta adorned with the crescent moon, magnificent kundalas (earrings), red silk drape, and fresh lotus garlands',
+      complexion: 'Radiant golden effulgence like the morning sun over the Ganges',
+      asana: 'Seated upon a lotus pedestal facing the holy Uttaravahini Ganga',
+      symbolism: 'Expansive lotus eyes denote universal omniscience and motherly grace.'
+    },
+    worshipTraditions: {
+      kula: 'Puranic Shakta & Kashi Upasana',
+      acharas: ['Dakshinachara', 'Samayachara'],
+      regionalPractices: ['Kashi Yatra Puja', 'Navaratri Gauri Vratam', 'Mir Ghat Ganga Snana'],
+      sampradayaNotes: 'Worshipped with bilva patra, red chandan, and Vishalakshi Sahasranama.'
+    },
+    spiritualSignificance: {
+      tattva: 'Prakriti-Tattva and Karuna-Tattva',
+      shakti: 'Anugraha Shakti (Grace & Liberation)',
+      symbolism: 'Omnipresent motherly vision destroying spiritual blindness.',
+      theologicalInterpretation: 'The compassionate Mother whose gaze alone burns away accumulated karmic dross.'
+    },
+    mantraStotra: [
+      {
+        id: 'vishalakshi-dhyana',
+        title: 'श्री विशालाक्षी ध्यान श्लोक (Vishalakshi Dhyana Sloka)',
+        type: 'Dhyana',
+        sanskrit: `ॐ विशालाक्षी नमस्तुभ्यं काशिकापुरवासिनी।
+सर्वानन्दप्रदे देवि मुक्तिं देहि महेश्वरि॥
+कुण्डलाङ्गदशोभाढ्ये भक्ताभीष्टप्रदायिनि।
+नमस्ते चण्डिके गौरि विश्वेशवरवल्लभे॥`,
+        transliteration: `Om viśālākṣī namastubhyaṁ kāśikāpuravāsinī।
+Sarvānandaprade devi muktiṁ dehi maheśvari॥
+Kuṇḍalāṅgadaśobhāḍhye bhaktābhīṣṭapradāyini।
+Namaste caṇḍike gauri viśveśavaravallabhe॥`,
+        meaning: 'Salutations unto Devi Vishalakshi, dweller of holy Varanasi, bestower of supreme bliss and grantor of liberation. Adorned with luminous earrings and bracelets, fulfiller of devotees’ spiritual aspirations, salutations to Gauri, beloved of Lord Vishwanatha.',
+        source: 'Kashi Khanda (Skanda Purana)',
+        isPublicDevotional: true
+      }
+    ],
+    imageAssets: [
+      {
+        id: 'vishalakshi-img-1',
+        title: 'Iconography of Maa Vishalakshi of Kashi',
+        imageType: 'sacred_om_fallback',
+        attribution: 'Kashi Vishalakshi Temple Archive, Varanasi',
+        source: 'Traditional Shakta Iconography Repository',
+        license: 'Educational',
+        verificationStatus: 'verified',
+        fallbackType: 'iconography_varies'
+      }
+    ]
+  },
+  {
+    id: 'kamakhya',
+    imagePath: '/images/devis/kamakhya.jpg',
+    primaryName: 'Maa Kamakhya',
+    sanskritName: 'श्री कामाख्या देवी',
+    odiaName: 'ମା କାମାକ୍ଷ୍ୟା',
+    alternateNames: ['Kamarupa Devi', 'Yoni Peetheshwari', 'Mahamaya', 'Kameshwari'],
+    nameMeaning: 'She whose essence is sacred cosmic desire (Kama) and sovereign spiritual fulfillment; the primordial source of all creation situated upon the Neelachala hill.',
+    classification: ['Shakti Peethas & Sacred Geography', 'Adi Shakti Peetha', 'Kalikula', 'Kaula Tantra'],
+    traditions: ['Kaula Tantra', 'Kalikula', 'Yogini Tantra', 'Agama Tantra'],
+    acharas: ['Vamachara', 'Kaulachara', 'Dakshinachara'],
+    shortIntro: 'The sovereign goddess of the supreme Yoni Peetha at Neelachala in Guwahati, Assam. Revered as the foremost among the four Adi Shakti Peethas where Sati’s Mahamudra (generative organ) descended. She represents the unmanifest source of the cosmos and presides over the annual Ambubachi Mela.',
+    philosophicalSignificance: 'Maa Kamakhya embodies the primordial matrix (Yoni) from which all universes, gods, and creatures emanate and into which they dissolve. She sanctifies natural generative cycles and unites transcendental awareness with kinetic cosmic desire.',
+    theologicalPosition: 'The centerpiece of the Kalika Purana and Yogini Tantra; regarded as the root source of Tantric Shakta sadhana.',
+    evidenceStatus: 'Primary textual evidence',
+    relatedDeviIds: ['kali', 'tripura-sundari', 'bhairavi', 'tara'],
+    scripturalReferences: [
+      { textName: 'Kalika Purana', originalLanguage: 'Sanskrit', sectionOrChapter: 'Kamakhya Yoni Peetha Nirupana', sourceType: 'Purana' },
+      { textName: 'Yogini Tantra', originalLanguage: 'Sanskrit', sectionOrChapter: 'Patala 1-5', sourceType: 'Tantra' },
+      { textName: 'Kamakhya Tantra', originalLanguage: 'Sanskrit', sourceType: 'Tantra' }
+    ],
+    iconography: {
+      arms: 12,
+      weaponsAndAttributes: ['Kharga', 'Trishula', 'Chakra', 'Bow & Arrow', 'Abhaya', 'Varada', 'Pustaka', 'Rosary'],
+      vahana: 'Simha seated on an Asana supported by five corpses (Pancha Preta)',
+      mudras: ['Abhaya', 'Varada'],
+      crownAndOrnaments: 'Twelve arms, crowned with jeweled diadems, draped in vermilion red silk',
+      complexion: 'Radiant reddish-golden effulgence (Kumkuma-Varna)',
+      asana: 'Seated upon a lotus emerging from the navel of Shiva',
+      symbolism: 'The perennial spring flowing through the sanctum cleft personifies the ever-living creative pulse of Adi Parashakti.'
+    },
+    worshipTraditions: {
+      kula: 'Kaula Tantra & Kalikula',
+      acharas: ['Kaulachara', 'Vamachara', 'Dakshinachara'],
+      regionalPractices: ['Ambubachi Mela', 'Kumari Puja', 'Neelachala Parikrama'],
+      sampradayaNotes: 'Central shrine of Tantric initiation and sadhana.'
+    },
+    spiritualSignificance: {
+      tattva: 'Mulaprakriti and Yoni-Tattva',
+      shakti: 'Kama-Rupini Shakti (Creative Will & Desire)',
+      symbolism: 'Motherhood of all existence.',
+      theologicalInterpretation: 'The unconditioned fountainhead of all life and consciousness.'
+    },
+    mantraStotra: [
+      {
+        id: 'kamakhya-dhyana',
+        title: 'श्री कामाख्या ध्यानम् (Kamakhya Dhyana Sloka)',
+        type: 'Dhyana',
+        sanskrit: `कामाख्ये कामसम्पन्ने कामेशि कामरूपिणि।
+कामान् देहि मे नित्यं कामेश्वरि नमोऽस्तु ते॥`,
+        transliteration: `Kāmākhye kāmasampanne kāmeśi kāmarūpiṇi।
+Kāmān dehi me nityaṁ kāmeśvari namo'stu te॥`,
+        meaning: 'Salutations to Maa Kamakhya, endowed with all divine desires, sovereign ruler of spiritual fulfillment, of the form of cosmic will; bestow upon me noble spiritual aspirations, salutations to Kameshwari.',
+        source: 'Kalika Purana & Yogini Tantra',
+        isPublicDevotional: true
+      }
+    ],
+    imageAssets: [
+      {
+        id: 'kamakhya-img-1',
+        title: 'Traditional Iconography of Maa Kamakhya',
+        imageType: 'sacred_om_fallback',
+        attribution: 'Kamakhya Devalaya Sacred Archives, Assam',
+        source: 'Traditional Shakta Iconography Repository',
+        license: 'Educational',
+        verificationStatus: 'verified',
+        fallbackType: 'iconography_varies'
+      }
+    ]
+  },
+  {
+    id: 'kamakshi',
+    imagePath: '/images/devis/kamakshi.jpg',
+    primaryName: 'Maa Kamakshi',
+    sanskritName: 'श्री कामाक्षी देवी',
+    odiaName: 'ମା କାମାକ୍ଷୀ',
+    alternateNames: ['Kanchi Kamakshi', 'Rajarajeshvari', 'Tripurasundari', 'Kamakoti Peetheshwari'],
+    nameMeaning: 'She whose eyes are filled with divine grace, desire, and supreme wisdom; who bestows all auspicious boons with a mere compassionate glance (Kama-Akshi).',
+    classification: ['Shakti Peethas & Sacred Geography', 'Maha Shakti Peetha', 'Srikula', 'Sri Vidya'],
+    traditions: ['Sri Vidya', 'Srikula', 'Samayachara', 'Puranic Shakta'],
+    acharas: ['Samayachara', 'Dakshinachara'],
+    shortIntro: 'The supreme presiding goddess of the sacred Odyana/Nabhi Peetha at Kanchipuram, Tamil Nadu. Seated in Padmasana holding a sugarcane bow, floral arrows, noose, and goad. Consecrated with the Sri Yantra (Sri Chakra) by Adi Shankaracharya to pacify the primordial cosmic fire.',
+    philosophicalSignificance: 'Maa Kamakshi represents the pinnacle of Sri Vidya philosophy: the union of Shiva and Shakti in the golden cave of consciousness (Bilakasha). She is the transcendental Empress (Rajarajeshvari) through whose eyes the entire universe is animated with love and bliss.',
+    theologicalPosition: 'The supreme center of Sri Vidya in South India, celebrated in the Lalita Mahatmya, Kamakshi Vilasam, and Saundarya Lahari.',
+    evidenceStatus: 'Primary textual evidence',
+    relatedDeviIds: ['tripura-sundari', 'kamalatmika', 'bhuvaneshvari'],
+    scripturalReferences: [
+      { textName: 'Kamakshi Vilasam', originalLanguage: 'Sanskrit', sourceType: 'Purana' },
+      { textName: 'Lalita Sahasranama (Brahmanda Purana)', originalLanguage: 'Sanskrit', sourceType: 'Purana' },
+      { textName: 'Saundarya Lahari', originalLanguage: 'Sanskrit', sourceType: 'Stotra' }
+    ],
+    iconography: {
+      arms: 4,
+      weaponsAndAttributes: ['Ikshu-Kodanda (Sugarcane Bow)', 'Pancha-Bana (Five Floral Arrows)', 'Pasha (Noose)', 'Ankusha (Goad)'],
+      vahana: 'Simha (Lion) / Meru Peetha',
+      mudras: ['Dhyana / Sovereign posture'],
+      crownAndOrnaments: 'Kirita-Makuta adorned with the crescent moon, jeweled bodice, and luminous silks',
+      complexion: 'Radiant golden or morning red like molten gold (Taptakanchana-Sannibha)',
+      asana: 'Padmasana on the Sri Yantra pedestal',
+      symbolism: 'Sugarcane bow represents the mind; flower arrows represent the five senses mastered and turned inward.'
+    },
+    worshipTraditions: {
+      kula: 'Srikula & Sri Vidya',
+      acharas: ['Samayachara', 'Dakshinachara'],
+      regionalPractices: ['Sri Chakra Navavarana Puja', 'Kanchi Kamakoti Sampradaya', 'Kamakshi Brahmotsavam'],
+      sampradayaNotes: 'Primary seat of Adi Shankaracharya’s Sarvajna Peetha.'
+    },
+    spiritualSignificance: {
+      tattva: 'Para-Brahman and Chiti-Shakti',
+      shakti: 'Kameshvari Shakti (Supreme Sovereignty & Grace)',
+      symbolism: 'Cosmic balance of pure awareness and infinite delight.',
+      theologicalInterpretation: 'The Divine Mother who transforms the five sense instruments into pathways of self-realization.'
+    },
+    mantraStotra: [
+      {
+        id: 'kamakshi-dhyana',
+        title: 'श्री कामाक्षी ध्यानम् (Kamakshi Dhyanam)',
+        type: 'Dhyana',
+        sanskrit: `ऐन्दवे मण्डले संस्थे कामेशवरवरप्रिये।
+ध्यायेत् पद्मासने देवीं कामाक्षीं करुणानिधिम्॥
+चापेक्षुबाणपाशाङ्कुशधरां हेमवर्णिकाम्।
+श्रीमत्काञ्चीपुरे रम्ये राजमानां परां शिवाम्॥`,
+        transliteration: `Aindave maṇḍale saṁsthe kāmeśavaravarapriye।
+Dhyāyet padmāsane devīṁ kāmākṣīṁ karuṇānidhim॥
+Cāpekṣubāṇapāśāṅkuśadharāṁ hemavarṇikām।
+Śrīmatkāñcīpure ramye rājamānāṁ parāṁ śivām॥`,
+        meaning: 'Established within the lunar orb, beloved of Lord Kameshvara, one should meditate upon Devi Kamakshi seated in Padmasana, the ocean of compassion. Bearing the sugarcane bow, floral arrows, noose, and goad, of golden complexion, reigning supreme in glorious Kanchipuram as Para Shiva.',
+        source: 'Kamakshi Vilasam & Sri Vidya Sampradaya',
+        isPublicDevotional: true
+      }
+    ],
+    imageAssets: [
+      {
+        id: 'kamakshi-img-1',
+        title: 'Iconography of Maa Kamakshi of Kanchi',
+        imageType: 'sacred_om_fallback',
+        attribution: 'Kanchi Kamakshi Ambal Devasthanam Archives',
+        source: 'Traditional Shakta Iconography Repository',
+        license: 'Educational',
+        verificationStatus: 'verified',
+        fallbackType: 'iconography_varies'
+      }
+    ]
   }
 ];

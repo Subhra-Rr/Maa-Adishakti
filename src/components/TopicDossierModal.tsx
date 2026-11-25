@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { X, BookOpen, Sparkles, Compass, Shield, ExternalLink, Flame } from 'lucide-react';
 import { SacredOmFallback } from './SacredOmFallback';
+import { allDevis } from '../data';
 
 export interface TopicBriefEntity {
   id?: string;
@@ -192,19 +193,25 @@ export const TopicDossierModal: React.FC<TopicDossierModalProps> = ({ entity, on
 
         {/* Action Controls Footer */}
         <div className="pt-3 border-t border-sacred-borderGold/30 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
-          {entity.deviId ? (
-            <Link
-              to={`/devi/${entity.deviId}`}
-              className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg bg-gradient-to-r from-sacred-maroon to-sacred-dark hover:from-amber-700 hover:to-sacred-maroon border border-sacred-gold text-sacred-goldLight hover:text-white text-xs font-bold uppercase tracking-wider flex items-center justify-center space-x-2 transition-all shadow-md text-center"
-            >
-              <span>Explore Dedicated Profile & Mantras</span>
-              <ExternalLink className="w-3.5 h-3.5 shrink-0" />
-            </Link>
-          ) : (
-            <div className="text-[11px] text-sacred-ivoryMuted font-mono text-center sm:text-left">
-              Classical Traditional Documentation
-            </div>
-          )}
+          {(() => {
+            const matchingDevi = entity.deviId ? allDevis.find(d => d.id === entity.deviId) : null;
+            if (matchingDevi) {
+              return (
+                <Link
+                  to={`/devi/${matchingDevi.id}`}
+                  className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg bg-gradient-to-r from-sacred-maroon to-sacred-dark hover:from-amber-700 hover:to-sacred-maroon border border-sacred-gold text-sacred-goldLight hover:text-white text-xs font-bold uppercase tracking-wider flex items-center justify-center space-x-2 transition-all shadow-md text-center"
+                >
+                  <span>Explore Dedicated Profile & Mantras</span>
+                  <ExternalLink className="w-3.5 h-3.5 shrink-0" />
+                </Link>
+              );
+            }
+            return (
+              <div className="text-[11px] text-sacred-ivoryMuted font-mono text-center sm:text-left">
+                Classical Traditional Documentation
+              </div>
+            );
+          })()}
 
           <button
             onClick={onClose}

@@ -48,7 +48,7 @@ export const shaktiPeethas: ShaktiPeetha[] = [
     historicalBackground: 'The supreme sanctum of Tantric worship in the subcontinent. The sanctum contains no sculpted idol, but a natural subterranean stone cleft fed by a perennial natural spring.',
     significance: 'Center of Kaula Tantra and the annual Ambubachi Mela celebrating the generative fertility of Mother Earth.',
     coordinates: { lat: 26.1664, lng: 91.7056 },
-    deviId: 'tara'
+    deviId: 'kamakhya'
   },
   {
     id: 'adi-kalighat',
@@ -82,7 +82,7 @@ export const shaktiPeethas: ShaktiPeetha[] = [
     historicalBackground: 'One of the most ancient Shakta shrines in India, dating to the Gupta and Bhauma-Kara periods. Maa Biraja is depicted as a two-armed Mahishasura Mardini spearing the buffalo with her right hand while pulling its tail with her left.',
     significance: 'Sacred center for Pinda Dana at Nabhi Gaya; central pilgrimage of Odisha.',
     coordinates: { lat: 20.8497, lng: 86.3377 },
-    deviId: 'biraja'
+    deviId: 'biraja-jajpur'
   },
   {
     id: 'maha-kamakshi-kanchi',
@@ -98,7 +98,7 @@ export const shaktiPeethas: ShaktiPeetha[] = [
     historicalBackground: 'The supreme citadel of Sri Vidya in South India. Bhagavatpada Adi Shankaracharya consecrated the Sri Chakra inside the sanctum to pacify the fierce ugra energy of the goddess.',
     significance: 'Seat of Kanchi Kamakoti and Rajarajeshvari Sri Vidya tradition.',
     coordinates: { lat: 12.8407, lng: 79.7037 },
-    deviId: 'tripura-sundari'
+    deviId: 'kamakshi'
   },
   {
     id: 'maha-sharada-kashmir',
@@ -113,8 +113,7 @@ export const shaktiPeethas: ShaktiPeetha[] = [
     scripturalSources: ['Rajatarangini', 'Sharada Mahatmya', 'Adi Shankara Digvijaya'],
     historicalBackground: 'Ancient temple-university where scholars across the subcontinent presented their treatises before the throne of Sharada.',
     significance: 'Highest center of Kashmiri Sanskrit scholarship and Trika Tantra.',
-    coordinates: { lat: 34.7933, lng: 73.9789 },
-    deviId: 'mahasaraswati'
+    coordinates: { lat: 34.7933, lng: 73.9789 }
   },
   {
     id: 'maha-vishalakshi-varanasi',
@@ -130,7 +129,7 @@ export const shaktiPeethas: ShaktiPeetha[] = [
     historicalBackground: 'Situated on the sacred banks of the Ganges in Kashi, representing the expansive gaze of universal motherly compassion.',
     significance: 'Primary Shakta sanctum in the sacred city of Lord Shiva.',
     coordinates: { lat: 25.3082, lng: 83.0116 },
-    deviId: 'katyayani'
+    deviId: 'vishalakshi'
   },
   {
     id: 'maha-chamundeshwari-mysore',
@@ -145,8 +144,7 @@ export const shaktiPeethas: ShaktiPeetha[] = [
     scripturalSources: ['Skanda Purana', 'Devi Mahatmya', 'Mysuru Sthalapurana'],
     historicalBackground: 'Glorious hill sanctuary where Devi destroyed the buffalo demon Mahishasura. Revered as the royal protectress of the Wadiyar dynasty.',
     significance: 'Epicenter of Karnataka Dasara festivities and royal Shakta traditions.',
-    coordinates: { lat: 12.2743, lng: 76.6713 },
-    deviId: 'chamunda'
+    coordinates: { lat: 12.2743, lng: 76.6713 }
   },
   {
     id: 'maha-mahalakshmi-kolhapur',
@@ -177,8 +175,7 @@ export const shaktiPeethas: ShaktiPeetha[] = [
     scripturalSources: ['Shiva Purana', 'Devi Bhagavata Purana', 'Tantraloka'],
     historicalBackground: 'One of the rare sacred confluences in India hosting both a Maha Shakti Peetha and a Dwadasha Jyotirlinga in a single complex.',
     significance: 'Devi manifested as a swarm of bees (Bhramari) to vanquish the demon Arunasura.',
-    coordinates: { lat: 16.0741, lng: 78.8687 },
-    deviId: 'bhramari'
+    coordinates: { lat: 16.0741, lng: 78.8687 }
   },
   {
     id: 'maha-mahakali-ujjain',
@@ -209,8 +206,7 @@ export const shaktiPeethas: ShaktiPeetha[] = [
     scripturalSources: ['Devi Bhagavata', 'Kalika Purana', 'Tantrachudamani'],
     historicalBackground: 'Famous for perpetual natural flames emerging through fissures in the rock, worshipped without any idol for millennia.',
     significance: 'The fiery primordial tongue of Sati consuming spiritual ignorance.',
-    coordinates: { lat: 31.8744, lng: 76.3245 },
-    deviId: 'jvalamalini'
+    coordinates: { lat: 31.8744, lng: 76.3245 }
   },
   {
     id: 'peetha-hinglaj-balochistan',
@@ -225,8 +221,7 @@ export const shaktiPeethas: ShaktiPeetha[] = [
     scripturalSources: ['Devi Bhagavata', 'Shiva Purana', 'Chandi Mangala'],
     historicalBackground: 'Ancient cave shrine situated in a desert gorge, historically traversed by yogis performing the rigorous Hinglaj Yatra.',
     significance: 'The sovereign crown center of the geographical Shakta body.',
-    coordinates: { lat: 25.5139, lng: 65.5173 },
-    deviId: 'hinglaj-mata'
+    coordinates: { lat: 25.5139, lng: 65.5173 }
   },
   {
     id: 'peetha-ambaji-gujarat',
@@ -241,8 +236,7 @@ export const shaktiPeethas: ShaktiPeetha[] = [
     scripturalSources: ['Tantrachudamani', 'Devi Bhagavata Purana', 'Skanda Purana'],
     historicalBackground: 'A unique temple with no idol; worship is offered directly to the sacred Viso Yantra inscribed upon marble and decorated with sacred vestments.',
     significance: 'The living heart center of Mother Durga in western India.',
-    coordinates: { lat: 24.3331, lng: 72.8531 },
-    deviId: 'kushmanda'
+    coordinates: { lat: 24.3331, lng: 72.8531 }
   },
   {
     id: 'peetha-tarapith-bengal',
