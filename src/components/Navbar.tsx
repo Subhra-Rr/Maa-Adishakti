@@ -88,19 +88,19 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20 gap-3">
           {/* Logo & Identity */}
-          <Link to="/" className="flex items-center space-x-2.5 sm:space-x-3 group text-left shrink-0">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-full border border-sacred-gold/60 bg-gradient-to-br from-[#2a080c] to-[#070605] flex items-center justify-center shadow-sacred-glow group-hover:border-sacred-gold transition-all duration-300">
-              <span className="font-devanagari text-xl sm:text-2xl font-bold gold-gradient-text drop-shadow-[0_0_10px_rgba(212,175,55,0.4)]">
+          <Link to="/" className="flex items-center space-x-2 sm:space-x-3 group text-left min-w-0 shrink">
+            <div className="w-9 h-9 sm:w-12 sm:h-12 shrink-0 rounded-full border border-sacred-gold/60 bg-gradient-to-br from-[#2a080c] to-[#070605] flex items-center justify-center shadow-sacred-glow group-hover:border-sacred-gold transition-all duration-300">
+              <span className="font-devanagari text-lg sm:text-2xl font-bold gold-gradient-text drop-shadow-[0_0_10px_rgba(212,175,55,0.4)]">
                 ॐ
               </span>
             </div>
-            <div className="shrink-0">
-              <div className="flex items-center space-x-2">
-                <span className="font-cinzel text-base sm:text-xl lg:text-2xl font-extrabold tracking-wider gold-gradient-text whitespace-nowrap">
+            <div className="min-w-0">
+              <div className="flex items-center space-x-1.5 sm:space-x-2">
+                <span className="font-cinzel text-sm sm:text-xl lg:text-2xl font-extrabold tracking-wider gold-gradient-text whitespace-nowrap">
                   SHAKTA TATTVA
                 </span>
               </div>
-              <p className="text-[9px] sm:text-xs font-devanagari text-sacred-goldDark tracking-wider whitespace-nowrap">
+              <p className="text-[8px] sm:text-xs font-devanagari text-sacred-goldDark tracking-wider whitespace-nowrap">
                 श्री आदिपराशक्ति तत्त्वज्ञानकोशः
               </p>
             </div>
@@ -182,12 +182,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
             </div>
           </nav>
 
-          {/* Actions: Search Button + Authentication Profile (Always visible & fully anchored) */}
-          <div className="flex items-center space-x-2 sm:space-x-3 shrink-0">
+          {/* Actions: Search Button + Authentication Profile + Mobile Hamburger Button */}
+          <div className="flex items-center space-x-1.5 sm:space-x-3 shrink-0">
             <button
               onClick={onOpenSearch}
-              className="min-h-[44px] flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-sacred-surface border border-sacred-borderGold/40 text-sacred-ivoryDim hover:text-sacred-gold hover:border-sacred-gold/80 transition-all text-xs sm:text-sm shrink-0 shadow-sm"
+              className="min-h-[40px] min-w-[40px] sm:min-h-[44px] flex items-center justify-center space-x-2 p-2 sm:px-3 sm:py-1.5 rounded-lg bg-sacred-surface border border-sacred-borderGold/40 text-sacred-ivoryDim hover:text-sacred-gold hover:border-sacred-gold/80 transition-all text-xs sm:text-sm shrink-0 shadow-sm"
               title="Search encyclopedia (Ctrl+K)"
+              aria-label="Search encyclopedia"
             >
               <Search className="w-4 h-4 text-sacred-gold shrink-0" />
               <span className="hidden sm:inline whitespace-nowrap font-medium">Search</span>
@@ -201,7 +202,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
               <div className="relative shrink-0">
                 <button
                   onClick={() => setUserDropdownOpen(!userDropdownOpen)}
-                  className="min-h-[44px] flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-sacred-maroon/80 border border-sacred-borderGold text-sacred-goldLight text-xs font-semibold hover:bg-sacred-maroon transition-all shadow-sacred-glow shrink-0"
+                  className="min-h-[40px] min-w-[40px] sm:min-h-[44px] flex items-center justify-center space-x-2 p-1.5 sm:px-3 sm:py-1.5 rounded-lg bg-sacred-maroon/80 border border-sacred-borderGold text-sacred-goldLight text-xs font-semibold hover:bg-sacred-maroon transition-all shadow-sacred-glow shrink-0"
+                  aria-label="User Account"
                 >
                   <div className="w-6 h-6 rounded-full bg-sacred-gold text-sacred-dark font-bold text-[11px] flex items-center justify-center shrink-0">
                     {user.name.charAt(0).toUpperCase()}
@@ -242,21 +244,27 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
             ) : (
               <button
                 onClick={() => openAuthModal('login')}
-                className="min-h-[44px] flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg bg-sacred-maroon/80 border border-sacred-borderGold/60 hover:border-sacred-gold text-sacred-goldLight text-xs sm:text-sm font-semibold transition-all shadow-sacred-glow shrink-0"
-                title="Sign in for personalized study and stotra bookmarks"
+                className="min-h-[40px] min-w-[40px] sm:min-h-[44px] flex items-center justify-center space-x-1.5 p-2 sm:px-3.5 sm:py-1.5 rounded-lg bg-sacred-maroon/80 border border-sacred-borderGold/60 hover:border-sacred-gold text-sacred-goldLight text-xs sm:text-sm font-semibold transition-all shadow-sacred-glow shrink-0"
+                title="Sign In"
+                aria-label="Sign In"
               >
                 <User className="w-4 h-4 text-sacred-gold" />
-                <span className="whitespace-nowrap">Sign In</span>
+                <span className="hidden sm:inline whitespace-nowrap">Sign In</span>
               </button>
             )}
 
-            {/* Mobile / Tablet Menu Button (Visible below lg) */}
+            {/* Mobile / Tablet Menu Button (Prominent 3 horizontal lines, ALWAYS visible below lg) */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden min-h-[44px] min-w-[44px] flex items-center justify-center p-2 rounded-lg bg-sacred-surface text-sacred-ivoryDim hover:text-sacred-gold border border-sacred-borderGold/30 shrink-0"
+              className="lg:hidden min-h-[40px] min-w-[40px] flex items-center justify-center p-2 rounded-lg bg-sacred-maroon/90 text-sacred-goldLight hover:text-white border border-sacred-gold/70 hover:border-sacred-gold active:scale-95 transition-all shrink-0 shadow-sacred-glow"
               aria-label="Toggle Navigation Menu"
+              title="Navigation Menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? (
+                <X className="w-5 h-5 text-sacred-goldLight" />
+              ) : (
+                <Menu className="w-5 h-5 text-sacred-goldLight" />
+              )}
             </button>
           </div>
         </div>

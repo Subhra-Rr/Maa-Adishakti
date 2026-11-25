@@ -74,22 +74,52 @@ input:-webkit-autofill:active {
   padding-top: env(safe-area-inset-top, 0px);
 }
 
-html, body {
+html {
   background-color: #070605 !important;
   color: #f8f4eb !important;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  min-height: 100dvh;
   width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip; /* Modern safe clip: stops horizontal overflow without breaking root compositing */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #070605 !important;
+  color: #f8f4eb !important;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  overflow-x: clip;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Universal Responsive Grid & Media Protection */
 *, *::before, *::after {
   box-sizing: border-box;
+}
+
+/* GPU Compositing Layer Isolation & Anti-Flicker Protection */
+main, section, footer {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Card Isolation to Prevent Layer Thrashing / Ghosting on Mobile WebKit/Chromium */
+.sacred-isolated-card {
+  isolation: isolate;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  contain: paint layout;
 }
 
 .grid > * {
@@ -136,7 +166,9 @@ img, svg, video, canvas, audio, iframe, embed, object {
 .gold-gradient-text {
   background: linear-gradient(135deg, #f0d376 0%, #d4af37 40%, #ffdf88 60%, #b89628 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
+  display: inline-block;
   padding-top: 0.15em;
   padding-bottom: 0.1em;
 }
@@ -144,7 +176,9 @@ img, svg, video, canvas, audio, iframe, embed, object {
 .crimson-gradient-text {
   background: linear-gradient(135deg, #ff4d6d 0%, #c52837 50%, #8b1824 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
+  display: inline-block;
   padding-top: 0.15em;
   padding-bottom: 0.1em;
 }

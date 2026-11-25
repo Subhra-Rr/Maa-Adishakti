@@ -4,9 +4,9 @@ import { Shield, Sparkles, Compass, BookOpen, Heart } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="w-full bg-[#050403] border-t border-sacred-borderGold/40 text-sacred-ivoryDim pt-16 pb-12 mt-20 relative overflow-hidden">
-      {/* Subtle background glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-24 bg-sacred-crimson/10 blur-3xl pointer-events-none" />
+    <footer className="w-full bg-[#050403] border-t border-sacred-borderGold/40 text-sacred-ivoryDim pt-12 sm:pt-16 pb-12 mt-12 sm:mt-16 relative overflow-hidden sacred-isolated-card">
+      {/* Subtle background glow using pure CSS gradient (zero GPU blur shader lag/flicker) */}
+      <div className="absolute top-0 inset-x-0 h-24 bg-[radial-gradient(ellipse_at_top,rgba(139,24,36,0.18)_0%,transparent_70%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-sacred-borderGold/20">

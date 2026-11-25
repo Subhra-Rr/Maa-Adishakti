@@ -456,9 +456,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
         {/* ========================================================
             10. SCRIPTURAL LIBRARY & ACHARA TEASER
         ======================================================== */}
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {/* Scriptural Library Teaser */}
-          <div className="p-6 sm:p-8 rounded-xl bg-sacred-surface border border-sacred-borderGold/40 space-y-4 shadow-sacred-glow">
+          <div className="p-6 sm:p-8 rounded-xl bg-sacred-surface border border-sacred-borderGold/40 space-y-4 shadow-sacred-glow sacred-isolated-card">
             <div className="flex items-center space-x-2 text-xs font-devanagari text-sacred-goldLight">
               <BookOpen className="w-4 h-4 text-sacred-gold" />
               <span>शास्त्र भाण्डारम् — Scriptural Library</span>
@@ -481,7 +481,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
           </div>
 
           {/* Achara & Tantric Traditions Teaser */}
-          <div className="p-6 sm:p-8 rounded-xl bg-sacred-surface border border-sacred-borderGold/40 space-y-4 shadow-sacred-glow">
+          <div className="p-6 sm:p-8 rounded-xl bg-sacred-surface border border-sacred-borderGold/40 space-y-4 shadow-sacred-glow sacred-isolated-card">
             <div className="flex items-center space-x-2 text-xs font-devanagari text-sacred-goldLight">
               <Layers className="w-4 h-4 text-sacred-gold" />
               <span>आचार दर्शनम् — The Four Acharas</span>
