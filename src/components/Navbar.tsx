@@ -61,33 +61,33 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20 gap-2">
           {/* Logo & Identity */}
-          <Link to="/" className="flex items-center space-x-2 sm:space-x-3 group text-left min-w-0">
+          <Link to="/" className="flex items-center space-x-2 sm:space-x-3 group text-left shrink-0">
             <div className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-full border border-sacred-gold/60 bg-gradient-to-br from-[#2a080c] to-[#070605] flex items-center justify-center shadow-sacred-glow group-hover:border-sacred-gold transition-all duration-300">
               <span className="font-devanagari text-xl sm:text-2xl font-bold gold-gradient-text drop-shadow-[0_0_10px_rgba(212,175,55,0.4)]">
                 ॐ
               </span>
             </div>
-            <div className="min-w-0">
+            <div className="shrink-0">
               <div className="flex items-center space-x-2">
-                <span className="font-cinzel text-base sm:text-2xl font-extrabold tracking-wider gold-gradient-text truncate">
+                <span className="font-cinzel text-base sm:text-xl xl:text-2xl font-extrabold tracking-wider gold-gradient-text whitespace-nowrap">
                   SHAKTA TATTVA
                 </span>
               </div>
-              <p className="text-[9px] sm:text-xs font-devanagari text-sacred-goldDark tracking-wider truncate">
+              <p className="text-[9px] sm:text-xs font-devanagari text-sacred-goldDark tracking-wider whitespace-nowrap">
                 श्री आदिपराशक्ति तत्त्वज्ञानकोशः
               </p>
             </div>
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden xl:flex items-center space-x-1">
+          <nav className="hidden xl:flex items-center space-x-0.5 2xl:space-x-1 shrink-0">
             {navLinks.map((link) => {
               const active = isActive(link.path);
               return (
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`px-2.5 py-1.5 rounded-md text-xs font-medium tracking-wide transition-all ${
+                  className={`px-2 2xl:px-2.5 py-1.5 rounded-md text-xs font-medium tracking-wide whitespace-nowrap transition-all ${
                     active
                       ? 'text-sacred-goldLight bg-sacred-maroon/70 border border-sacred-gold/40 shadow-sacred-glow'
                       : link.highlight
@@ -102,14 +102,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
           </nav>
 
           {/* Actions: Search Button + Authentication Profile */}
-          <div className="flex items-center space-x-2 sm:space-x-3">
+          <div className="flex items-center space-x-2 sm:space-x-3 shrink-0">
             <button
               onClick={onOpenSearch}
-              className="flex items-center space-x-2 px-2.5 sm:px-3 py-1.5 rounded-lg bg-sacred-surface border border-sacred-borderGold/40 text-sacred-ivoryDim hover:text-sacred-gold hover:border-sacred-gold/80 transition-all text-xs sm:text-sm"
+              className="min-h-[44px] flex items-center space-x-2 px-2.5 sm:px-3 py-1.5 rounded-lg bg-sacred-surface border border-sacred-borderGold/40 text-sacred-ivoryDim hover:text-sacred-gold hover:border-sacred-gold/80 transition-all text-xs sm:text-sm"
               title="Search encyclopedia (Ctrl+K)"
             >
-              <Search className="w-4 h-4 text-sacred-gold" />
-              <span className="hidden md:inline">Search...</span>
+              <Search className="w-4 h-4 text-sacred-gold shrink-0" />
+              <span className="hidden md:inline whitespace-nowrap">Search...</span>
               <kbd className="hidden lg:inline-block px-1.5 py-0.5 text-[10px] bg-sacred-dark border border-sacred-border rounded text-sacred-ivoryMuted">
                 ⌘K
               </kbd>
@@ -120,7 +120,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
               <div className="relative">
                 <button
                   onClick={() => setUserDropdownOpen(!userDropdownOpen)}
-                  className="flex items-center space-x-2 px-2.5 sm:px-3 py-1.5 rounded-lg bg-sacred-maroon/80 border border-sacred-borderGold text-sacred-goldLight text-xs font-semibold hover:bg-sacred-maroon transition-all shadow-sacred-glow"
+                  className="min-h-[44px] flex items-center space-x-2 px-2.5 sm:px-3 py-1.5 rounded-lg bg-sacred-maroon/80 border border-sacred-borderGold text-sacred-goldLight text-xs font-semibold hover:bg-sacred-maroon transition-all shadow-sacred-glow"
                 >
                   <div className="w-5 h-5 rounded-full bg-sacred-gold text-sacred-dark font-bold text-[10px] flex items-center justify-center">
                     {user.name.charAt(0).toUpperCase()}
@@ -172,7 +172,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
             {/* Mobile menu button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden p-2 rounded-lg bg-sacred-surface text-sacred-ivoryDim hover:text-sacred-gold border border-sacred-borderGold/30"
+              className="xl:hidden min-h-[44px] min-w-[44px] flex items-center justify-center p-2 rounded-lg bg-sacred-surface text-sacred-ivoryDim hover:text-sacred-gold border border-sacred-borderGold/30"
               aria-label="Toggle Navigation Menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -215,7 +215,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
                   setMobileMenuOpen(false);
                   openAuthModal('login');
                 }}
-                className="w-full py-2.5 flex items-center justify-center space-x-2 bg-sacred-maroon border border-sacred-gold text-sacred-goldLight rounded-lg text-sm font-bold shadow-sacred-glow"
+                className="w-full min-h-[44px] py-2.5 flex items-center justify-center space-x-2 bg-sacred-maroon border border-sacred-gold text-sacred-goldLight rounded-lg text-sm font-bold shadow-sacred-glow active:scale-[0.99] transition-transform"
               >
                 <User className="w-4 h-4" />
                 <span>Sign In / Register</span>
@@ -226,7 +226,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
                   setMobileMenuOpen(false);
                   logout();
                 }}
-                className="w-full py-2.5 flex items-center justify-center space-x-2 bg-sacred-dark border border-red-500/40 text-red-300 rounded-lg text-sm font-medium"
+                className="w-full min-h-[44px] py-2.5 flex items-center justify-center space-x-2 bg-sacred-dark border border-red-500/40 text-red-300 rounded-lg text-sm font-medium"
               >
                 <LogOut className="w-4 h-4" />
                 <span>Sign Out ({user?.name})</span>
@@ -238,7 +238,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
                 setMobileMenuOpen(false);
                 onOpenSearch();
               }}
-              className="w-full py-2.5 flex items-center justify-center space-x-2 bg-sacred-surface border border-sacred-borderGold text-sacred-ivory rounded-lg text-sm"
+              className="w-full min-h-[44px] py-2.5 flex items-center justify-center space-x-2 bg-sacred-surface border border-sacred-borderGold text-sacred-ivory rounded-lg text-sm"
             >
               <Search className="w-4 h-4 text-sacred-gold" />
               <span>Search All Devis & Scriptures</span>

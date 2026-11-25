@@ -201,7 +201,7 @@ export const DeviDirectoryPage: React.FC = () => {
         </div>
 
         {/* 3 Dropdown Filters Row */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-3 text-xs">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
           {/* Dropdown 1: Category Filter */}
           <div>
             <label className="block text-sacred-goldLight mb-1 font-medium flex items-center justify-between">

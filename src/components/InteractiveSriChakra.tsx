@@ -261,8 +261,8 @@ export const InteractiveSriChakra: React.FC = () => {
             )}
 
             {/* Current Active Label Overlay */}
-            <div className="absolute bottom-3 inset-x-0 text-center">
-              <span className="inline-block px-3 py-1 rounded-full bg-sacred-dark/90 border border-sacred-gold/50 text-[11px] font-medium text-sacred-goldLight">
+            <div className="absolute bottom-2 sm:bottom-3 inset-x-2 text-center pointer-events-none">
+              <span className="inline-block px-3 py-1 rounded-full bg-sacred-dark/95 border border-sacred-gold/60 text-[10px] sm:text-[11px] font-medium text-sacred-goldLight shadow-md truncate max-w-full">
                 Active: Avarana {selectedAvarana.number} — {selectedAvarana.name}
               </span>
             </div>
