@@ -115,6 +115,17 @@ export const DEVI_IMAGE_REGISTRY: Record<string, string> = {
   'matrika-jaya': '/images/devis/matrika_jaya.jpg',
   'matrika-swadha': '/images/devis/matrika_swadha.jpg',
   'matrika-dhriti': '/images/devis/matrika_dhriti.jpg',
+
+  // Ashta Lakshmi (Eight Manifestations of Cosmic Abundance)
+  'adi-lakshmi': '/images/devis/adi_lakshmi.jpg',
+  'dhana-lakshmi': '/images/devis/dhana_lakshmi.jpg',
+  'dhanya-lakshmi': '/images/devis/dhanya_lakshmi.jpg',
+  'gaja-lakshmi': '/images/devis/gaja_lakshmi.jpg',
+  'santana-lakshmi': '/images/devis/santana_lakshmi.jpg',
+  'veera-lakshmi': '/images/devis/veera_lakshmi.jpg',
+  'dhairya-lakshmi': '/images/devis/veera_lakshmi.jpg',
+  'vijaya-lakshmi': '/images/devis/vijaya_lakshmi.jpg',
+  'vidya-lakshmi': '/images/devis/vidya_lakshmi.jpg',
 };
 
 export function resolveDeviImagePath(explicitPath?: string, deviName?: string, altText?: string, deviId?: string): string | undefined {

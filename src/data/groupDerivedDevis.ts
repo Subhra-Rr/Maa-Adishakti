@@ -88,6 +88,7 @@ navapatrikaList.forEach((p) => {
 
 // 2. ASHTA LAKSHMI (8)
 ashtaLakshmiList.forEach((l) => {
+  const registeredImage = resolveDeviImagePath(undefined, l.name, undefined, l.id);
   groupDerivedDevis.push({
     id: l.id,
     primaryName: `Maa ${l.name}`,
@@ -98,6 +99,7 @@ ashtaLakshmiList.forEach((l) => {
     traditions: ['Sri Vidya', 'Srikula', 'Vaishnava-Shakta Synthesis', 'Puranic Shakta'],
     acharas: ['Dakshinachara', 'Samayachara'],
     shortIntro: `${l.significance} ${l.blessingBestowed}`,
+    imagePath: registeredImage,
     philosophicalSignificance: `In Shakta-Vaishnava synthesis, Ashta Lakshmi represents the eightfold cosmic sustaining shakti of the Supreme Divine Mother. ${l.blessingBestowed}`,
     theologicalPosition: 'Codified in the Vishnu Purana and Ashta Lakshmi Stotram as eight cosmic mothers supporting dharmic human existence.',
     evidenceStatus: 'Primary textual evidence',
@@ -145,6 +147,7 @@ ashtaLakshmiList.forEach((l) => {
       {
         id: `${l.id}-img`,
         title: `Iconography of ${l.name}`,
+        imagePath: registeredImage,
         imageType: 'traditional_painting',
         attribution: 'Traditional Shakta & Srikula Iconography Archive',
         source: 'Sri Sukta Archive',
