@@ -4,6 +4,7 @@ import { shodashaNityas } from './shodashaNityas';
 import { dwadashaKalis } from './dwadashaKalis';
 import { ashtaLakshmiList, navapatrikaList, shodashaMatrikasList } from './specialGroupings';
 import { chakraYoginis } from './guptaShakti';
+import { resolveDeviImagePath } from '../components/DeviImage';
 
 /**
  * Transforms all special sacred groupings (Navapatrika, Ashta Lakshmi, Shodasha Nitya,
@@ -14,6 +15,7 @@ export const groupDerivedDevis: Devi[] = [];
 
 // 1. NAVAPATRIKA DEVIS (9)
 navapatrikaList.forEach((p) => {
+  const registeredImage = resolveDeviImagePath(undefined, p.deviName, undefined, p.id);
   groupDerivedDevis.push({
     id: p.id,
     primaryName: `Maa ${p.deviName} (Navapatrika)`,
@@ -24,6 +26,7 @@ navapatrikaList.forEach((p) => {
     traditions: ['Puranic Shakta', 'Folk-Tantric Synthesis', 'Agama Tantra', 'Odisha Shakta'],
     acharas: ['Dakshinachara', 'Kaulachara during Durga Puja'],
     shortIntro: `One of the sacred nine botanical manifestations tied into the Nabapatrika (Kola Bou) bundle during autumn Durga Puja, personified in the ${p.plantAssociation}. ${p.ritualSignificance}`,
+    imagePath: registeredImage,
     philosophicalSignificance: `${p.symbolism} Navapatrika worship preserves ancient Vedic arboreal reverence integrated into supreme Shakta theology.`,
     theologicalPosition: 'In Kalika Purana and Brihannandikeshvara Purana, Durga is invoked within nine sacred plants prior to warfare against Mahishasura.',
     evidenceStatus: 'Primary textual evidence',
@@ -70,13 +73,14 @@ navapatrikaList.forEach((p) => {
     imageAssets: [
       {
         id: `${p.id}-img`,
-        title: `Sacred Botanical Manifestation: ${p.plantAssociation}`,
-        imageType: 'sacred_om_fallback',
+        title: registeredImage ? `Iconography of Maa ${p.deviName}` : `Sacred Botanical Manifestation: ${p.plantAssociation}`,
+        imagePath: registeredImage,
+        imageType: registeredImage ? 'traditional_painting' : 'sacred_om_fallback',
         attribution: 'Traditional Shakta Navapatrika Archive',
         source: 'Durga Puja Traditional Archives',
         license: 'Educational Repository',
         verificationStatus: 'verified',
-        fallbackType: 'image_unavailable'
+        fallbackType: registeredImage ? undefined : 'image_unavailable'
       }
     ]
   });
@@ -153,6 +157,7 @@ ashtaLakshmiList.forEach((l) => {
 
 // 3. SHODASHA NITYA DEVIS (16)
 shodashaNityas.forEach((n) => {
+  const registeredImage = resolveDeviImagePath(undefined, n.name, undefined, n.id);
   groupDerivedDevis.push({
     id: n.id,
     primaryName: `Maa ${n.name}`,
@@ -163,6 +168,7 @@ shodashaNityas.forEach((n) => {
     traditions: ['Sri Vidya', 'Srikula', 'Agama Tantra', 'Kaula'],
     acharas: ['Samayachara', 'Dakshinachara', 'Kaulachara'],
     shortIntro: `The #${n.number} eternal lunar goddess (Nitya) of Sri Vidya presiding over ${n.tithi}. ${n.philosophicalMeaning}`,
+    imagePath: registeredImage,
     philosophicalSignificance: 'The sixteen Nityas are rays of the central supreme empress Lalita Tripurasundari, representing the 16 lunar tithis and subtle psychological powers of consciousness.',
     theologicalPosition: 'Codified in the Tantraraja Tantra and Nityashodashikarnava of Vamakeshvara Tantra.',
     evidenceStatus: 'Primary textual evidence',
@@ -209,13 +215,14 @@ shodashaNityas.forEach((n) => {
     imageAssets: [
       {
         id: `${n.id}-img`,
-        title: `Sri Yantra Nitya Enclosure: ${n.name}`,
-        imageType: 'sacred_om_fallback',
+        title: registeredImage ? `Traditional Sacred Iconography: Maa ${n.name}` : `Sri Yantra Nitya Enclosure: ${n.name}`,
+        imagePath: registeredImage,
+        imageType: registeredImage ? 'traditional_painting' : 'sacred_om_fallback',
         attribution: 'Sri Vidya Traditional Peetham',
         source: 'Tantraraja Tantra Repository',
         license: 'Educational',
         verificationStatus: 'verified',
-        fallbackType: 'image_unavailable'
+        fallbackType: registeredImage ? undefined : 'image_unavailable'
       }
     ]
   });
@@ -293,8 +300,10 @@ dwadashaKalis.forEach((k) => {
 
 // 5. SHODASHA MATRIKAS (16)
 shodashaMatrikasList.forEach((m) => {
+  const matrikaId = `matrika-${m.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}`;
+  const registeredImage = resolveDeviImagePath(undefined, m.name, undefined, matrikaId);
   groupDerivedDevis.push({
-    id: `matrika-${m.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}`,
+    id: matrikaId,
     primaryName: `Maa ${m.name} (Shodasha Matrika)`,
     sanskritName: m.sanskrit,
     alternateNames: [`Vedic Matrika ${m.name}`, `Matrika #${m.number}`],
@@ -303,6 +312,7 @@ shodashaMatrikasList.forEach((m) => {
     traditions: ['Vedic Shakta', 'Brahminical Tantra', 'Agama Tantra', 'Puranic Shakta'],
     acharas: ['Dakshinachara'],
     shortIntro: `One of the sixteen benevolent maternal deities invoked during Vedic Samskaras (Yajnopavita, Vivaha, Shanti Karmas). Role: ${m.role}.`,
+    imagePath: registeredImage,
     philosophicalSignificance: 'Unlike the fierce martial Sapta/Ashta Matrikas who fought demon hordes, the Shodasha Matrikas are gentle, Vedic maternal guardians conferring domestic peace, longevity, nourishment, and societal harmony.',
     theologicalPosition: 'Attested in the Grihya Sutras, Bhavishya Purana, and classical Karmakanda ritual manuals.',
     evidenceStatus: 'Primary textual evidence',
@@ -348,13 +358,14 @@ shodashaMatrikasList.forEach((m) => {
     imageAssets: [
       {
         id: `matrika-${m.number}-img`,
-        title: `Vedic Shodasha Matrika: ${m.name}`,
-        imageType: 'sacred_om_fallback',
+        title: registeredImage ? `Iconography of Maa ${m.name}` : `Vedic Shodasha Matrika: ${m.name}`,
+        imagePath: registeredImage,
+        imageType: registeredImage ? 'traditional_painting' : 'sacred_om_fallback',
         attribution: 'Vedic Ritual Archive',
         source: 'Prayoga Ratna Archive',
         license: 'Educational',
         verificationStatus: 'verified',
-        fallbackType: 'image_unavailable'
+        fallbackType: registeredImage ? undefined : 'image_unavailable'
       }
     ]
   });

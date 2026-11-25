@@ -347,11 +347,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
                     className="p-3 rounded-lg bg-sacred-surface border border-sacred-borderGold/30 text-center space-y-1.5 hover:border-sacred-gold transition-all block group"
                   >
                     {imgMap[temple.id] && (
-                      <div className="w-full h-24 rounded overflow-hidden border border-sacred-borderGold/30 mb-1 bg-sacred-dark">
+                      <div className="relative w-full h-24 rounded overflow-hidden border border-sacred-borderGold/30 mb-1 bg-sacred-dark flex items-center justify-center">
+                        <img
+                          src={imgMap[temple.id]}
+                          alt=""
+                          aria-hidden="true"
+                          className="absolute inset-0 w-full h-full object-cover blur-sm opacity-25 scale-110 pointer-events-none"
+                        />
                         <img
                           src={imgMap[temple.id]}
                           alt={temple.deviName}
-                          className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform"
+                          className="relative z-10 max-w-full max-h-full w-auto h-auto object-contain object-center group-hover:scale-105 transition-transform"
                         />
                       </div>
                     )}

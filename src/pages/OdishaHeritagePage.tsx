@@ -57,11 +57,17 @@ export const OdishaHeritagePage: React.FC = () => {
             >
               <div className="space-y-3">
                 {shrineImages[temple.id] && (
-                  <div className="w-full h-52 rounded-lg overflow-hidden border border-sacred-borderGold/40 mb-2 bg-sacred-dark group/img">
+                  <div className="relative w-full h-52 rounded-lg overflow-hidden border border-sacred-borderGold/40 mb-2 bg-sacred-dark flex items-center justify-center group/img">
+                    <img
+                      src={shrineImages[temple.id]}
+                      alt=""
+                      aria-hidden="true"
+                      className="absolute inset-0 w-full h-full object-cover blur-md opacity-25 scale-110 pointer-events-none"
+                    />
                     <img
                       src={shrineImages[temple.id]}
                       alt={temple.deviName}
-                      className="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500"
+                      className="relative z-10 max-w-full max-h-full w-auto h-auto object-contain object-center group-hover/img:scale-105 transition-transform duration-300"
                     />
                   </div>
                 )}

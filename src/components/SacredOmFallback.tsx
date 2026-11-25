@@ -35,10 +35,10 @@ export const SacredOmFallback: React.FC<SacredOmFallbackProps> = ({
   const badge = getBadgeText();
 
   const sizeClasses = {
-    sm: 'h-48 text-xs',
-    md: 'h-64 sm:h-72 text-sm',
-    lg: 'h-80 sm:h-96 text-base',
-    hero: 'h-96 sm:h-[480px] text-lg'
+    sm: 'aspect-[3/4] min-h-[220px] max-h-72 text-xs',
+    md: 'aspect-[3/4] min-h-[280px] max-h-80 text-sm',
+    lg: 'aspect-[3/4] min-h-[380px] sm:min-h-[460px] md:min-h-[500px] text-base',
+    hero: 'aspect-[3/4] min-h-[420px] sm:min-h-[500px] text-lg'
   };
 
   const omSize = {
