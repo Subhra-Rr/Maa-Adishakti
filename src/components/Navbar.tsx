@@ -149,7 +149,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
 
               {/* Floating Dropdown Menu */}
               {traditionsDropdownOpen && (
-                <div className="absolute left-0 mt-1 w-72 rounded-xl bg-sacred-dark/98 backdrop-blur-xl border border-sacred-borderGold/60 shadow-[0_10px_35px_rgba(0,0,0,0.8)] p-2 z-50 space-y-1 animate-in fade-in zoom-in-95 duration-150">
+                <div className="absolute left-0 mt-1 w-72 rounded-xl bg-[#0d0b09] border border-sacred-borderGold/60 shadow-[0_12px_40px_rgba(0,0,0,0.95)] p-2 z-50 space-y-1 animate-in fade-in zoom-in-95 duration-150">
                   <div className="px-2.5 py-1 text-[10px] font-devanagari font-semibold text-sacred-goldDark border-b border-sacred-border/50 uppercase tracking-wider">
                     ॥ परम्परा तीर्थानि च ॥ (Lineages & Shrines)
                   </div>
