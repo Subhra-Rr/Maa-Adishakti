@@ -266,7 +266,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
               <Link
                 key={devi.id}
                 to={`/devi/${devi.id}`}
-                className="group rounded-xl bg-sacred-surface border border-sacred-borderGold/30 hover:border-sacred-gold transition-all overflow-hidden p-3 flex flex-col justify-between hover:shadow-sacred-glow"
+                className="group rounded-xl bg-sacred-surface border border-sacred-borderGold/30 hover:border-sacred-gold transition-all overflow-hidden p-3 flex flex-col justify-between hover:shadow-sacred-glow vedic-card vedic-shimmer"
               >
                 <div className="w-full mb-3 rounded-lg overflow-hidden border border-sacred-borderGold/20">
                   <DeviImage
@@ -404,7 +404,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
               <Link
                 key={devi.id}
                 to={`/devi/${devi.id}`}
-                className="group rounded-xl bg-sacred-surface border border-sacred-borderGold/30 hover:border-sacred-gold transition-all overflow-hidden p-3 flex flex-col justify-between hover:shadow-sacred-glow"
+                className="group rounded-xl bg-sacred-surface border border-sacred-borderGold/30 hover:border-sacred-gold transition-all overflow-hidden p-3 flex flex-col justify-between hover:shadow-sacred-glow vedic-card vedic-shimmer"
               >
                 <div className="text-[10px] font-mono text-sacred-gold font-bold mb-1">
                   DAY #{idx + 1}

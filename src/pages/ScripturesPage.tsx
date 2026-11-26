@@ -131,7 +131,7 @@ export const ScripturesPage: React.FC = () => {
             <div
               key={item.id}
               id={item.id}
-              className={`p-6 sm:p-8 rounded-2xl bg-sacred-surface space-y-5 transition-all scroll-mt-24 sacred-isolated-card ${
+              className={`p-6 sm:p-8 rounded-2xl bg-sacred-surface space-y-5 transition-all scroll-mt-24 sacred-isolated-card vedic-card vedic-shimmer ${
                 isTarget
                   ? 'border-2 border-sacred-gold shadow-[0_0_35px_rgba(212,175,55,0.35)] ring-1 ring-sacred-goldLight/50'
                   : 'border border-sacred-borderGold/40 shadow-sacred-glow'

@@ -240,3 +240,153 @@ img, svg, video, canvas, audio, iframe, embed, object {
 .diya-pulse {
   animation: flamePulse 3.5s ease-in-out infinite;
 }
+
+/* ========================================================
+   VEDIC SACRED PAGE TRANSITIONS & AMBIENT ANIMATIONS
+======================================================== */
+
+/* Sanctum Page Enter Animation (Smooth, Noble, Scholarly) */
+.vedic-sanctum-enter {
+  animation: vedicSanctumReveal 420ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+  transform-origin: center top;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+@keyframes vedicSanctumReveal {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0) scale(0.995);
+    filter: brightness(1.05);
+  }
+  60% {
+    filter: brightness(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: brightness(1);
+  }
+}
+
+/* Vedic Mandala Veil Bloom */
+@keyframes vedicMandalaBloom {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) rotate(-6deg);
+  }
+  40% {
+    opacity: 0.22;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.08) rotate(12deg);
+  }
+}
+.animate-vedic-mandala-bloom {
+  animation: vedicMandalaBloom 650ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Vedic Veil Fade In/Out */
+@keyframes vedicVeil {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.animate-vedic-veil {
+  animation: vedicVeil 600ms ease-out forwards;
+}
+
+/* Subtle Vedic Ambient Golden Prana Float */
+@keyframes vedicFloat {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate3d(8px, -24px, 0) scale(1.3);
+    opacity: 0.7;
+  }
+}
+.animate-vedic-float {
+  animation: vedicFloat 20s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* Mantra & Sanskrit Shloka Meditative Tejas Pulse */
+@keyframes mantraTejasPulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+    border-color: rgba(212, 175, 55, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.35), 0 0 12px rgba(139, 24, 36, 0.25);
+    border-color: rgba(240, 211, 118, 0.6);
+  }
+}
+.animate-mantra-pulse {
+  animation: mantraTejasPulse 4s ease-in-out infinite;
+}
+
+/* Interactive Vedic Card: Subtle Golden Tejas Lift on Hover */
+.vedic-card {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease;
+  will-change: transform, box-shadow;
+}
+.vedic-card:hover {
+  transform: translate3d(0, -3px, 0);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7),
+              0 0 25px rgba(212, 175, 55, 0.18);
+  border-color: rgba(212, 175, 55, 0.45);
+}
+
+/* Ancient Manuscript / Scripture Shimmer Highlight */
+.vedic-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.vedic-shimmer::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 35%,
+    rgba(240, 211, 118, 0.08) 50%,
+    transparent 65%
+  );
+  transform: rotate(25deg) translate3d(-100%, 0, 0);
+  transition: transform 0.8s ease;
+  pointer-events: none;
+}
+.vedic-shimmer:hover::after {
+  transform: rotate(25deg) translate3d(100%, 0, 0);
+}
+
+/* Accessibility: Respect Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  .vedic-sanctum-enter,
+  .animate-vedic-mandala-bloom,
+  .animate-vedic-veil,
+  .animate-vedic-float,
+  .animate-mantra-pulse,
+  .vedic-card,
+  .vedic-shimmer::after {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
+

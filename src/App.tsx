@@ -7,6 +7,8 @@ import { GlobalSearchModal } from './components/GlobalSearchModal';
 import { AuthModal } from './components/AuthModal';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { KrushnaKaliEntrance } from './components/KrushnaKaliEntrance';
+import { VedicPageTransition } from './components/VedicPageTransition';
+import { VedicAmbientAura } from './components/VedicAmbientAura';
 
 // Pages
 import { HomePage } from './pages/HomePage';
@@ -55,9 +57,12 @@ export function AppContent() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#070605] text-[#f8f4eb] selection:bg-sacred-crimson selection:text-sacred-goldLight">
+    <div className="min-h-screen flex flex-col bg-[#070605] text-[#f8f4eb] selection:bg-sacred-crimson selection:text-sacred-goldLight relative">
       <ScrollToTop />
       
+      {/* Subtle Vedic Ambient Golden Prana Motes in Deep Background */}
+      <VedicAmbientAura />
+
       {/* Sri KrushnaKali Welcoming Sacred Entrance Portal & Pushpa-Vrishti Darshan */}
       {showEntrance && (
         <KrushnaKaliEntrance onEnter={handleEnterSanctum} />
@@ -69,25 +74,27 @@ export function AppContent() {
         onOpenDarshan={handleOpenDarshan}
       />
 
-      {/* Main Content Viewport */}
-      <main className="flex-1">
-        <Routes>
-          <Route path="/" element={<HomePage onOpenSearch={() => setIsSearchOpen(true)} />} />
-          <Route path="/directory" element={<DeviDirectoryPage />} />
-          <Route path="/devi/:id" element={<DeviProfilePage />} />
-          <Route path="/categories" element={<CategoriesPage />} />
-          <Route path="/categories/:slug" element={<CategoryDetailPage />} />
-          <Route path="/sadhana" element={<ProtectedRoute><DailySadhanaPage /></ProtectedRoute>} />
-          <Route path="/pratyangira" element={<PratyangiraResearchPage />} />
-          <Route path="/odisha-heritage" element={<OdishaHeritagePage />} />
-          <Route path="/shakti-peethas" element={<ShaktiPeethasPage />} />
-          <Route path="/sri-chakra" element={<SriChakraPage />} />
-          <Route path="/scriptures" element={<ScripturesPage />} />
-          <Route path="/acharas" element={<AcharasPage />} />
-          <Route path="/kashmir-shaivism" element={<KashmirShaivismPage />} />
-          {/* Fallback to Home */}
-          <Route path="*" element={<HomePage onOpenSearch={() => setIsSearchOpen(true)} />} />
-        </Routes>
+      {/* Main Content Viewport with Vedic Sacred Page Transitions */}
+      <main className="flex-1 relative z-10">
+        <VedicPageTransition>
+          <Routes>
+            <Route path="/" element={<HomePage onOpenSearch={() => setIsSearchOpen(true)} />} />
+            <Route path="/directory" element={<DeviDirectoryPage />} />
+            <Route path="/devi/:id" element={<DeviProfilePage />} />
+            <Route path="/categories" element={<CategoriesPage />} />
+            <Route path="/categories/:slug" element={<CategoryDetailPage />} />
+            <Route path="/sadhana" element={<ProtectedRoute><DailySadhanaPage /></ProtectedRoute>} />
+            <Route path="/pratyangira" element={<PratyangiraResearchPage />} />
+            <Route path="/odisha-heritage" element={<OdishaHeritagePage />} />
+            <Route path="/shakti-peethas" element={<ShaktiPeethasPage />} />
+            <Route path="/sri-chakra" element={<SriChakraPage />} />
+            <Route path="/scriptures" element={<ScripturesPage />} />
+            <Route path="/acharas" element={<AcharasPage />} />
+            <Route path="/kashmir-shaivism" element={<KashmirShaivismPage />} />
+            {/* Fallback to Home */}
+            <Route path="*" element={<HomePage onOpenSearch={() => setIsSearchOpen(true)} />} />
+          </Routes>
+        </VedicPageTransition>
       </main>
 
       {/* Global Footer */}

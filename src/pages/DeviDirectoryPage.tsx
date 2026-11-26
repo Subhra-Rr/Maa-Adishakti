@@ -490,7 +490,7 @@ const DeviCard: React.FC<{ devi: Devi }> = ({ devi }) => {
   return (
     <Link
       to={`/devi/${devi.id}`}
-      className="group rounded-xl bg-sacred-surface border border-sacred-borderGold/30 hover:border-sacred-gold transition-all duration-300 overflow-hidden flex flex-col justify-between hover:shadow-sacred-glow"
+      className="group rounded-xl bg-sacred-surface border border-sacred-borderGold/30 hover:border-sacred-gold transition-all duration-300 overflow-hidden flex flex-col justify-between hover:shadow-sacred-glow vedic-card vedic-shimmer"
     >
       {/* Image Area with authentic or Sacred Om fallback */}
       <div className="p-3 pb-0">

@@ -25,7 +25,7 @@ export const CategoriesPage: React.FC = () => {
           <Link
             key={cat.id}
             to={`/categories/${cat.slug}`}
-            className="group p-6 rounded-xl bg-sacred-surface border border-sacred-borderGold/30 hover:border-sacred-gold transition-all duration-300 hover:shadow-sacred-glow flex flex-col justify-between"
+            className="group p-6 rounded-xl bg-sacred-surface border border-sacred-borderGold/30 hover:border-sacred-gold transition-all duration-300 hover:shadow-sacred-glow flex flex-col justify-between vedic-card vedic-shimmer"
           >
             <div className="space-y-3">
               <div className="flex flex-wrap items-center justify-between gap-2">

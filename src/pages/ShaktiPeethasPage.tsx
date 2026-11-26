@@ -118,7 +118,7 @@ export const ShaktiPeethasPage: React.FC = () => {
                   });
                 }
               }}
-              className="p-5 rounded-xl bg-sacred-surface border border-sacred-borderGold/30 hover:border-sacred-gold hover:shadow-sacred-glow hover:scale-[1.01] transition-all duration-300 space-y-3 flex flex-col justify-between cursor-pointer group"
+              className="p-5 rounded-xl bg-sacred-surface border border-sacred-borderGold/30 hover:border-sacred-gold hover:shadow-sacred-glow transition-all duration-300 space-y-3 flex flex-col justify-between cursor-pointer group vedic-card vedic-shimmer"
             >
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
