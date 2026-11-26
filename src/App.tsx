@@ -6,6 +6,7 @@ import { Footer } from './components/Footer';
 import { GlobalSearchModal } from './components/GlobalSearchModal';
 import { AuthModal } from './components/AuthModal';
 import { ProtectedRoute } from './components/ProtectedRoute';
+import { KrushnaKaliEntrance } from './components/KrushnaKaliEntrance';
 
 // Pages
 import { HomePage } from './pages/HomePage';
@@ -34,13 +35,39 @@ function ScrollToTop() {
 
 export function AppContent() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [showEntrance, setShowEntrance] = useState<boolean>(() => {
+    try {
+      return !sessionStorage.getItem('krushnakali_darshan_completed');
+    } catch {
+      return true;
+    }
+  });
+
+  const handleEnterSanctum = () => {
+    try {
+      sessionStorage.setItem('krushnakali_darshan_completed', 'true');
+    } catch {}
+    setShowEntrance(false);
+  };
+
+  const handleOpenDarshan = () => {
+    setShowEntrance(true);
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-[#070605] text-[#f8f4eb] selection:bg-sacred-crimson selection:text-sacred-goldLight">
       <ScrollToTop />
       
+      {/* Sri KrushnaKali Welcoming Sacred Entrance Portal & Pushpa-Vrishti Darshan */}
+      {showEntrance && (
+        <KrushnaKaliEntrance onEnter={handleEnterSanctum} />
+      )}
+
       {/* Global Navbar */}
-      <Navbar onOpenSearch={() => setIsSearchOpen(true)} />
+      <Navbar
+        onOpenSearch={() => setIsSearchOpen(true)}
+        onOpenDarshan={handleOpenDarshan}
+      />
 
       {/* Main Content Viewport */}
       <main className="flex-1">

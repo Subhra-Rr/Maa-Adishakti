@@ -155,6 +155,11 @@ export const DEVI_IMAGE_REGISTRY: Record<string, string> = {
   'chandograghorakali': '/images/devis/chandograghora_kali.jpg',
   'mahabhairava-chandograghora-kali': '/images/devis/chandograghora_kali.jpg',
   'mahavairava-chandogra-ghora-kali': '/images/devis/chandograghora_kali.jpg',
+
+  // Sri KrushnaKali
+  'krushnakali': '/images/devis/krushnakali.jpg',
+  'krishna-kali': '/images/devis/krushnakali.jpg',
+  'krushna-kali': '/images/devis/krushnakali.jpg',
 };
 
 export function resolveDeviImagePath(explicitPath?: string, deviName?: string, altText?: string, deviId?: string): string | undefined {

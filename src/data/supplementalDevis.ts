@@ -1375,5 +1375,80 @@ Cāpekṣubāṇapāśāṅkuśadharāṁ hemavarṇikām।
         fallbackType: 'iconography_varies'
       }
     ]
+  },
+  {
+    id: 'krushnakali',
+    imagePath: '/images/devis/krushnakali.jpg',
+    primaryName: 'Sri KrushnaKali',
+    sanskritName: 'श्री कृष्णकाली महादेवी',
+    odiaName: 'ମା କୃଷ୍ଣକାଳୀ',
+    alternateNames: ['Krishna-Kali', 'Shyama-Shyam', 'Yugala Svarupa', 'Abheda Kali', 'Venu-Vadini Kali'],
+    nameMeaning: 'The sovereign non-dual manifestation uniting Sri Krishna and Maa Kali (Shyama & Shyam); revealing the transcendental identity of the primordial supreme feminine power and the divine enchanter.',
+    classification: ['Das Mahavidya', 'Kalikula', 'Puranic Shakta'],
+    traditions: ['Kalikula', 'Bengal Shakta Tradition', 'Odisha Shakta Parampara', 'Gaudiya-Tantric Samanvaya', 'Kaula Tantra'],
+    acharas: ['Dakshinachara', 'Kaulachara', 'Vamachara'],
+    shortIntro: 'The supreme non-dual composite deity who holds the divine flute (Vamshi) to her sacred lips with two hands while bearing the sword (Khadga), trident (Trishula), and severed head in her other arms. Standing in Krishna’s graceful Tribhanga posture adorned with the peacock feather (Mayura Pankha) upon her matted hair and wearing the sacred garland of skulls (Mundamala).',
+    philosophicalSignificance: 'Sri KrushnaKali is the philosophical pinnacle of the historic Shakta-Vaishnava reconciliation. As immortalized by Sadhak Ramprasad and Kamalakanta: “O Mother, sometimes You play the flute as Krishna in Vrindavan, and sometimes You dance as Kali on the cremation ground!” She proves that the ultimate Truth is neither exclusively masculine nor feminine, but one indivisible absolute consciousness (Advaita Chaitanya).',
+    theologicalPosition: 'Celebrated in the Mahakala Samhita, Tantrasara of Krishnananda Agamavagisha, Radha Tantra, and Chandi Mangala as the highest synthetic vision of divine reality.',
+    evidenceStatus: 'Primary textual evidence',
+    relatedDeviIds: ['kali', 'radha', 'durga-prakriti', 'tripura-sundari'],
+    scripturalReferences: [
+      { textName: 'Mahakala Samhita', originalLanguage: 'Sanskrit', sourceType: 'Tantra' },
+      { textName: 'Radha Tantra', originalLanguage: 'Sanskrit', sourceType: 'Tantra' },
+      { textName: 'Tantrasara (Krishnananda Agamavagisha)', originalLanguage: 'Sanskrit', sourceType: 'Tantra' }
+    ],
+    iconography: {
+      arms: 6,
+      weaponsAndAttributes: ['Vamshi (Golden Divine Flute played with two hands)', 'Khadga (Curved Sword)', 'Trishula (Trident)', 'Chinna-Munda (Severed Head)', 'Kapala / Blood Bowl'],
+      vahana: 'Simha (Lion) / Dancing on Lotus in Tribhanga',
+      mudras: ['Venu-Vadan (Playing the flute)'],
+      crownAndOrnaments: 'Peacock feather crown (Mayura-Mukuta), garland of skulls (Mundamala), red silk drape, and golden anklets (Nupura)',
+      complexion: 'Deep celestial bluish-black effulgence (Megha-Shyama)',
+      asana: 'Graceful Tribhanga stance with feet cross-legged in Krishna style',
+      symbolism: 'The flute symbolizes divine attraction and spiritual love, while the sword symbolizes discrimination destroying the ego.'
+    },
+    worshipTraditions: {
+      kula: 'Kalikula & Gaudiya Shakta Synthesis',
+      acharas: ['Dakshinachara', 'Kaulachara'],
+      regionalPractices: ['Krushnakali Puja in Bengal & Odisha', 'Diwali / Kali Puja non-dual recitations', 'Radhashtami Tantric Upasana'],
+      sampradayaNotes: 'Primary deity of devotion for the great Tantric saint Sadhak Bamakhyapa and Ramprasad Sen.'
+    },
+    spiritualSignificance: {
+      tattva: 'Abheda-Tattva (Non-duality of Divine Mother & Paramatman)',
+      shakti: 'Ananda-Shakti united with Samhara-Shakti',
+      symbolism: 'Unification of transcendent love (Bhakti) and liberating wisdom (Jnana).',
+      theologicalInterpretation: 'The Supreme Absolute beyond all sectarian dogmatism.'
+    },
+    mantraStotra: [
+      {
+        id: 'krushnakali-dhyana',
+        title: 'श्री कृष्णकाली ध्यान श्लोक (KrushnaKali Dhyana Sloka)',
+        type: 'Dhyana',
+        sanskrit: `यः श्यामः सैव कृष्णा च यः कृष्णः सैव कालिकाम्।
+वेणुं वादयते हस्ते खड्गं च परमे परे॥
+त्रिभङ्गस्थानसंस्थानां मयूरवरवाहनाम्।
+नमामि कृष्णकालीं तां सच्चिदानन्दविग्रहाम्॥`,
+        transliteration: `Yaḥ śyāmaḥ saiva kṛṣṇā ca yaḥ kṛṣṇaḥ saiva kālikām।
+Veṇuṁ vādayate haste khaḍgaṁ ca parame pare॥
+Tribhaṅgasthānasaṁsthānāṁ mayūravaravāhanām।
+Namāmi kṛṣṇakālīṁ tāṁ saccidānandavigrahām॥`,
+        meaning: 'He who is the dark-hued Lord (Shyama) is verily Mother Krishnaa, and He who is Krishna is verily Maa Kalika. Playing the celestial flute with two hands while wielding the sword of transcendence, standing in the graceful Tribhanga posture adorned with the peacock crown, I bow to Sri KrushnaKali, the embodiment of Sat-Chit-Ananda!',
+        source: 'Mahakala Samhita & Traditional Shakta Stotra',
+        isPublicDevotional: true
+      }
+    ],
+    imageAssets: [
+      {
+        id: 'krushnakali-img-1',
+        title: 'Sacred Iconography of Sri KrushnaKali',
+        imageType: 'sacred_om_fallback',
+        imagePath: '/images/devis/krushnakali.jpg',
+        attribution: 'Traditional Shakta Sacred Art Archive',
+        source: 'Traditional Shakta Iconography Repository',
+        license: 'Educational',
+        verificationStatus: 'verified',
+        fallbackType: 'iconography_varies'
+      }
+    ]
   }
 ];

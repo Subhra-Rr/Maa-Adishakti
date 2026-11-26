@@ -8,9 +8,10 @@ import {
 
 interface NavbarProps {
   onOpenSearch: () => void;
+  onOpenDarshan?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch, onOpenDarshan }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
   const [traditionsDropdownOpen, setTraditionsDropdownOpen] = useState(false);
@@ -80,9 +81,19 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
 
   return (
     <header className="sticky top-0 z-40 w-full bg-[#070605]/95 backdrop-blur-md border-b border-sacred-borderGold/30">
-      {/* Top sacred mini-banner */}
-      <div className="bg-gradient-to-r from-sacred-maroonDark via-sacred-maroon to-sacred-maroonDark text-center py-1 px-2 text-[10px] sm:text-[11px] font-devanagari text-sacred-goldLight/90 tracking-wider sm:tracking-widest border-b border-sacred-borderGold/20 truncate">
-        ॥ ॐ ऐं ह्रीं क्लीं चामुण्डायै विच्चे ॥ श्री आदिपराशक्ति तत्त्वज्ञानकोशः ॥
+      {/* Top sacred mini-banner with Sri KrushnaKali Darshan trigger */}
+      <div className="bg-gradient-to-r from-sacred-maroonDark via-sacred-maroon to-sacred-maroonDark text-center py-1 px-2 text-[10px] sm:text-[11px] font-devanagari text-sacred-goldLight/90 tracking-wider sm:tracking-widest border-b border-sacred-borderGold/20 flex items-center justify-center space-x-2">
+        <span className="truncate">॥ ॐ ऐं ह्रीं क्लीं चामुण्डायै विच्चे ॥ श्री आदिपराशक्ति तत्त्वज्ञानकोशः ॥</span>
+        {onOpenDarshan && (
+          <button
+            onClick={onOpenDarshan}
+            className="hidden sm:inline-flex items-center space-x-1 px-2.5 py-0.5 rounded-full bg-sacred-dark/80 hover:bg-sacred-dark border border-sacred-gold/60 text-sacred-goldLight text-[10px] font-bold tracking-normal transition-all hover:scale-105 shadow-sacred-glow shrink-0"
+            title="Take Divine Darshan of Sri KrushnaKali"
+          >
+            <Sparkles className="w-3 h-3 text-sacred-gold" />
+            <span>कृष्णकाली दर्शनम्</span>
+          </button>
+        )}
       </div>
 
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
@@ -301,6 +312,19 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch }) => {
           </div>
 
           <div className="pt-3 border-t border-sacred-border/60 space-y-2">
+            {onOpenDarshan && (
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenDarshan();
+                }}
+                className="w-full min-h-[44px] py-2.5 flex items-center justify-center space-x-2 bg-gradient-to-r from-sacred-maroon via-sacred-crimson to-sacred-maroon border border-sacred-gold text-sacred-goldLight rounded-lg text-sm font-bold shadow-sacred-glow active:scale-[0.99] transition-transform"
+              >
+                <Sparkles className="w-4 h-4 text-sacred-gold" />
+                <span>श्री कृष्णकाली साक्षात् दर्शनम् (Darshan)</span>
+              </button>
+            )}
+
             {!isAuthenticated ? (
               <button
                 onClick={() => {
