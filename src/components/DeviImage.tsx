@@ -101,9 +101,16 @@ export const DEVI_IMAGE_REGISTRY: Record<string, string> = {
   'nitya': '/images/devis/nitya.jpg',
   'nilapataka': '/images/devis/nilapataka.jpg',
   'vijaya-nitya': '/images/devis/vijaya_nitya.jpg',
+  'sarvamangala-nitya': '/images/devis/sarvamangala_nitya.jpg',
+  'sarvamangala': '/images/devis/sarvamangala_nitya.jpg',
+  'sarva-mangala': '/images/devis/sarvamangala_nitya.jpg',
   'jvalamalini': '/images/devis/jvalamalini.jpg',
   'chitra': '/images/devis/chitra.jpg',
   'chitra-nitya': '/images/devis/chitra.jpg',
+  'maha-nitya': '/images/devis/maha_nitya.jpg',
+  'mahanitya': '/images/devis/maha_nitya.jpg',
+  'lalita-tripura-sundari': '/images/devis/maha_nitya.jpg',
+  'lalita-tripurasundari': '/images/devis/maha_nitya.jpg',
 
   // Shodasha Matrikas (Vedic Mothers)
   'matrika-gauri': '/images/devis/matrika_gauri.jpg',

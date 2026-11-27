@@ -64,7 +64,7 @@ export const KrushnaKaliEntrance: React.FC<KrushnaKaliEntranceProps> = ({ onEnte
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-[#050403] overflow-hidden transition-all duration-700 ${
+      className={`fixed inset-0 z-[1000] flex items-center justify-center bg-[#050403] overflow-hidden transition-all duration-700 ${
         stage === 'entering' ? 'opacity-0 scale-105 pointer-events-none' : 'opacity-100 scale-100'
       }`}
       style={{
@@ -150,7 +150,7 @@ export const KrushnaKaliEntrance: React.FC<KrushnaKaliEntranceProps> = ({ onEnte
       {/* ========================================================
           4. CENTRAL DIVINE APPARITION OF SRI KRUSHNAKALI
       ======================================================== */}
-      <div className="relative z-10 flex flex-col items-center justify-center max-w-lg w-full px-4 text-center mt-6 sm:mt-4">
+      <div className="relative z-10 flex flex-col items-center justify-center max-w-lg w-full px-4 text-center mt-6 sm:mt-3">
         {/* Divine Form Container with Ethereal Vignette Mask */}
         <div
           className={`relative transition-all duration-1000 ease-out flex items-center justify-center ${
@@ -164,12 +164,12 @@ export const KrushnaKaliEntrance: React.FC<KrushnaKaliEntranceProps> = ({ onEnte
 
           {/* The Apparition Image with seamless organic mask and golden backlight */}
           <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden p-1.5 sm:p-2 bg-gradient-to-b from-sacred-gold/60 via-sacred-borderGold/40 to-[#2a080c] shadow-[0_0_50px_rgba(212,175,55,0.45)]">
-            <div className="relative rounded-xl sm:rounded-2xl overflow-hidden bg-[#070605] flex items-center justify-center max-h-[50vh] sm:max-h-[56vh] md:max-h-[60vh]">
+            <div className="relative rounded-xl sm:rounded-2xl overflow-hidden bg-[#070605] flex items-center justify-center max-h-[34vh] sm:max-h-[38vh] md:max-h-[42vh]">
               {/* Ethereal edge feathering vignette */}
               <img
                 src="/images/devis/krushnakali.jpg"
                 alt="Sri KrushnaKali - Divine Non-Dual Manifestation of Adi Parashakti"
-                className="max-h-[48vh] sm:max-h-[54vh] md:max-h-[58vh] w-auto object-contain drop-shadow-[0_0_25px_rgba(240,211,118,0.5)] select-none pointer-events-none transition-transform duration-700 hover:scale-105"
+                className="max-h-[32vh] sm:max-h-[36vh] md:max-h-[40vh] w-auto object-contain drop-shadow-[0_0_25px_rgba(240,211,118,0.5)] select-none pointer-events-none transition-transform duration-700 hover:scale-105"
               />
 
               {/* Shimmer light beam across the divine form */}
@@ -186,25 +186,25 @@ export const KrushnaKaliEntrance: React.FC<KrushnaKaliEntranceProps> = ({ onEnte
             5. SACRED TITLES & NON-DUAL PHILOSOPHY
         ======================================================== */}
         <div
-          className={`mt-4 sm:mt-5 space-y-1.5 transition-all duration-700 delay-300 ${
+          className={`mt-3 sm:mt-4 space-y-1 transition-all duration-700 delay-300 ${
             stage === 'emerging' ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
           }`}
         >
           <div className="flex items-center justify-center space-x-2">
-            <h1 className="font-cinzel text-2xl sm:text-3xl lg:text-4xl font-extrabold gold-gradient-text tracking-wider">
+            <h1 className="font-cinzel text-xl sm:text-2xl lg:text-3xl font-extrabold gold-gradient-text tracking-wider">
               Sri KrushnaKali
             </h1>
           </div>
 
-          <div className="font-devanagari text-sm sm:text-base text-sacred-goldLight font-bold">
+          <div className="font-devanagari text-xs sm:text-sm text-sacred-goldLight font-bold">
             ॥ श्री कृष्णकाली साक्षात् महास्वरूपम् ॥
           </div>
 
-          <p className="text-xs sm:text-sm text-sacred-ivoryDim font-cormorant text-base sm:text-lg leading-snug max-w-md mx-auto line-clamp-2 sm:line-clamp-none">
+          <p className="text-xs sm:text-sm text-sacred-ivoryDim font-cormorant text-sm sm:text-base leading-snug max-w-md mx-auto line-clamp-2 sm:line-clamp-none">
             The Supreme Non-Dual Revelation where Lord Krishna and Maa Mahakali reveal their undivided essence — uniting the cosmic flute with the divine sword.
           </p>
 
-          <div className="font-devanagari text-[11px] sm:text-xs text-sacred-goldDark italic pt-0.5">
+          <div className="font-devanagari text-[10px] sm:text-xs text-sacred-goldDark italic pt-0.5">
             यः श्यामः सैव कृष्णा च यः कृष्णः सैव कालिकाम्। (One Supreme Consciousness)
           </div>
         </div>
@@ -213,13 +213,13 @@ export const KrushnaKaliEntrance: React.FC<KrushnaKaliEntranceProps> = ({ onEnte
             6. "ENTER SANCTUM" ACTION BUTTON
         ======================================================== */}
         <div
-          className={`mt-4 sm:mt-5 transition-all duration-700 delay-500 w-full max-w-xs ${
+          className={`mt-3 sm:mt-4 transition-all duration-700 delay-500 w-full max-w-xs ${
             stage === 'emerging' ? 'opacity-0 scale-90' : 'opacity-100 scale-100'
           }`}
         >
           <button
             onClick={handleEnterClick}
-            className="w-full group relative overflow-hidden py-3 sm:py-3.5 px-6 rounded-xl bg-gradient-to-r from-sacred-maroon via-sacred-crimson to-sacred-maroon hover:from-amber-700 hover:via-sacred-maroon hover:to-amber-800 border-2 border-sacred-gold text-sacred-goldLight hover:text-white font-cinzel font-bold text-sm sm:text-base uppercase tracking-widest shadow-[0_0_30px_rgba(212,175,55,0.4)] hover:shadow-[0_0_45px_rgba(212,175,55,0.7)] transition-all transform active:scale-95 flex items-center justify-center space-x-2.5"
+            className="w-full group relative overflow-hidden py-2.5 sm:py-3 px-6 rounded-xl bg-gradient-to-r from-sacred-maroon via-sacred-crimson to-sacred-maroon hover:from-amber-700 hover:via-sacred-maroon hover:to-amber-800 border-2 border-sacred-gold text-sacred-goldLight hover:text-white font-cinzel font-bold text-xs sm:text-sm uppercase tracking-widest shadow-[0_0_30px_rgba(212,175,55,0.4)] hover:shadow-[0_0_45px_rgba(212,175,55,0.7)] transition-all transform active:scale-95 flex items-center justify-center space-x-2.5"
           >
             {/* Shimmer sheen over button */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
@@ -229,7 +229,7 @@ export const KrushnaKaliEntrance: React.FC<KrushnaKaliEntranceProps> = ({ onEnte
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
 
-          <div className="text-[10px] sm:text-[11px] text-sacred-ivoryMuted font-mono mt-2">
+          <div className="text-[10px] sm:text-[11px] text-sacred-ivoryMuted font-mono mt-1.5">
             Touch to enter Shakta Tattva Encyclopedia
           </div>
         </div>
