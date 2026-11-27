@@ -167,6 +167,16 @@ export const DEVI_IMAGE_REGISTRY: Record<string, string> = {
   'krushnakali': '/images/devis/krushnakali.jpg',
   'krishna-kali': '/images/devis/krushnakali.jpg',
   'krushna-kali': '/images/devis/krushnakali.jpg',
+
+  // Kamakshi & Kamakhya (Supreme Peetha & Kula Manifestations)
+  'kamakshi': '/images/devis/kamakshi.jpg',
+  'kanchi-kamakshi': '/images/devis/kamakshi.jpg',
+  'kamakshi-amman': '/images/devis/kamakshi.jpg',
+  'kamakshi-devi': '/images/devis/kamakshi.jpg',
+  'kamakhya': '/images/devis/kamakhya.jpg',
+  'kamakhya-devi': '/images/devis/kamakhya.jpg',
+  'adi-kamakhya': '/images/devis/kamakhya.jpg',
+  'kamarupa-devi': '/images/devis/kamakhya.jpg',
 };
 
 export function resolveDeviImagePath(explicitPath?: string, deviName?: string, altText?: string, deviId?: string): string | undefined {

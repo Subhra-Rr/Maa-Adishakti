@@ -1293,12 +1293,12 @@ Kāmān dehi me nityaṁ kāmeśvari namo'stu te॥`,
       {
         id: 'kamakhya-img-1',
         title: 'Traditional Iconography of Maa Kamakhya',
-        imageType: 'sacred_om_fallback',
+        imagePath: '/images/devis/kamakhya.jpg',
+        imageType: 'traditional_painting',
         attribution: 'Kamakhya Devalaya Sacred Archives, Assam',
         source: 'Traditional Shakta Iconography Repository',
         license: 'Educational',
-        verificationStatus: 'verified',
-        fallbackType: 'iconography_varies'
+        verificationStatus: 'verified'
       }
     ]
   },
@@ -1367,12 +1367,12 @@ Cāpekṣubāṇapāśāṅkuśadharāṁ hemavarṇikām।
       {
         id: 'kamakshi-img-1',
         title: 'Iconography of Maa Kamakshi of Kanchi',
-        imageType: 'sacred_om_fallback',
+        imagePath: '/images/devis/kamakshi.jpg',
+        imageType: 'temple_sculpture',
         attribution: 'Kanchi Kamakshi Ambal Devasthanam Archives',
         source: 'Traditional Shakta Iconography Repository',
         license: 'Educational',
-        verificationStatus: 'verified',
-        fallbackType: 'iconography_varies'
+        verificationStatus: 'verified'
       }
     ]
   },
