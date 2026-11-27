@@ -146,11 +146,17 @@ export const OdishaHeritagePage: React.FC = () => {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs sm:text-sm text-sacred-ivoryDim font-cormorant text-base sm:text-lg">
           <div className="p-4 rounded-lg bg-sacred-dark/70 border border-sacred-border space-y-3">
-            <div className="w-full h-44 rounded-lg overflow-hidden border border-sacred-borderGold/30">
+            <div className="relative w-full h-44 rounded-lg overflow-hidden border border-sacred-borderGold/30 bg-sacred-dark flex items-center justify-center">
+              <img
+                src="/images/temples/hirapur_yogini.jpg"
+                alt=""
+                aria-hidden="true"
+                className="absolute inset-0 w-full h-full object-cover blur-sm opacity-30 scale-110 pointer-events-none"
+              />
               <img
                 src="/images/temples/hirapur_yogini.jpg"
                 alt="Chausath Yogini Temple, Hirapur, Odisha"
-                className="w-full h-full object-cover"
+                className="relative z-10 max-w-full max-h-full w-auto h-auto object-contain object-center"
               />
             </div>
             <h3 className="font-cinzel text-base font-bold text-sacred-goldLight">
