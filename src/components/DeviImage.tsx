@@ -356,7 +356,7 @@ export const DeviImage: React.FC<DeviImageProps> = ({
         decoding="async"
         onLoad={handleImageLoad}
         onError={handleImageError}
-        className={`relative z-10 max-w-full max-h-full w-auto h-auto object-contain object-center p-1 transition-all duration-300 group-hover:scale-[1.03] ${
+        className={`relative z-10 w-full h-full object-contain object-center p-1.5 transition-all duration-300 group-hover:scale-[1.03] ${
           isLoaded ? 'opacity-100' : 'opacity-0'
         }`}
       />
