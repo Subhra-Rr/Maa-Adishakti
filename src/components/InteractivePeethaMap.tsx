@@ -110,6 +110,15 @@ export const InteractivePeethaMap: React.FC<InteractivePeethaMapProps> = ({ init
               </svg>
             </div>
 
+            {/* Active Selected Peetha Banner - Centered, 100% visible and responsive, never clipped */}
+            <div className="absolute top-2.5 inset-x-2 z-30 flex items-center justify-center pointer-events-none px-2">
+              <div className="max-w-full px-3 py-1 rounded-full bg-sacred-dark/95 border border-sacred-gold/70 text-sacred-goldLight text-[11px] sm:text-xs font-semibold shadow-2xl flex items-center space-x-1.5 truncate backdrop-blur-md">
+                <span className="w-1.5 h-1.5 rounded-full bg-sacred-gold animate-ping shrink-0" />
+                <span className="truncate">{selectedPeetha.name}</span>
+                <span className="text-sacred-goldDark hidden sm:inline">• {selectedPeetha.devi}</span>
+              </div>
+            </div>
+
             {/* Pins Container positioned relatively based on rough normalized lat/long coords */}
             <div className="relative w-full h-full">
               {filteredPeethas.map((peetha) => {
@@ -119,6 +128,15 @@ export const InteractivePeethaMap: React.FC<InteractivePeethaMapProps> = ({ init
                 const leftPercent = Math.max(8, Math.min(92, ((peetha.coordinates.lng - 65) / (95 - 65)) * 88));
 
                 const isAdi = peetha.classification === 'Adi Shakti Peetha';
+
+                // Intelligent boundary-aware alignment so tooltip never clips outside map container on phones
+                const vAlignClass = topPercent < 22 ? 'top-full mt-2' : 'bottom-full mb-2';
+                const hAlignClass =
+                  leftPercent < 32
+                    ? 'left-0 translate-x-0'
+                    : leftPercent > 68
+                    ? 'right-0 translate-x-0'
+                    : 'left-1/2 -translate-x-1/2';
 
                 return (
                   <button
@@ -141,8 +159,10 @@ export const InteractivePeethaMap: React.FC<InteractivePeethaMapProps> = ({ init
                     >
                       <MapPin className="w-4 h-4" />
                     </div>
-                    {/* Tooltip on hover */}
-                    <span className="absolute left-1/2 -translate-x-1/2 bottom-full mb-1.5 hidden group-hover:block whitespace-nowrap px-2 py-0.5 rounded bg-sacred-dark text-[10px] text-sacred-goldLight border border-sacred-borderGold/60 shadow-lg pointer-events-none">
+                    {/* Tooltip on hover / active with boundary-aware containment */}
+                    <span
+                      className={`absolute pointer-events-none z-30 hidden sm:group-hover:block w-max max-w-[160px] sm:max-w-[200px] px-2.5 py-1 rounded-md bg-sacred-dark/95 text-[10px] text-sacred-goldLight font-semibold border border-sacred-gold/60 shadow-2xl backdrop-blur-md leading-tight text-center break-words ${vAlignClass} ${hAlignClass}`}
+                    >
                       {peetha.name}
                     </span>
                   </button>

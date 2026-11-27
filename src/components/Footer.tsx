@@ -140,12 +140,12 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <Link to="/pratyangira" className="text-amber-300 hover:text-white font-medium flex items-center space-x-1">
+                <Link to="/pratyangira" className="hover:text-sacred-gold transition-colors">
                   <span>Maa Pratyangira Research</span>
                 </Link>
               </li>
               <li>
-                <Link to="/odisha-heritage" className="text-amber-300 hover:text-white font-medium flex items-center space-x-1">
+                <Link to="/odisha-heritage" className="hover:text-sacred-gold transition-colors">
                   <span>Odisha Shakta Parampara</span>
                 </Link>
               </li>

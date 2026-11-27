@@ -47,13 +47,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch, onOpenDarshan }) =
   const primaryLinks = [
     { label: 'Directory', path: '/directory' },
     { label: 'Categories', path: '/categories' },
-    { label: 'Daily Sadhana', path: '/sadhana', highlight: true },
+    { label: 'Daily Sadhana', path: '/sadhana' },
     { label: 'Sri Chakra', path: '/sri-chakra' }
   ];
 
   // Secondary rich lineage portals housed in the "Traditions & Shrines" dropdown
   const specializedPortals = [
-    { label: 'Maa Pratyangira', path: '/pratyangira', desc: 'Sovereign protective Vidya & temple research', icon: Shield, highlight: true },
+    { label: 'Maa Pratyangira', path: '/pratyangira', desc: 'Sovereign protective Vidya & temple research', icon: Shield },
     { label: 'Odisha Shakta Parampara', path: '/odisha-heritage', desc: 'Vimala, Tara Tarini, Biraja & 64 Yoginis', icon: Compass },
     { label: 'Shakti Peethas Atlas', path: '/shakti-peethas', desc: '51 consecrated shrines & divine limbs', icon: Flame },
     { label: 'Scriptures & Agamas', path: '/scriptures', desc: 'Tantras, Puranas, Stotras & commentaries', icon: BookOpen },
@@ -123,8 +123,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch, onOpenDarshan }) =
                   className={`px-3 py-1.5 rounded-md text-xs font-medium tracking-wide whitespace-nowrap transition-all ${
                     active
                       ? 'text-sacred-goldLight bg-sacred-maroon/70 border border-sacred-gold/40 shadow-sacred-glow'
-                      : link.highlight
-                      ? 'text-amber-300 hover:text-white bg-amber-950/30 border border-amber-600/30 hover:border-amber-500/60'
                       : 'text-sacred-ivoryDim hover:text-sacred-goldLight hover:bg-sacred-surfaceLight/50'
                   }`}
                 >
@@ -295,8 +293,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch, onOpenDarshan }) =
                   className={`flex items-center min-h-[44px] px-3.5 py-2.5 rounded-lg text-sm font-medium tracking-wide transition-all ${
                     active
                       ? 'text-sacred-goldLight bg-sacred-maroon border border-sacred-gold/40 shadow-sacred-glow font-bold'
-                      : link.highlight
-                      ? 'text-amber-300 bg-amber-950/40 border border-amber-600/30'
                       : 'text-sacred-ivoryDim hover:text-sacred-gold hover:bg-sacred-surface active:bg-sacred-surface'
                   }`}
                 >

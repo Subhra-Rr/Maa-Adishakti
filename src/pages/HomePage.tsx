@@ -97,9 +97,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onOpenSearch }) => {
               <span>•</span>
               <button type="button" onClick={() => navigate('/devi/tripura-sundari')} className="hover:text-sacred-gold underline">Tripura Sundari</button>
               <span>•</span>
-              <button type="button" onClick={() => navigate('/pratyangira')} className="text-amber-300 hover:text-white underline font-medium">Maa Pratyangira</button>
+              <button type="button" onClick={() => navigate('/pratyangira')} className="hover:text-sacred-gold underline">Maa Pratyangira</button>
               <span>•</span>
-              <button type="button" onClick={() => navigate('/odisha-heritage')} className="text-amber-300 hover:text-white underline font-medium">Odisha Shakta</button>
+              <button type="button" onClick={() => navigate('/odisha-heritage')} className="hover:text-sacred-gold underline">Odisha Shakta</button>
               <span>•</span>
               <button type="button" onClick={() => navigate('/categories/chausath-yoginis')} className="hover:text-sacred-gold underline">64 Yoginis</button>
             </div>
