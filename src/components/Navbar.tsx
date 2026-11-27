@@ -19,16 +19,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch, onOpenDarshan }) =
   const location = useLocation();
   const { user, isAuthenticated, logout, openAuthModal } = useAuth();
 
-  // Lock body scroll when mobile navigation drawer is active
+  // Lock body scroll safely when mobile navigation drawer is active without breaking sticky positioning
   useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
+    // We intentionally avoid document.body.style.overflow = 'hidden' because modifying body overflow
+    // while scrolled breaks position: sticky across browsers, causing the header and menu button to disappear.
+    // overscroll-contain on the drawer handles scroll isolation cleanly.
   }, [mobileMenuOpen]);
 
   // Close menus on route change or outside click
@@ -80,7 +75,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch, onOpenDarshan }) =
   const isTraditionActive = specializedPortals.some(p => isActive(p.path));
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-[#070605]/95 backdrop-blur-md border-b border-sacred-borderGold/30">
+    <header className="sticky top-0 z-50 w-full bg-[#070605]/95 backdrop-blur-md border-b border-sacred-borderGold/30 isolate">
       {/* Top sacred mini-banner with Sri KrushnaKali Darshan trigger */}
       <div className="bg-gradient-to-r from-sacred-maroonDark via-sacred-maroon to-sacred-maroonDark text-center py-1 px-2 text-[10px] sm:text-[11px] font-devanagari text-sacred-goldLight/90 tracking-wider sm:tracking-widest border-b border-sacred-borderGold/20 flex items-center justify-center space-x-2">
         <span className="truncate">॥ ॐ ऐं ह्रीं क्लीं चामुण्डायै विच्चे ॥ श्री आदिपराशक्ति तत्त्वज्ञानकोशः ॥</span>
@@ -283,7 +278,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch, onOpenDarshan }) =
 
       {/* Mobile & Tablet Navigation Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-sacred-dark/98 backdrop-blur-2xl border-b border-sacred-borderGold/40 px-4 pt-3 pb-8 pb-safe space-y-2 max-h-[calc(100dvh-5rem)] overflow-y-auto shadow-2xl animate-in slide-in-from-top-2 duration-200">
+        <div className="lg:hidden bg-sacred-dark/98 backdrop-blur-2xl border-b border-sacred-borderGold/40 px-4 pt-3 pb-8 pb-safe space-y-2 max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain shadow-2xl animate-in slide-in-from-top-2 duration-200">
           <div className="pb-2 border-b border-sacred-border/60 text-xs font-devanagari text-sacred-goldLight/70 flex flex-wrap items-center justify-between gap-2">
             <span className="shrink-0">विभागावली (Encyclopedia Sections)</span>
             {user && <span className="font-mono text-[10px] text-sacred-gold bg-sacred-maroon/60 px-2 py-0.5 rounded border border-sacred-gold/30 truncate max-w-[180px]">Logged in as {user.name}</span>}

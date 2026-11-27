@@ -166,17 +166,33 @@ export function resolveDeviImagePath(explicitPath?: string, deviName?: string, a
   if (explicitPath && explicitPath.trim() !== '') {
     return explicitPath;
   }
-  
+
+  // Para Devi / Para Shakti is the supreme formless Gupta Devi (Anuttara)
+  // She must strictly retain the sacred classical Om picture representation without any anthropomorphic portrait.
+  const searchTerms = [deviId, deviName, altText].filter(Boolean) as string[];
+  for (const term of searchTerms) {
+    const clean = term.toLowerCase().replace(/[^a-z0-9]/g, '');
+    if (
+      clean === 'para' ||
+      clean === 'paradevi' ||
+      clean === 'parashakti' ||
+      clean === 'parasakti' ||
+      clean === 'parashaktidevi' ||
+      clean === 'chakrayakini'
+    ) {
+      return undefined;
+    }
+  }
+
   if (deviId && DEVI_IMAGE_REGISTRY[deviId]) {
     return DEVI_IMAGE_REGISTRY[deviId];
   }
 
-  const searchTerms = [deviId, deviName, altText].filter(Boolean) as string[];
   for (const term of searchTerms) {
     const clean = term.toLowerCase().replace(/[^a-z0-9]/g, '');
     for (const [key, path] of Object.entries(DEVI_IMAGE_REGISTRY)) {
       const cleanKey = key.toLowerCase().replace(/[^a-z0-9]/g, '');
-      if (clean.includes(cleanKey) || cleanKey.includes(clean)) {
+      if (clean === cleanKey || clean.startsWith(cleanKey)) {
         return path;
       }
     }

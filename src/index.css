@@ -107,7 +107,7 @@ body {
 }
 
 /* GPU Compositing Layer Isolation & Anti-Flicker Protection */
-main, section, footer {
+section, footer {
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
   backface-visibility: hidden;

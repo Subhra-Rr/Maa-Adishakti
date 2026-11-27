@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
-import { X, BookOpen, Sparkles, Compass, Shield, ExternalLink, Flame } from 'lucide-react';
-import { SacredOmFallback } from './SacredOmFallback';
+import { X, Sparkles, Shield, ExternalLink, MapPin } from 'lucide-react';
 import { allDevis } from '../data';
 
 export interface TopicBriefEntity {
@@ -43,36 +43,36 @@ export const TopicDossierModal: React.FC<TopicDossierModalProps> = ({ entity, on
     };
     if (entity) {
       window.addEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'hidden';
     }
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'unset';
     };
   }, [entity, onClose]);
 
-  if (!entity) return null;
+  if (!entity || typeof document === 'undefined') return null;
 
-  return (
+  const matchingDevi = entity.deviId ? allDevis.find(d => d.id === entity.deviId) : null;
+
+  const modalContent = (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 md:p-8 bg-black/85 backdrop-blur-md transition-all duration-300 animate-in fade-in overflow-y-auto"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm transition-all duration-200 animate-in fade-in"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
     >
       <div
-        className="relative w-[calc(100vw-1.5rem)] sm:w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl bg-gradient-to-b from-[#1c080d] via-[#100709] to-[#0a0507] border-2 border-sacred-borderGold/80 shadow-2xl shadow-amber-950/60 p-4 sm:p-7 space-y-5 animate-in zoom-in-95 duration-200 my-auto min-w-0"
+        className="relative w-full max-w-lg rounded-2xl bg-gradient-to-b from-[#1e080e] via-[#120709] to-[#0a0507] border-2 border-sacred-borderGold/90 shadow-[0_0_50px_rgba(0,0,0,0.95),0_0_30px_rgba(212,175,55,0.25)] p-4 sm:p-5 space-y-2.5 my-auto min-w-0 animate-in zoom-in-95 duration-150"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Header Bar */}
-        <div className="flex items-start justify-between gap-2 border-b border-sacred-borderGold/30 pb-3 min-w-0">
-          <div className="space-y-1 min-w-0 pr-2">
-            <span className="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full bg-sacred-dark border border-sacred-gold/40 text-[10px] sm:text-[11px] font-mono font-bold text-sacred-goldLight max-w-full truncate">
+        <div className="flex items-start justify-between gap-2 border-b border-sacred-borderGold/30 pb-2 min-w-0">
+          <div className="space-y-0.5 min-w-0 pr-2">
+            <span className="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full bg-sacred-dark border border-sacred-gold/50 text-[10px] sm:text-[11px] font-mono font-bold text-sacred-goldLight max-w-full truncate">
               <Sparkles className="w-3 h-3 text-sacred-gold shrink-0" />
               <span className="truncate">{entity.categoryBadge}</span>
             </span>
             {entity.subtitle && (
-              <p className="text-[11px] sm:text-xs text-sacred-ivoryMuted font-mono pt-0.5 break-words">
+              <p className="text-[10px] sm:text-[11px] text-sacred-ivoryMuted font-mono truncate">
                 {entity.subtitle}
               </p>
             )}
@@ -80,147 +80,92 @@ export const TopicDossierModal: React.FC<TopicDossierModalProps> = ({ entity, on
 
           <button
             onClick={onClose}
-            className="p-1.5 shrink-0 rounded-full bg-sacred-dark/90 hover:bg-sacred-maroon border border-sacred-borderGold/40 text-sacred-ivory hover:text-white transition-colors"
+            className="p-1 shrink-0 rounded-full bg-sacred-dark hover:bg-sacred-maroon border border-sacred-borderGold/60 text-sacred-goldLight hover:text-white transition-all shadow-sm"
             title="Close dossier (Esc)"
             aria-label="Close dossier"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Title and Devanagari Calligraphy */}
-        <div className="space-y-1.5 min-w-0">
-          {entity.sanskritName && (
-            <div className="font-devanagari text-xl sm:text-2xl md:text-3xl font-bold text-sacred-goldLight drop-shadow-[0_0_12px_rgba(212,175,55,0.4)] leading-relaxed pt-1 pb-1 break-words">
-              {entity.sanskritName}
+        <div className="space-y-0.5 min-w-0">
+          {(matchingDevi?.sanskritName || entity.sanskritName) && (
+            <div className="font-devanagari text-base sm:text-lg font-bold text-sacred-goldLight drop-shadow-[0_0_10px_rgba(212,175,55,0.4)] leading-tight truncate">
+              {matchingDevi?.sanskritName || entity.sanskritName}
             </div>
           )}
-          <h2 className="font-cinzel text-lg sm:text-2xl md:text-3xl font-extrabold text-sacred-ivory break-words">
+          <h2 className="font-cinzel text-base sm:text-xl font-extrabold text-sacred-ivory leading-tight truncate">
             {entity.name}
           </h2>
         </div>
 
-        {/* Visual Embellishment / Sacred Iconography */}
-        <div className="w-full h-28 sm:h-36 rounded-xl overflow-hidden border border-sacred-borderGold/30 bg-sacred-dark">
-          <SacredOmFallback
-            deviName={entity.name}
-            sanskritName={entity.sanskritName}
-            fallbackType="verified"
-            size="md"
-          />
-        </div>
-
-        {/* Key Attributes & Iconographic Parameters Grid */}
+        {/* Core Attributes Grid (Compact, dense, immediately visible without scrolling) */}
         {entity.attributes && entity.attributes.length > 0 && (
-          <div className="space-y-2 min-w-0">
-            <h4 className="font-cinzel text-xs uppercase tracking-wider font-bold text-sacred-goldDark flex items-center space-x-1.5">
-              <Shield className="w-3.5 h-3.5 text-sacred-gold shrink-0" />
-              <span>Sacred Iconographic & Doctrinal Attributes</span>
-            </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 min-w-0">
-              {entity.attributes.map((attr, idx) => (
-                <div
-                  key={idx}
-                  className="p-2.5 rounded-lg bg-sacred-dark/80 border border-sacred-borderGold/25 hover:border-sacred-gold/50 transition-colors min-w-0 break-words"
-                >
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-sacred-gold block mb-0.5">
-                    {attr.label}
-                  </span>
-                  <span className="text-xs text-sacred-ivory leading-snug">
-                    {attr.value}
-                  </span>
-                </div>
-              ))}
-            </div>
+          <div className="grid grid-cols-2 gap-1.5 sm:gap-2 min-w-0">
+            {entity.attributes.slice(0, 6).map((attr, idx) => (
+              <div
+                key={idx}
+                className="p-1.5 sm:p-2 rounded-lg bg-sacred-dark/90 border border-sacred-borderGold/30 hover:border-sacred-gold/60 transition-colors min-w-0"
+              >
+                <span className="text-[9px] font-bold uppercase tracking-wider text-sacred-gold block truncate">
+                  {attr.label}
+                </span>
+                <span className="text-[11px] sm:text-xs text-sacred-ivory font-medium leading-tight block truncate">
+                  {attr.value}
+                </span>
+              </div>
+            ))}
           </div>
         )}
 
-        {/* In-depth Descriptive Brief */}
-        <div className="space-y-1.5 min-w-0">
-          <h4 className="font-cinzel text-xs uppercase tracking-wider font-bold text-sacred-goldDark flex items-center space-x-1.5">
-            <Compass className="w-3.5 h-3.5 text-sacred-gold shrink-0" />
-            <span>Sacred Form & Detailed Dossier</span>
-          </h4>
-          <p className="text-xs sm:text-sm text-sacred-ivoryDim font-cormorant text-base sm:text-lg leading-relaxed bg-sacred-dark/50 p-3.5 sm:p-4 rounded-xl border border-sacred-border/60 break-words">
-            {entity.description}
+        {/* Concise Description / Historical Context */}
+        <div className="p-2.5 sm:p-3 rounded-xl bg-sacred-dark/70 border border-sacred-border/70 space-y-1 min-w-0">
+          <div className="flex items-center space-x-1.5 text-sacred-goldDark text-[10px] font-bold uppercase tracking-wider">
+            <Shield className="w-3 h-3 text-sacred-gold shrink-0" />
+            <span>Sacred Significance</span>
+          </div>
+          <p className="text-xs text-sacred-ivoryDim font-cormorant leading-relaxed line-clamp-3">
+            {entity.esotericSignificance || entity.description}
           </p>
         </div>
 
-        {/* Esoteric & Philosophical Significance */}
-        {entity.esotericSignificance && (
-          <div className="p-3.5 sm:p-4 rounded-xl bg-gradient-to-r from-sacred-maroon/60 via-sacred-dark to-sacred-dark border border-sacred-gold/40 space-y-1 min-w-0">
-            <h4 className="font-cinzel text-xs uppercase tracking-wider font-bold text-sacred-goldLight flex items-center space-x-1.5">
-              <Flame className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-              <span>Esoteric & Tantric Significance</span>
-            </h4>
-            <p className="text-xs sm:text-sm text-sacred-ivoryDim font-cormorant text-base sm:text-lg leading-relaxed break-words">
-              {entity.esotericSignificance}
-            </p>
-          </div>
-        )}
-
-        {/* Sacred Sloka or Mantra Section (if present) */}
-        {entity.mantraOrSloka && entity.mantraOrSloka.sanskrit && (
-          <div className="p-3.5 sm:p-4 rounded-xl bg-sacred-dark/90 border border-sacred-gold/30 space-y-1.5 text-center min-w-0">
-            {entity.mantraOrSloka.title && (
-              <span className="text-[10px] uppercase font-bold text-sacred-gold tracking-widest block">
-                {entity.mantraOrSloka.title}
-              </span>
-            )}
-            <div className="font-devanagari text-xs sm:text-base text-sacred-goldLight leading-relaxed pt-0.5 break-words">
-              {entity.mantraOrSloka.sanskrit}
-            </div>
-            {entity.mantraOrSloka.meaning && (
-              <p className="text-[11px] sm:text-xs text-sacred-ivoryMuted font-cormorant text-sm italic pt-1 border-t border-sacred-border/40 break-words">
-                {entity.mantraOrSloka.meaning}
-              </p>
-            )}
-          </div>
-        )}
-
-        {/* Scriptural Foundations */}
+        {/* Scriptural Authority Citation */}
         {entity.scripturalSource && (
-          <div className="pt-2.5 border-t border-sacred-borderGold/30 flex items-start space-x-2 text-xs text-sacred-ivoryMuted min-w-0">
-            <BookOpen className="w-4 h-4 text-sacred-gold shrink-0 mt-0.5" />
-            <div className="min-w-0 break-words">
-              <strong className="text-sacred-goldDark uppercase text-[10px] block">
-                Scriptural Foundations & Classical Citations:
-              </strong>
-              <span>{entity.scripturalSource}</span>
-            </div>
+          <div className="text-[10px] text-sacred-ivoryMuted font-mono px-1 line-clamp-1 leading-tight">
+            <strong className="text-sacred-goldDark uppercase">Scripture: </strong>
+            <span>{entity.scripturalSource}</span>
           </div>
         )}
 
         {/* Action Controls Footer */}
-        <div className="pt-3 border-t border-sacred-borderGold/30 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
-          {(() => {
-            const matchingDevi = entity.deviId ? allDevis.find(d => d.id === entity.deviId) : null;
-            if (matchingDevi) {
-              return (
-                <Link
-                  to={`/devi/${matchingDevi.id}`}
-                  className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg bg-gradient-to-r from-sacred-maroon to-sacred-dark hover:from-amber-700 hover:to-sacred-maroon border border-sacred-gold text-sacred-goldLight hover:text-white text-xs font-bold uppercase tracking-wider flex items-center justify-center space-x-2 transition-all shadow-md text-center"
-                >
-                  <span>Explore Dedicated Profile & Mantras</span>
-                  <ExternalLink className="w-3.5 h-3.5 shrink-0" />
-                </Link>
-              );
-            }
-            return (
-              <div className="text-[11px] text-sacred-ivoryMuted font-mono text-center sm:text-left">
-                Classical Traditional Documentation
-              </div>
-            );
-          })()}
+        <div className="pt-2 border-t border-sacred-borderGold/30 flex items-center justify-between gap-2">
+          {matchingDevi ? (
+            <Link
+              to={`/devi/${matchingDevi.id}`}
+              onClick={onClose}
+              className="px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-lg bg-gradient-to-r from-sacred-maroon via-sacred-crimson to-sacred-maroon hover:from-amber-700 hover:to-sacred-maroon border border-sacred-gold text-sacred-goldLight hover:text-white text-xs font-bold uppercase tracking-wider flex items-center space-x-1.5 transition-all shadow-md shrink-0"
+            >
+              <span>Visit Devi Profile</span>
+              <ExternalLink className="w-3.5 h-3.5 shrink-0" />
+            </Link>
+          ) : (
+            <div className="text-[11px] text-sacred-goldDark font-mono flex items-center space-x-1 truncate">
+              <MapPin className="w-3 h-3 text-sacred-gold shrink-0" />
+              <span className="truncate">Consecrated Shakti-Sthana</span>
+            </div>
+          )}
 
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-lg bg-sacred-dark border border-sacred-border hover:border-sacred-gold text-xs text-sacred-ivory hover:text-sacred-goldLight transition-colors text-center"
+            className="px-4 py-1.5 sm:py-2 rounded-lg bg-sacred-dark hover:bg-sacred-surface border border-sacred-border hover:border-sacred-gold text-xs text-sacred-ivory hover:text-sacred-goldLight transition-colors shrink-0"
           >
-            Close Dossier
+            Close
           </button>
         </div>
       </div>
     </div>
   );
+
+  return createPortal(modalContent, document.body);
 };
