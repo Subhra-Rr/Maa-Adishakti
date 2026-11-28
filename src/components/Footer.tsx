@@ -13,8 +13,12 @@ export const Footer: React.FC = () => {
           {/* Column 1: Identity & Purpose */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-full border border-sacred-gold/60 bg-sacred-maroon flex items-center justify-center shadow-sacred-glow">
-                <span className="font-devanagari text-xl font-bold gold-gradient-text">ॐ</span>
+              <div className="relative w-10 h-10 rounded-full overflow-hidden border border-sacred-gold/70 bg-[#070605] shadow-sacred-glow">
+                <img
+                  src="/logo.jpg"
+                  alt="Shakta Tattva Logo"
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div>
                 <h3 className="font-cinzel text-lg font-bold gold-gradient-text tracking-wider">

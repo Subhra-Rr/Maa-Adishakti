@@ -95,10 +95,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSearch, onOpenDarshan }) =
         <div className="flex items-center justify-between h-16 sm:h-20 gap-3">
           {/* Logo & Identity */}
           <Link to="/" className="flex items-center space-x-2 sm:space-x-3 group text-left min-w-0 shrink">
-            <div className="w-9 h-9 sm:w-12 sm:h-12 shrink-0 rounded-full border border-sacred-gold/60 bg-gradient-to-br from-[#2a080c] to-[#070605] flex items-center justify-center shadow-sacred-glow group-hover:border-sacred-gold transition-all duration-300">
-              <span className="font-devanagari text-lg sm:text-2xl font-bold gold-gradient-text drop-shadow-[0_0_10px_rgba(212,175,55,0.4)]">
-                ॐ
-              </span>
+            <div className="relative w-9 h-9 sm:w-12 sm:h-12 shrink-0 rounded-full overflow-hidden border border-sacred-gold/70 bg-[#070605] shadow-sacred-glow group-hover:border-sacred-gold group-hover:shadow-[0_0_20px_rgba(212,175,55,0.6)] transition-all duration-300">
+              <img
+                src="/logo.jpg"
+                alt="Shakta Tattva Logo"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
             </div>
             <div className="min-w-0">
               <div className="flex items-center space-x-1.5 sm:space-x-2">
